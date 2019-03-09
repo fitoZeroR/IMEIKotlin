@@ -1,11 +1,81 @@
 <resources>
 
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Style_edt_login">
+        <item name="android:background">@drawable/rectangle</item>
+        <item name="android:layout_width">270dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/blanco</item>
+
+        <item name="android:paddingLeft">5dp</item>
+    </style>
+
+    <style name="Style_txv_menu_lateral_encabezado">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+        <!--<item name="android:layout_marginBottom">10dp</item>-->
+        <item name="android:background">@color/blanco</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="Style_txv_menu_lateral_titulo" parent="@style/Style_base_txv">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/blanco</item>
+    </style>
+
+    <style name="Style_txv_menu_lateral_contenido" parent="@style/Style_base_txv">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blanco</item>
+    </style>
+
+    <style name="Style_txv_menu_lateral_evento" parent="@style/Style_base_txv">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@drawable/text_selector_color</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Style_base_txv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingLeft">30dp</item>
+    </style>
+
+    <style name="Style_til_login">
+        <item name="colorAccent">@color/blanco</item>
+        <item name="android:textColorHint">@color/blanco</item>
+    </style>
+
+    <style name="EditTextFind">
+        <item name="android:textSize">17sp</item>
+        <item name="android:padding">7dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
     </style>
 
 </resources>

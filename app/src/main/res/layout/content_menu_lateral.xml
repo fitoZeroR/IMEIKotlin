@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        tools:context=".ui.activity.main.MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imv_estudiante_id"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/silueta_usuario"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imv_camara_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camara_selector"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imv_estudiante_id"
+                    app:layout_constraintCircle="@+id/imv_estudiante_id"
+                    app:layout_constraintCircleRadius="120dp"
+                    app:layout_constraintCircleAngle="115" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_datos_personales_id"
+                    style="@style/Style_txv_menu_lateral_encabezado"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/txt_datos_personal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imv_camara_id" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_tag_nombre_completo_id"
+                    android:text="@string/txt_nombre_completo"
+                    style="@style/Style_txv_menu_lateral_titulo"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_datos_personales_id"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_nombre_completo_id"
+                    android:text="Rodolfo Luis Martínez"
+                    style="@style/Style_txv_menu_lateral_contenido"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_tag_nombre_completo_id"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_tag_fecha_nacimiento_id"
+                    android:text="@string/txt_fecha_nacimiento"
+                    style="@style/Style_txv_menu_lateral_titulo"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_nombre_completo_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_fecha_nacimiento_id"
+                    android:text="17 de Febrero de 1985"
+                    style="@style/Style_txv_menu_lateral_contenido"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_tag_fecha_nacimiento_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_tag_curp_id"
+                    android:text="@string/txt_curp"
+                    style="@style/Style_txv_menu_lateral_titulo"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_fecha_nacimiento_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_curp_id"
+                    android:text="LUMR850217HOCSRD02"
+                    style="@style/Style_txv_menu_lateral_contenido"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_tag_curp_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_tag_telefono_id"
+                    android:text="@string/txt_telefono"
+                    style="@style/Style_txv_menu_lateral_titulo"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_curp_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_telefono_id"
+                    android:text="5559688145"
+                    style="@style/Style_txv_menu_lateral_contenido"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_tag_telefono_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_datos_academicos_id"
+                    android:text="@string/txt_datos_academicos"
+                    style="@style/Style_txv_menu_lateral_encabezado"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_telefono_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_tag_matricula_id"
+                    android:text="@string/txt_matricula"
+                    style="@style/Style_txv_menu_lateral_titulo"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_datos_academicos_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_matricula_id"
+                    android:text="A894785DP"
+                    style="@style/Style_txv_menu_lateral_contenido"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_tag_matricula_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_tag_carrera_id"
+                    android:text="@string/txt_carrera"
+                    style="@style/Style_txv_menu_lateral_titulo"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_matricula_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_carrera_id"
+                    android:text="Criminalistica"
+                    style="@style/Style_txv_menu_lateral_contenido"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_tag_carrera_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_tag_plantel_id"
+                    android:text="@string/txt_plantel"
+                    style="@style/Style_txv_menu_lateral_titulo"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_carrera_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_plantel_id"
+                    android:text="Plantel Pirámide"
+                    style="@style/Style_txv_menu_lateral_contenido"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_tag_plantel_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_tag_cuatrimestre_id"
+                    android:text="@string/txt_cuatrimestre"
+                    style="@style/Style_txv_menu_lateral_titulo"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_plantel_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_cuatrimestre_id"
+                    android:text="4 Cuatrimestre"
+                    style="@style/Style_txv_menu_lateral_contenido"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_tag_cuatrimestre_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <View
+                    android:id="@+id/view_separador_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/blanco"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_cuatrimestre_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_descarga_boleta_id"
+                    android:text="@string/txt_descarga_tu_boleta"
+                    style="@style/Style_txv_menu_lateral_evento"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/view_separador_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txv_cerrar_sesion_id"
+                    android:text="@string/txt_cerrar_sesion"
+                    style="@style/Style_txv_menu_lateral_evento"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintTop_toBottomOf="@+id/txv_descarga_boleta_id"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,3 +1,78 @@
-<resources>
-    <string name="app_name">IMEI Kotlin</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Soy IMEI</string>
+
+    <string name="hint_matricula">Matrícula</string>
+    <string name="hint_password">Contraseña</string>
+
+    <string name="entrar">ENTRAR</string>
+    <string name="no_eres_alumno">Si aún no eres alumno</string>
+    <string name="presiona_aqui">PRESIONA AQUÍ</string>
+    <string name="olvidaste_contraseña">¿Olvidaste tu contraseña?</string>
+    <string name="msg_operacion_exitosa">Operación exitosa</string>
+    <string name="msg_usuario_no_valido">Usuario no valido.</string>
+    <string name="msg_dialog_titulo">Grupo Educativo IMEI</string>
+    <string name="msg_dialog_mensaje">Para recuperar tu contraseña</string>
+    <string name="hint_dialog_mensaje">Escribe tu matrícula</string>
+    <string name="msg_matricula_vacio">El campo matrícula es requerido</string>
+
+    <string name="title_activity_opciones">Opciones</string>
+    <string name="opciones">Opciones</string>
+    <string name="prb_cargando">Cargando</string>
+    <string name="error">Error al obtener información del servidor.</string>
+
+    <string name="menu_editar">Editar</string>
+    <string name="msg_seleccione_app">Seleccione App:</string>
+
+    <string name="txt_ingresar_informacion">Por favor ingresa tu información para \n ponernos en contacto contigo, a la
+        brevedad
+    </string>
+    <string name="txt_escribe_nombre">Escribe tu nombre ...</string>
+    <string name="txt_escribe_telefono">Escribe tu telefono ...</string>
+    <string name="txt_escribe_correo_electronico">Escribe tu correo electronico ...</string>
+    <string name="txt_escribe_informacion_interes">Escribe la información de tu interés ...</string>
+    <string name="txt_enviar_informacion">ENVIAR INFORMACIÓN</string>
+
+    <string name="title_activity_enviar_informacion">Envíanos tu Información</string>
+    <string name="msg_datos_enviados_exitosamente">Datos recibidos exitosamente. Pronto nos pondremos en contacto
+        contigo.
+    </string>
+    <string name="msg_no_campos_vacios">No deben existir campos vacíos.</string>
+    <string name="msg_no_conexion_internet">No se ha podido conectar con el servidor. Comprueba tu conexión a Internet y
+        vuelva a intentarlo.
+    </string>
+    <string name="title_activity_planteles">Map</string>
+
+    <string name="title_fragment_pagos">Pagos</string>
+    <string name="title_fragment_asignaturas">Asignaturas</string>
+    <string name="title_fragment_directorio">Directorio</string>
+    <string name="title_fragment_estadisticas">Estadisticas</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="msg_valida_deslogueo">¿Estás seguro que deseas cerrar la sesión?</string>
+    <string name="txt_datos_personal">DATOS PERSONAL</string>
+    <string name="txt_datos_academicos">DATOS ACADÉMICOS</string>
+    <string name="txt_descarga_tu_boleta">DESCARGA TU BOLETA</string>
+    <string name="txt_cerrar_sesion">Cerrar Sesión</string>
+    <string name="txt_matricula">MATRÍCULA</string>
+    <string name="txt_nombre_completo">NOMBRE COMPLETO</string>
+    <string name="txt_fecha_nacimiento">FECHA DE NACIMIENTO</string>
+    <string name="txt_curp">CURP</string>
+    <string name="txt_telefono">TELÉFONO</string>
+    <string name="txt_carrera">CARRERA</string>
+    <string name="txt_plantel">PLANTEL</string>
+    <string name="txt_cuatrimestre">CUATRIMESTRE</string>
+    <string name="msg_seleccione_opcion">Seleccione una opción:</string>
+    <string name="msg_compartir_archivo">Compartir usando:</string>
+    <string name="msg_actualiza_imagen">¿Deseas conservar esta imagen?</string>
+    <string name="txt_buscar">Buscar</string>
+
+    <string name="action.cancel" tools:ignore="ExtraTranslation">Cancelar</string>
+    <string name="action.accept" tools:ignore="ExtraTranslation">Aceptar</string>
+    <string name="action.enviar" tools:ignore="ExtraTranslation">Enviar</string>
+
+    <string name="default_notification_channel_id">Push FCM</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
