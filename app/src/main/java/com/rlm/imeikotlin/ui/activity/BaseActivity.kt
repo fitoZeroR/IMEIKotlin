@@ -28,8 +28,8 @@ import java.util.*
 abstract class BaseActivity: AppCompatActivity(),
     LoginPresenter.View, OpcionesPresenter.View, EnviarInformacionPresenter.View, PlantelPresenter.View, MainPresenter.View {
 
-    protected var mDrawerToggle: ActionBarDrawerToggle? = null
-    protected var progressDialog: ProgressDialog? = null
+    protected lateinit var mDrawerToggle: ActionBarDrawerToggle
+    protected lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,8 +109,8 @@ abstract class BaseActivity: AppCompatActivity(),
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-        drawer_layout.addDrawerListener(mDrawerToggle!!)
-        mDrawerToggle!!.syncState()
+        drawer_layout.addDrawerListener(mDrawerToggle)
+        mDrawerToggle.syncState()
         animateToBackArrow()
         animatedToMenu()
     }
@@ -119,7 +119,7 @@ abstract class BaseActivity: AppCompatActivity(),
         val anim = ValueAnimator.ofFloat(0f, 1f)
         anim.addUpdateListener {
             val slideOffset = it.animatedValue as Float
-            mDrawerToggle?.onDrawerSlide(drawer_layout, slideOffset)
+            mDrawerToggle.onDrawerSlide(drawer_layout, slideOffset)
         }
         anim.interpolator = DecelerateInterpolator()
         // You can change this duration to more closely match that of the default animation.
@@ -130,7 +130,7 @@ abstract class BaseActivity: AppCompatActivity(),
     protected fun animatedToMenu() {
         val anim = ValueAnimator.ofFloat(0f, 1f)
         anim.addUpdateListener {
-            mDrawerToggle?.onDrawerClosed(drawer_layout)
+            mDrawerToggle.onDrawerClosed(drawer_layout)
         }
         anim.interpolator = DecelerateInterpolator()
         // You can change this duration to more closely match that of the default animation.

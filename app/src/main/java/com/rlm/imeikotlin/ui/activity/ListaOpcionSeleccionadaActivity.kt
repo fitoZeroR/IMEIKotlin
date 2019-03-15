@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.activity_opciones.*
 import java.util.*
 
 class ListaOpcionSeleccionadaActivity : BaseActivity() {
-    private var gradoList: List<Grado>? = null
-    private var titulo: String? = null
+    private lateinit var gradoList: List<Grado>
+    private lateinit var titulo: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +65,7 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
                     intent = Intent(this, DescripcionActivity::class.java)
                     bundle.putString(
                         BUNDLE_DESCRIPCION,
-                        gradoList?.get(it)?.descripcion
+                        gradoList.get(it).descripcion
                     )
                     bundle.putString(BUNDLE_NOMBRE_OPCION, titulo)
                 }

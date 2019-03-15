@@ -36,7 +36,7 @@ class LoginActivity : BaseActivity() {
     @Inject
     lateinit var preferencias: SharedPreferences
 
-    private var loginResponse: Login? = null
+    private lateinit var loginResponse: Login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)

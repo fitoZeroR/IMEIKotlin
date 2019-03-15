@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_opciones.*
 import java.util.*
 
 class ListaOpcionSeleccionadaDiplomadosActivity : BaseActivity() {
-    private var listaOpcionDiplomados: List<String>? = null
+    private lateinit var listaOpcionDiplomados: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
