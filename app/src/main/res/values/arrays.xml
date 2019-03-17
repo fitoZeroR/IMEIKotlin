@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="titulo_opciones">
+        <item>Que es Grupo Educativo IMEI</item>
+        <item>Kinder</item>
+        <item>Primaria</item>
+        <item>Bachillerato Tecnológico</item>
+        <item>Licenciaturas</item>
+        <item>Maestrias</item>
+        <item>Doctorados</item>
+        <item>Planteles</item>
+        <item>Diplomados</item>
+        <item>Cursos</item>
+        <item>Aviso de privacidad</item>
+    </string-array>
+
+    <string-array name="lista_diplomado_psicologia">
+        <item>1.- Tanatologia</item>
+        <item>2.- Técnicas de Evaluación de la Personalidad</item>
+        <item>3.- Tratamiento para la Depresión y las Adicciones</item>
+        <item>4.- Desarrollo Infantil</item>
+        <item>5.- Masajes y Acupuntura</item>
+        <item>6.- Psicología Forense</item>
+        <item>7.-Fisionomía del rostro, micro expresiones y lenguaje no verbal</item>
+        <item>8.- Enfermería</item>
+    </string-array>
+
+    <string-array name="lista_diplomado_derecho_criminologia">
+        <item>1.- Criminología clínica y Psicología clínica</item>
+        <item>2.- Técnicas de Evaluación de personalidad</item>
+        <item>3.- Victimología</item>
+        <item>4.- Grafología</item>
+        <item>5.- Inducción y Técnicas de Litigio</item>
+    </string-array>
+
+    <string-array name="lista_diplomado_criminalistica">
+        <item>1.- Criminalística</item>
+        <item>2.- Fotografía Forense</item>
+        <item>3.- Grafoscopia y Documentoscopia</item>
+    </string-array>
+
+    <string-array name="lista_plantel_directorio">
+        <item>IZCOATL JARDINES DE CASA NUEVA</item>
+        <item>IZCOATL ZAPATA</item>
+        <item>CALMECAC</item>
+        <item>IMEI PRIMERO DE MAYO</item>
+        <item>IMEI COACALCO</item>
+        <item>IMEI KENEDY</item>
+        <item>IMEI PIRAMIDE</item>
+        <item>IMEI TEXCOCO</item>
+        <item>IMEI CHICOLOAPAN</item>
+    </string-array>
+
+    <string-array name="lista_telefono_directorio">
+        <item>5775-4669</item>
+        <item>5006 - 4988</item>
+        <item>7601 - 4817</item>
+        <item>5837-2123</item>
+        <item>1039 - 9692</item>
+        <item>5830-0381</item>
+        <item>5774-4336</item>
+        <item>(595) 954-6897</item>
+        <item>6315-2052</item>
+    </string-array>
+
+    <string-array name="lista_opcion_foto">
+        <item>Cámara</item>
+        <item>Galería</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.enviarInformacion.EnviarInformacionActivity">
+
+    <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/txt_ingresar_informacion"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_escribe_nombre_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/rectangle_transparente"
+            android:hint="@string/txt_escribe_nombre"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_escribe_telefono_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rectangle_transparente"
+            android:hint="@string/txt_escribe_telefono"
+            android:inputType="phone"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_escribe_nombre_id"
+            app:layout_constraintStart_toStartOf="@+id/edt_escribe_nombre_id"
+            app:layout_constraintTop_toBottomOf="@+id/edt_escribe_nombre_id" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_escribe_correo_electronico_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rectangle_transparente"
+            android:hint="@string/txt_escribe_correo_electronico"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_escribe_telefono_id"
+            app:layout_constraintStart_toStartOf="@+id/edt_escribe_telefono_id"
+            app:layout_constraintTop_toBottomOf="@+id/edt_escribe_telefono_id" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_informacion_interes_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/txt_escribe_informacion_interes"
+            android:background="@drawable/rectangle_transparente"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/edt_escribe_correo_electronico_id"
+            app:layout_constraintStart_toStartOf="@+id/edt_escribe_correo_electronico_id"
+            app:layout_constraintTop_toBottomOf="@+id/edt_escribe_correo_electronico_id" />
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_enviar_informacion_id"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/txt_enviar_informacion"
+            android:background="@color/colorAccent"
+            android:textColor="@color/blanco"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_informacion_interes_id" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_pagos_item"
+        android:icon="@mipmap/pagos"
+        android:title="@string/title_fragment_pagos"/>
+    <item
+        android:id="@+id/menu_asignaturas_item"
+        android:icon="@mipmap/asignaturas"
+        android:title="@string/title_fragment_asignaturas"/>
+    <item
+        android:id="@+id/menu_estadisticas_item"
+        android:icon="@drawable/ic_pie_chart"
+        android:title="@string/title_fragment_estadisticas"/>
+    <item
+        android:id="@+id/menu_directorio_item"
+        android:icon="@mipmap/directorio"
+        android:title="@string/title_fragment_directorio"/>
+</menu>
