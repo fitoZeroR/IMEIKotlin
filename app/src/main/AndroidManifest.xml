@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.rlm.imeikotlin">
 
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -27,14 +27,62 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity"
-                  android:windowSoftInputMode="stateHidden"
-                  android:theme="@style/AppTheme" >
+        <activity android:name=".ui.login.LoginActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+
+        <activity
+                android:name=".ui.MainActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme"
+                android:windowSoftInputMode="stateHidden" />
+
+        <activity android:name=".ui.EnviarInformacionActivity"
+                  android:label="@string/title_activity_enviar_informacion"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme"/>
+
+        <activity android:name=".ui.opciones.OpcionesActivity"
+                  android:label="@string/title_activity_opciones"
+                  android:parentActivityName=".ui.login.LoginActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".ui.login.LoginActivity"/>
+        </activity>
+
+        <activity android:name=".ui.ListaOpcionSeleccionadaDiplomadosActivity"
+                  android:parentActivityName=".ui.ListaOpcionSeleccionadaActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".ui.ListaOpcionSeleccionadaActivity"/>
+        </activity>
+
+        <activity android:name=".ui.ListaOpcionSeleccionadaActivity"
+                  android:parentActivityName=".ui.opciones.OpcionesActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".ui.opciones.OpcionesActivity"/>
+        </activity>
+
+        <activity android:name=".ui.DescripcionActivity"
+                  android:parentActivityName=".ui.opciones.OpcionesActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".ui.opciones.OpcionesActivity"/>
         </activity>
 
         <!--
@@ -44,7 +92,7 @@
             You need a different API key for each encryption key, including the release key that is used to
             sign the APK for publishing.
             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-       -->
+        -->
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="@string/google_maps_key"/>
@@ -52,6 +100,14 @@
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version"/>
 
+        <activity android:name=".ui.PlantelesActivity"
+                  android:parentActivityName=".ui.opciones.OpcionesActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".ui.opciones.OpcionesActivity"/>
+        </activity>
 
     </application>
 

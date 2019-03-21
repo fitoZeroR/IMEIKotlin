@@ -12,7 +12,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-class SampleViewModelFactory @Inject constructor(private val creators: Map<Class<out ViewModel>,
+class ViewModelFactoryIMEI @Inject constructor(private val creators: Map<Class<out ViewModel>,
         @JvmSuppressWildcards Provider<ViewModel>>) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         val creator = creators[modelClass] ?: creators.entries.firstOrNull {

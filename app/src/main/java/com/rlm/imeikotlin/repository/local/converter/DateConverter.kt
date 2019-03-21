@@ -5,22 +5,28 @@ import androidx.room.TypeConverter
 import java.util.*
 
 class DateConverter {
-    @TypeConverter
-    fun toDate(timestamp: Long?) = timestamp?.let{ Date(it) }
+    companion object {
+        @TypeConverter
+        @JvmStatic
+        fun toDate(timestamp: Long?) = timestamp?.let { Date(it) }
 
-    @TypeConverter
-    fun toTimestamp(date: Date?) = date?.time
+        @TypeConverter
+        @JvmStatic
+        fun toTimestamp(date: Date?) = date?.time
 
-    @TypeConverter
-    fun calendarToDatestamp(calendar: Calendar): Long = calendar.timeInMillis
+        @TypeConverter
+        @JvmStatic
+        fun calendarToDatestamp(calendar: Calendar): Long = calendar.timeInMillis
 
-    @TypeConverter
-    fun datestampToCalendar(value: Long): Calendar =
-        Calendar.getInstance().apply { timeInMillis = value }
+        @TypeConverter
+        @JvmStatic
+        fun datestampToCalendar(value: Long): Calendar =
+            Calendar.getInstance().apply { timeInMillis = value }
 
-    fun getDayMonth(date: Date): String {
-        val day = DateFormat.format("dd", date) as String // 20
-        val monthString = DateFormat.format("MMM", date) as String // Jun
-        return day + monthString
+        fun getDayMonth(date: Date): String {
+            val day = DateFormat.format("dd", date) as String // 20
+            val monthString = DateFormat.format("MMM", date) as String // Jun
+            return day + monthString
+        }
     }
 }

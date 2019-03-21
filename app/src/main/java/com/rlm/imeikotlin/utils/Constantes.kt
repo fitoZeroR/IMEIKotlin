@@ -3,6 +3,9 @@ package com.rlm.imeikotlin.utils
 // Build Variant
 const val DEBUG = true
 
+//Network Response Constant
+const val ERROR_SERVICE_RESPONSE = "Error en servicio"
+
 // BD
 const val DATABASE_NAME = "RoomIMEI.db"
 const val DATABASE_VERSION = 1

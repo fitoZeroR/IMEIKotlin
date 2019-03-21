@@ -2,7 +2,7 @@ package com.rlm.imeikotlin.di.modules
 
 import android.app.Application
 import androidx.room.Room
-import com.rlm.imeikotlin.repository.local.MyDataBase
+import com.rlm.imeikotlin.repository.local.DataBaseIMEI
 import com.rlm.imeikotlin.utils.AppExecutors
 import com.rlm.imeikotlin.utils.DATABASE_NAME
 import dagger.Module
@@ -15,14 +15,19 @@ class RoomModule {
 
     @Singleton
     @Provides
-    fun provideDb(application: Application): MyDataBase =
-            Room.databaseBuilder(application.applicationContext, MyDataBase::class.java, DATABASE_NAME)
+    fun provideDb(application: Application): DataBaseIMEI =
+            Room.databaseBuilder(application.applicationContext, DataBaseIMEI::class.java, DATABASE_NAME)
                 .fallbackToDestructiveMigration()
                 .build()
 
-    /*@Singleton
+    // Refactorizarlo
+    @Singleton
     @Provides
-    fun abstract provideUserDao(myDataBase: MyDataBase) = myDataBase.userDao()*/
+    fun provideLoginDao(dataBaseIMEI: DataBaseIMEI) = dataBaseIMEI.loginDao()
+
+    @Singleton
+    @Provides
+    fun provideOpcionDao(dataBaseIMEI: DataBaseIMEI) = dataBaseIMEI.opcionDao()
 
     @Singleton
     @Provides

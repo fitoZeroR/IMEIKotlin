@@ -1,18 +1,18 @@
 package com.rlm.imeikotlin.di.builder
 
-import com.rlm.imeikotlin.MainActivity
 import com.rlm.imeikotlin.di.annotations.PerActivity
-import com.rlm.imeikotlin.ui.activity.main.MainActivityModule
+import com.rlm.imeikotlin.ui.login.LoginActivity
+import com.rlm.imeikotlin.ui.login.LoginActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityBuilder {
-    /*@PerActivity
+    @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(LoginActivityModule::class))
     abstract fun bindLoginActivity(): LoginActivity
 
-    @PerActivity
+    /*@PerActivity
     @ContributesAndroidInjector(modules = [OpcionesActivityModule::class])
     abstract fun bindOpcionesActivity(): OpcionesActivity
 
@@ -24,9 +24,9 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = arrayOf(PlantelesActivityModule::class))
     abstract fun bindPlantelesActivity(): PlantelesActivity*/
 
-    @PerActivity
+    /*@PerActivity
     @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class))
-    abstract fun bindMainActivity(): MainActivity
+    abstract fun bindMainActivity(): MainActivity*/
 
     /* Checar (Si no eliminar)
 
