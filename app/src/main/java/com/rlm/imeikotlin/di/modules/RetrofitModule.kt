@@ -5,10 +5,10 @@ import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.LiveDataCallAdapt
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
-import com.rlm.imeikotlin.repository.modelo.*
+import com.rlm.imeikotlin.repository.remote.modelo.*
 import com.rlm.imeikotlin.utils.APIConstants.URL
 import com.rlm.imeikotlin.utils.DEBUG
-import com.rlm.imeikotlin.repository.api.IRetrofitApi
+import com.rlm.imeikotlin.repository.remote.api.IRetrofitApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache

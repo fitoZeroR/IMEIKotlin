@@ -27,7 +27,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.login.LoginActivity"
+        <activity android:name=".ui.activitys.login.LoginActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -38,51 +38,51 @@
         </activity>
 
         <activity
-                android:name=".ui.MainActivity"
+                android:name=".ui.activitys.MainActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme"
                 android:windowSoftInputMode="stateHidden" />
 
-        <activity android:name=".ui.EnviarInformacionActivity"
+        <activity android:name=".ui.activitys.EnviarInformacionActivity"
                   android:label="@string/title_activity_enviar_informacion"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme"/>
 
-        <activity android:name=".ui.opciones.OpcionesActivity"
+        <activity android:name=".ui.activitys.opciones.OpcionesActivity"
                   android:label="@string/title_activity_opciones"
-                  android:parentActivityName=".ui.login.LoginActivity"
+                  android:parentActivityName=".ui.activitys.login.LoginActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".ui.login.LoginActivity"/>
+                    android:value=".ui.activitys.login.LoginActivity"/>
         </activity>
 
-        <activity android:name=".ui.ListaOpcionSeleccionadaDiplomadosActivity"
-                  android:parentActivityName=".ui.ListaOpcionSeleccionadaActivity"
+        <activity android:name=".ui.activitys.ListaOpcionSeleccionadaDiplomadosActivity"
+                  android:parentActivityName=".ui.activitys.ListaOpcionSeleccionadaActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".ui.ListaOpcionSeleccionadaActivity"/>
+                    android:value=".ui.activitys.ListaOpcionSeleccionadaActivity"/>
         </activity>
 
-        <activity android:name=".ui.ListaOpcionSeleccionadaActivity"
-                  android:parentActivityName=".ui.opciones.OpcionesActivity"
+        <activity android:name=".ui.activitys.ListaOpcionSeleccionadaActivity"
+                  android:parentActivityName=".ui.activitys.opciones.OpcionesActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".ui.opciones.OpcionesActivity"/>
+                    android:value=".ui.activitys.opciones.OpcionesActivity"/>
         </activity>
 
-        <activity android:name=".ui.DescripcionActivity"
-                  android:parentActivityName=".ui.opciones.OpcionesActivity"
+        <activity android:name=".ui.activitys.DescripcionActivity"
+                  android:parentActivityName=".ui.activitys.opciones.OpcionesActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".ui.opciones.OpcionesActivity"/>
+                    android:value=".ui.activitys.opciones.OpcionesActivity"/>
         </activity>
 
         <!--
@@ -100,13 +100,13 @@
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version"/>
 
-        <activity android:name=".ui.PlantelesActivity"
-                  android:parentActivityName=".ui.opciones.OpcionesActivity"
+        <activity android:name=".ui.activitys.PlantelesActivity"
+                  android:parentActivityName=".ui.activitys.opciones.OpcionesActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".ui.opciones.OpcionesActivity"/>
+                    android:value=".ui.activitys.opciones.OpcionesActivity"/>
         </activity>
 
     </application>

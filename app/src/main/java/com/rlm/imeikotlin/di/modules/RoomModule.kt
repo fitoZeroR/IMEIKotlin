@@ -27,7 +27,7 @@ class RoomModule {
 
     @Singleton
     @Provides
-    fun provideOpcionDao(dataBaseIMEI: DataBaseIMEI) = dataBaseIMEI.opcionDao()
+    fun provideOpcionDao(dataBaseIMEI: DataBaseIMEI) = dataBaseIMEI.opcionEstudioDao()
 
     @Singleton
     @Provides

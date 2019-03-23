@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Soy IMEI</string>
 
     <string name="hint_matricula">Matrícula</string>
@@ -67,9 +67,9 @@
     <string name="msg_actualiza_imagen">¿Deseas conservar esta imagen?</string>
     <string name="txt_buscar">Buscar</string>
 
-    <string name="action.cancel" tools:ignore="ExtraTranslation">Cancelar</string>
-    <string name="action.accept" tools:ignore="ExtraTranslation">Aceptar</string>
-    <string name="action.enviar" tools:ignore="ExtraTranslation">Enviar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_accept">Aceptar</string>
+    <string name="action_enviar">Enviar</string>
 
     <string name="default_notification_channel_id">Push FCM</string>
 

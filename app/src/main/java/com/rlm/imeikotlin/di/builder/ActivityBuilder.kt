@@ -1,8 +1,9 @@
 package com.rlm.imeikotlin.di.builder
 
 import com.rlm.imeikotlin.di.annotations.PerActivity
-import com.rlm.imeikotlin.ui.login.LoginActivity
-import com.rlm.imeikotlin.ui.login.LoginActivityModule
+import com.rlm.imeikotlin.ui.activitys.login.LoginActivity
+import com.rlm.imeikotlin.ui.activitys.login.LoginActivityModule
+import com.rlm.imeikotlin.ui.activitys.opciones.OpcionesActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -12,11 +13,11 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = arrayOf(LoginActivityModule::class))
     abstract fun bindLoginActivity(): LoginActivity
 
-    /*@PerActivity
-    @ContributesAndroidInjector(modules = [OpcionesActivityModule::class])
+    @PerActivity
+    @ContributesAndroidInjector
     abstract fun bindOpcionesActivity(): OpcionesActivity
 
-    @PerActivity
+    /*@PerActivity
     @ContributesAndroidInjector(modules = [EnviarInformacionActivityModule::class])
     abstract fun bindEnviarInformacionActivity(): EnviarInformacionActivity
 
