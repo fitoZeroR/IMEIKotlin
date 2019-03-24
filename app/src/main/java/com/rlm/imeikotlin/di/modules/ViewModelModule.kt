@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.elcomercio.mvvm_dagger_kotlin.viewmodel.ViewModelFactoryIMEI
 import com.rlm.imeikotlin.di.annotations.ViewModelKey
+import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionViewModel
 import com.rlm.imeikotlin.ui.activitys.login.LoginViewModel
 import com.rlm.imeikotlin.ui.activitys.opciones.OpcionesViewModel
 import dagger.Binds
@@ -21,6 +22,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(OpcionesViewModel::class)
     abstract fun bindOpcionesViewModel(opcionesViewModel: OpcionesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EnviarInformacionViewModel::class)
+    abstract fun bindEnviarInformacionViewModel(enviarInformacionViewModel: EnviarInformacionViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactoryIMEI: ViewModelFactoryIMEI): ViewModelProvider.Factory

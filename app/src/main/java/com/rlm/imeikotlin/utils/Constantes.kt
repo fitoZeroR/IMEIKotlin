@@ -60,7 +60,7 @@ const val TELEFONO = "Telefono"
 const val MATRICULA = "Matricula"
 const val LICENCIATURA = "Licenciatura"
 const val PLANTEL = "Plantel"
-const val FOTO = "Foto"
+const val FOTO = "FotoResponse"
 const val NACIMIENTO = "Nacimiento"
 //
 const val BOLETA_URL = "BoletaURL"

@@ -1,9 +1,9 @@
-package com.rlm.imeikotlin.repository.remote.modelo
+package com.rlm.imeikotlin.repository.remote.modelo.response
 
 import com.google.gson.annotations.SerializedName
 import com.rlm.imeikotlin.utils.*
 
-data class DescargaBoleta(
+data class DescargaBoletaResponse(
     @SerializedName(CODE)
     val code: Int,
     @SerializedName(DATA)

@@ -3,7 +3,7 @@ package com.rlm.imeikotlin.repository
 import androidx.lifecycle.LiveData
 import com.rlm.imeikotlin.repository.remote.api.IRetrofitApi
 import com.rlm.imeikotlin.repository.local.dao.LoginDao
-import com.rlm.imeikotlin.repository.remote.modelo.RecuperarPassword
+import com.rlm.imeikotlin.repository.remote.modelo.response.RecuperarPasswordResponse
 import com.rlm.imeikotlin.utils.AppExecutors
 import com.rlm.imeikotlin.utils.Resource
 import javax.inject.Inject
@@ -16,8 +16,8 @@ constructor(private val appExecutors: AppExecutors,
             private val loginDao: LoginDao,
             private val iRetrofitApi: IRetrofitApi) {
 
-    fun saveUserOnFromServer(newPassword: String): LiveData<Resource<RecuperarPassword>> {
-        return object : NetworkResource<RecuperarPassword>(){
+    fun saveUserOnFromServer(newPassword: String): LiveData<Resource<RecuperarPasswordResponse>> {
+        return object : NetworkResource<RecuperarPasswordResponse>(){
             override fun createCall()
                     = iRetrofitApi.recuperaPassword(newPassword)
         }.asLiveData()

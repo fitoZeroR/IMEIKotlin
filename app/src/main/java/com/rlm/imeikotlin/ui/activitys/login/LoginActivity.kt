@@ -7,7 +7,7 @@ import android.view.WindowManager
 import com.google.android.material.textfield.TextInputEditText
 import com.jakewharton.rxbinding2.view.RxView
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.modelo.Login
+import com.rlm.imeikotlin.repository.remote.modelo.response.LoginResponse
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.ui.activitys.opciones.OpcionesActivity
 import com.rlm.imeikotlin.utils.Status
@@ -31,7 +31,7 @@ class LoginActivity : BaseActivity() {
     @Inject
     lateinit var loginViewModel: LoginViewModel
 
-    private lateinit var loginResponse: Login
+    private lateinit var loginResponseResponse: LoginResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -46,7 +46,7 @@ class LoginActivity : BaseActivity() {
     override fun getLayoutResource() = R.layout.activity_login
 
     private fun subscribeToLoginModel() {
-        loginViewModel.postCambiaPasswordResourceLiveData.observe(this, Observer {
+        loginViewModel.postCambiaPasswordResponseResourceLiveData.observe(this, Observer {
             when(it.status) {
                 Status.LOADING -> showLoading()
                 Status.SUCCESS -> {

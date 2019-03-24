@@ -5,10 +5,10 @@ import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.LiveDataCallAdapt
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
-import com.rlm.imeikotlin.repository.remote.modelo.*
 import com.rlm.imeikotlin.utils.APIConstants.URL
 import com.rlm.imeikotlin.utils.DEBUG
 import com.rlm.imeikotlin.repository.remote.api.IRetrofitApi
+import com.rlm.imeikotlin.repository.remote.modelo.response.*
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -50,14 +50,14 @@ class RetrofitModule {
     @Singleton
     fun provideGson() = GsonBuilder()
             .setLenient()
-            .registerTypeAdapter(Login::class.java, JsonDeserializer { json, typeOfT, context -> Gson().fromJson(json, Login::class.java) })
-            .registerTypeAdapter(RecuperarPassword::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, RecuperarPassword::class.java) }))
-            .registerTypeAdapter(PagosAsignaturas::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, PagosAsignaturas::class.java) }))
-            .registerTypeAdapter(Opciones::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, Opciones::class.java) }))
-            .registerTypeAdapter(InformacionPlanteles::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, InformacionPlanteles::class.java) }))
-            .registerTypeAdapter(EnviarInformacion::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, EnviarInformacion::class.java) }))
-            .registerTypeAdapter(Foto::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, Foto::class.java) }))
-            .registerTypeAdapter(DescargaBoleta::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, DescargaBoleta::class.java) }))
+            .registerTypeAdapter(LoginResponse::class.java, JsonDeserializer { json, typeOfT, context -> Gson().fromJson(json, LoginResponse::class.java) })
+            .registerTypeAdapter(RecuperarPasswordResponse::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, RecuperarPasswordResponse::class.java) }))
+            .registerTypeAdapter(PagosAsignaturasResponse::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, PagosAsignaturasResponse::class.java) }))
+            .registerTypeAdapter(OpcionesResponse::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, OpcionesResponse::class.java) }))
+            .registerTypeAdapter(InformacionPlantelesResponse::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, InformacionPlantelesResponse::class.java) }))
+            .registerTypeAdapter(EnviarInformacionResponse::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, EnviarInformacionResponse::class.java) }))
+            .registerTypeAdapter(FotoResponse::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, FotoResponse::class.java) }))
+            .registerTypeAdapter(DescargaBoletaResponse::class.java, JsonDeserializer({ json, typeOfT, context -> Gson().fromJson(json, DescargaBoletaResponse::class.java) }))
             .create()
 
     @Provides

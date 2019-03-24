@@ -43,7 +43,7 @@
                 android:theme="@style/AppTheme"
                 android:windowSoftInputMode="stateHidden" />
 
-        <activity android:name=".ui.activitys.EnviarInformacionActivity"
+        <activity android:name=".ui.activitys.enviarInformacion.EnviarInformacionActivity"
                   android:label="@string/title_activity_enviar_informacion"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme"/>

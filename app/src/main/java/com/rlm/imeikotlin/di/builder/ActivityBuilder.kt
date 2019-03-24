@@ -1,6 +1,7 @@
 package com.rlm.imeikotlin.di.builder
 
 import com.rlm.imeikotlin.di.annotations.PerActivity
+import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionActivity
 import com.rlm.imeikotlin.ui.activitys.login.LoginActivity
 import com.rlm.imeikotlin.ui.activitys.login.LoginActivityModule
 import com.rlm.imeikotlin.ui.activitys.opciones.OpcionesActivity
@@ -17,11 +18,11 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector
     abstract fun bindOpcionesActivity(): OpcionesActivity
 
-    /*@PerActivity
-    @ContributesAndroidInjector(modules = [EnviarInformacionActivityModule::class])
+    @PerActivity
+    @ContributesAndroidInjector
     abstract fun bindEnviarInformacionActivity(): EnviarInformacionActivity
 
-    @PerActivity
+    /*@PerActivity
     @ContributesAndroidInjector(modules = arrayOf(PlantelesActivityModule::class))
     abstract fun bindPlantelesActivity(): PlantelesActivity*/
 

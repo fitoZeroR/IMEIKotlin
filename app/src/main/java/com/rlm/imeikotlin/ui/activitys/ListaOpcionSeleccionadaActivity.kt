@@ -6,7 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
-import com.rlm.imeikotlin.repository.remote.modelo.Grado
+import com.rlm.imeikotlin.repository.remote.modelo.response.Grado
 import com.rlm.imeikotlin.ui.adapters.CustomAdapterOpciones
 import com.rlm.imeikotlin.utils.*
 import kotlinx.android.synthetic.main.activity_opciones.*
@@ -56,7 +56,14 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
                 opcionEstudioEntityList.filter {
                     it.encabezado.equals(mutableSetTitulo.elementAt(indice))
                 }.forEach {
-                    mutableGradoList.add(Grado(it.titulo, it.descripcion, "", it.planteles))
+                    mutableGradoList.add(
+                        Grado(
+                            it.titulo,
+                            it.descripcion,
+                            "",
+                            it.planteles
+                        )
+                    )
                 }
             }
 
