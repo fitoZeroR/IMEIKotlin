@@ -31,6 +31,10 @@ class RoomModule {
 
     @Singleton
     @Provides
+    fun providePlantelDao(dataBaseIMEI: DataBaseIMEI) = dataBaseIMEI.plantelDao()
+
+    @Singleton
+    @Provides
     fun provideAppExecutors() = AppExecutors(Executors.newSingleThreadExecutor(),
         Executors.newFixedThreadPool(THREAD_COUNT), AppExecutors.MainThreadExecutor())
 

@@ -8,7 +8,7 @@ import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.ui.activitys.DescripcionActivity
 import com.rlm.imeikotlin.ui.activitys.ListaOpcionSeleccionadaActivity
-import com.rlm.imeikotlin.ui.activitys.PlantelesActivity
+import com.rlm.imeikotlin.ui.activitys.planteles.PlantelesActivity
 import com.rlm.imeikotlin.ui.adapters.CustomAdapterOpciones
 import com.rlm.imeikotlin.utils.*
 import dagger.android.AndroidInjection

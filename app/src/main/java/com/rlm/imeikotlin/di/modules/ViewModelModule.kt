@@ -7,6 +7,7 @@ import com.rlm.imeikotlin.di.annotations.ViewModelKey
 import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionViewModel
 import com.rlm.imeikotlin.ui.activitys.login.LoginViewModel
 import com.rlm.imeikotlin.ui.activitys.opciones.OpcionesViewModel
+import com.rlm.imeikotlin.ui.activitys.planteles.PlantelesViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -27,6 +28,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(EnviarInformacionViewModel::class)
     abstract fun bindEnviarInformacionViewModel(enviarInformacionViewModel: EnviarInformacionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlantelesViewModel::class)
+    abstract fun bindPlantelesViewModel(plantelesViewModel: PlantelesViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactoryIMEI: ViewModelFactoryIMEI): ViewModelProvider.Factory

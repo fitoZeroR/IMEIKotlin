@@ -1,6 +1,7 @@
 package com.rlm.imeikotlin.di.builder
 
 import com.rlm.imeikotlin.di.annotations.PerActivity
+import com.rlm.imeikotlin.ui.activitys.planteles.PlantelesActivity
 import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionActivity
 import com.rlm.imeikotlin.ui.activitys.login.LoginActivity
 import com.rlm.imeikotlin.ui.activitys.login.LoginActivityModule
@@ -22,9 +23,9 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector
     abstract fun bindEnviarInformacionActivity(): EnviarInformacionActivity
 
-    /*@PerActivity
-    @ContributesAndroidInjector(modules = arrayOf(PlantelesActivityModule::class))
-    abstract fun bindPlantelesActivity(): PlantelesActivity*/
+    @PerActivity
+    @ContributesAndroidInjector
+    abstract fun bindPlantelesActivity(): PlantelesActivity
 
     /*@PerActivity
     @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class))
