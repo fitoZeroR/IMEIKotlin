@@ -107,10 +107,10 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
 
     // RXJAVA
-    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    //implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
     // RXKOTLIN
-    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    //implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
 
     // RXANDROID
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
@@ -129,7 +129,7 @@ dependencies {
 
     // PLAY SERVICES
     implementation "com.google.android.gms:play-services-maps:$playservices_version"
-    implementation "com.google.android.gms:play-services-location:$playservices_version"
+    //implementation "com.google.android.gms:play-services-location:$playservices_version"
 
     ////********************************************************************
 

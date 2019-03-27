@@ -23,7 +23,7 @@ class RoomModule {
     // Refactorizarlo
     @Singleton
     @Provides
-    fun provideLoginDao(dataBaseIMEI: DataBaseIMEI) = dataBaseIMEI.loginDao()
+    fun provideLoginDao(dataBaseIMEI: DataBaseIMEI) = dataBaseIMEI.alumnoDao()
 
     @Singleton
     @Provides

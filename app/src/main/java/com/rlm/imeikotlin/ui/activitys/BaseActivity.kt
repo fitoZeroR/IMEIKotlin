@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionActivity
 import com.rlm.imeikotlin.ui.activitys.login.LoginActivity
+import com.rlm.imeikotlin.ui.activitys.main.MainActivity
 import com.rlm.imeikotlin.utils.Tools
 import com.rlm.imeikotlin.utils.navigate
 import com.rlm.imeikotlin.utils.replaceFragment

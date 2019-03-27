@@ -7,5 +7,5 @@ data class Data(
     @SerializedName(TOKEN_SESION)
     val tokenSesion: String,
     @SerializedName(ALUMNO)
-    val alumno: Alumno
+    val alumno: Alumno?
 )

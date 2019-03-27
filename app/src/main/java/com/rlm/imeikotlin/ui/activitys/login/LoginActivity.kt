@@ -10,11 +10,8 @@ import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.remote.modelo.response.LoginResponse
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.ui.activitys.opciones.OpcionesActivity
-import com.rlm.imeikotlin.utils.Status
-import com.rlm.imeikotlin.utils.Tools
 import com.rlm.imeikotlin.utils.Tools.Companion.hideKeyboard
 import com.rlm.imeikotlin.utils.Tools.Companion.mensajeInformativo
-import com.rlm.imeikotlin.utils.navigate
 import com.tbruyelle.rxpermissions2.RxPermissions
 import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -26,6 +23,9 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import  androidx.lifecycle.Observer
+import com.rlm.imeikotlin.repository.remote.modelo.request.LoginRequest
+import com.rlm.imeikotlin.ui.activitys.main.MainActivity
+import com.rlm.imeikotlin.utils.*
 
 class LoginActivity : BaseActivity() {
     @Inject
@@ -36,16 +36,39 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutResource())
 
-        requestForSpecificPermission()
-        asignaEventosComponentes()
-        subscribeToLoginModel()
+        if (loginViewModel.verificaLogin() == 0) {
+            setContentView(getLayoutResource())
+
+            requestForSpecificPermission()
+            asignaEventosComponentes()
+            subscribeToLoginModel()
+        } else {
+            navigate<MainActivity>()
+        }
     }
 
     override fun getLayoutResource() = R.layout.activity_login
 
     private fun subscribeToLoginModel() {
+        loginViewModel.getLoginResourceLiveData.observe(this, Observer {
+            when(it.status) {
+                Status.LOADING -> showLoading()
+                Status.SUCCESS -> {
+                    hideLoading()
+                    if (it.data!!.mensaje.equals(getString(R.string.msg_operacion_exitosa))) {
+                        navigate<MainActivity>()
+                    } else {
+                        mensajeInformativo(this, it.data.mensaje, false)
+                    }
+                }
+                Status.ERROR -> {
+                    hideLoading()
+                    showError(it.message)
+                }
+            }
+        })
+
         loginViewModel.postCambiaPasswordResponseResourceLiveData.observe(this, Observer {
             when(it.status) {
                 Status.LOADING -> showLoading()
@@ -121,9 +144,8 @@ class LoginActivity : BaseActivity() {
                     )
                 else
                     if (wifiManager.isWifiEnabled())
-                        /*loginPresenter.autentificaUsuario(edt_matricula_alumno_id.getText().toString()
-                            , edt_password_id.getText().toString()
-                        )*/
+                        loginViewModel.getLoginFromServer(LoginRequest(edt_matricula_alumno_id.getText().toString(),
+                            edt_password_id.getText().toString()))
                     else
                         Tools.informaErrorConexionWifi(
                             this@LoginActivity,

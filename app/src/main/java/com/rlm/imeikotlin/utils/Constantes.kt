@@ -22,8 +22,8 @@ const val BUNDLE_DESCRIPCION = "descripcion"
 const val BUNDLE_OPCION_SELECCIONADA = "opcionSeleccionada"
 const val BUNDLE_NOMBRE_OPCION = "nombreOpcion"
 const val BUNDLE_INDICE_OPCION = "nombreIndice"
-const val BUNDLE_INFORMACION_USUARIO = "informacionUsuario"
-const val BUNDLE_INFORMACION_PAGOS_ASIGNATURAS = "informacionPagosAsignaturas"
+/*const val BUNDLE_INFORMACION_USUARIO = "informacionUsuario"
+const val BUNDLE_INFORMACION_PAGOS_ASIGNATURAS = "informacionPagosAsignaturas"*/
 const val BUNDLE_LISTA_PAGO = "listaPago"
 const val BUNDLE_LISTA_PLAN = "listaPlan"
 
@@ -39,10 +39,10 @@ const val FORMATO_CUMPLEANOS = "dd MMMM yyyy"
 //public final static String FORMATO_CUMPLEANOS = "d 'de' MMMM 'de' yyyy";
 
 // SharedPreferences
-const val MATRICULA_SP = "matricula"
+/*const val MATRICULA_SP = "matricula"
 const val PASSWORD = "password"
 const val JSON_LOGIN = "jsonLogin"
-const val JSON_ASIGNATURAS_PAGOS = "jsonAsignaturasPagos"
+const val JSON_ASIGNATURAS_PAGOS = "jsonAsignaturasPagos"*/
 
 // TODO REFACTORIZAR EN UN OBJJECT COMPANION EN CADA CLASE QUE LO LLAMA
 // Mapeo Gson
@@ -60,7 +60,7 @@ const val TELEFONO = "Telefono"
 const val MATRICULA = "Matricula"
 const val LICENCIATURA = "Licenciatura"
 const val PLANTEL = "Plantel"
-const val FOTO = "FotoResponse"
+const val FOTO = "Foto"
 const val NACIMIENTO = "Nacimiento"
 //
 const val BOLETA_URL = "BoletaURL"

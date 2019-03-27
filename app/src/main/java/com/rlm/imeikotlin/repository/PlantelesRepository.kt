@@ -20,11 +20,10 @@ constructor(private val appExecutors: AppExecutors,
 
     fun loadAllPlanteles(): LiveData<Resource<List<PlantelEntity>>> =
         object : DetailNetworkResource<List<PlantelEntity>, InformacionPlantelesResponse>(appExecutors) {
-            override fun saveCallResult(item: InformacionPlantelesResponse) {
+            override fun saveCallResult(item: InformacionPlantelesResponse) =
                 item.planteles.forEach {
                     plantelDao.savePlantel(PlantelEntity(it.nombre, it.latitud, it.longitud))
                 }
-            }
 
             override fun shouldFetch(data: List<PlantelEntity>?): Boolean =
                 data == null || data.size == 0

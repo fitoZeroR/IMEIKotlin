@@ -5,30 +5,30 @@ import com.rlm.imeikotlin.utils.*
 
 data class Alumno(
     @SerializedName(ID_ALUMNO)
-    val idAlumno: String,
+    val idAlumno: String?,
     @SerializedName(NOMBRE)
-    val nombre: String,
+    val nombre: String?,
     @SerializedName(PATERNO)
-    val paterno: String,
+    val paterno: String?,
     @SerializedName(MATERNO)
-    val materno: String,
+    val materno: String?,
     @SerializedName(CUATRIMESTRE)
-    val cuatrimestre: String,
+    val cuatrimestre: String?,
     @SerializedName(ID_LICENCIATURA)
-    val idLicenciatura: String,
+    val idLicenciatura: String?,
     @SerializedName(ID_PLANTEL)
-    val idPlantel: String,
+    val idPlantel: String?,
     @SerializedName(CURP)
-    val curp: String,
+    val curp: String?,
     @SerializedName(TELEFONO)
-    val telefono: String,
+    val telefono: String?,
     @SerializedName(MATRICULA)
-    val matricula: String,
+    val matricula: String?,
     @SerializedName(NACIMIENTO)
-    val nacimiento: String,
+    val nacimiento: String?,
     @SerializedName(FOTO)
-    val foto: String,
+    val foto: String?,
     @SerializedName(LICENCIATURA)
-    val licenciatura: String,
+    val licenciatura: String?,
     @SerializedName(PLANTEL)
-    val plantel: String)
+    val plantel: String?)
