@@ -5,8 +5,8 @@ import com.rlm.imeikotlin.utils.*
 
 data class EstatusPago(
     @SerializedName(PAGO)
-    val pago: String,
+    val pago: String?,
     @SerializedName(NOMBRE)
-    val nombre: String,
+    val nombre: String?,
     @SerializedName(ESTATUS)
-    val estatus: String)
+    val estatus: String?)

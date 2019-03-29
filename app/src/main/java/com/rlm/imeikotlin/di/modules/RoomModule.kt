@@ -35,6 +35,14 @@ class RoomModule {
 
     @Singleton
     @Provides
+    fun provideInformacionDao(dataBaseIMEI: DataBaseIMEI) = dataBaseIMEI.informacionDao()
+
+    @Singleton
+    @Provides
+    fun provideDetalleAlumnoViewDao(dataBaseIMEI: DataBaseIMEI) = dataBaseIMEI.detalleAlumnoViewDao()
+
+    @Singleton
+    @Provides
     fun provideAppExecutors() = AppExecutors(Executors.newSingleThreadExecutor(),
         Executors.newFixedThreadPool(THREAD_COUNT), AppExecutors.MainThreadExecutor())
 

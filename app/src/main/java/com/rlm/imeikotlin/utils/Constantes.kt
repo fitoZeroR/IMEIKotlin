@@ -3,6 +3,10 @@ package com.rlm.imeikotlin.utils
 // Build Variant
 const val DEBUG = true
 
+// Tipo Información Alumno
+const val TIPO_PLAN = "tipoPlan"
+const val TIPO_PAGO = "tipoPago"
+
 //Network Response Constant
 const val ERROR_SERVICE_RESPONSE = "Error en servicio"
 

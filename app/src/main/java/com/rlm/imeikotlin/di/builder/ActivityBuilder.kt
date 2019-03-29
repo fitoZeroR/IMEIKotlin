@@ -1,6 +1,7 @@
 package com.rlm.imeikotlin.di.builder
 
 import com.rlm.imeikotlin.di.annotations.PerActivity
+import com.rlm.imeikotlin.ui.activity.main.fragment.directorio.DirectorioFragmentProvider
 import com.rlm.imeikotlin.ui.activitys.main.MainActivity
 import com.rlm.imeikotlin.ui.activitys.planteles.PlantelesActivity
 import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionActivity
@@ -29,8 +30,7 @@ abstract class ActivityBuilder {
     abstract fun bindPlantelesActivity(): PlantelesActivity
 
     @PerActivity
-    //@ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class, DirectorioFragmentProvider::class))
-    @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class))
+    @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class, DirectorioFragmentProvider::class))
     abstract fun bindMainActivity(): MainActivity
 
     /* Checar (Si no eliminar)

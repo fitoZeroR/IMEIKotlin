@@ -7,7 +7,6 @@ import android.view.WindowManager
 import com.google.android.material.textfield.TextInputEditText
 import com.jakewharton.rxbinding2.view.RxView
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.modelo.response.LoginResponse
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.ui.activitys.opciones.OpcionesActivity
 import com.rlm.imeikotlin.utils.Tools.Companion.hideKeyboard
@@ -31,8 +30,6 @@ class LoginActivity : BaseActivity() {
     @Inject
     lateinit var loginViewModel: LoginViewModel
 
-    private lateinit var loginResponseResponse: LoginResponse
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -44,7 +41,7 @@ class LoginActivity : BaseActivity() {
             asignaEventosComponentes()
             subscribeToLoginModel()
         } else {
-            navigate<MainActivity>()
+            inicializaMain()
         }
     }
 
@@ -57,7 +54,7 @@ class LoginActivity : BaseActivity() {
                 Status.SUCCESS -> {
                     hideLoading()
                     if (it.data!!.mensaje.equals(getString(R.string.msg_operacion_exitosa))) {
-                        navigate<MainActivity>()
+                        inicializaMain()
                     } else {
                         mensajeInformativo(this, it.data.mensaje, false)
                     }
@@ -128,6 +125,11 @@ class LoginActivity : BaseActivity() {
             if (hasFocus)
                 Objects.requireNonNull(dialogoRecuperaPassword.window).setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
         }
+    }
+
+    private fun inicializaMain() {
+        navigate<MainActivity>()
+        finish()
     }
 
     private fun asignaEventosComponentes() {

@@ -44,7 +44,7 @@ data class AlumnoEntity(
     val mensaje : String) {
 
     companion object {
-        const val TABLE_NAME_ALUMNO = "Login"
+        const val TABLE_NAME_ALUMNO = "Alumno"
         const val COLUMNA_TOKEN_SESION = "Token_Sesion"
         const val COLUMNA_USUARIO = "Usuario"
         const val COLUMNA_PASSWORD = "Password"

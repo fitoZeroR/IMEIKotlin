@@ -44,7 +44,7 @@ constructor(private val appExecutors: AppExecutors,
                 !(data?.usuario.equals(usuario) && data?.password.equals(password))
 
             override fun loadFromDb(): LiveData<AlumnoEntity> =
-                alumnoDao.getAlumno(usuario, password)
+                alumnoDao.getAlumnoLogin(usuario, password)
 
             override fun createCall(): LiveData<ApiResponse<LoginResponse>> =
                 iRetrofitApi.autenticarUsuario(usuario, password)
