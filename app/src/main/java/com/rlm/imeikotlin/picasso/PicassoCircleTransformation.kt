@@ -1,6 +1,7 @@
 package com.rlm.imeikotlin.picasso
 
 import android.graphics.*
+import com.rlm.imeikotlin.utils.CIRCLE
 import com.squareup.picasso.Transformation
 
 class PicassoCircleTransformation : Transformation {
@@ -34,5 +35,5 @@ class PicassoCircleTransformation : Transformation {
 
     }
 
-    override fun key() = "Circle"
+    override fun key() = CIRCLE
 }

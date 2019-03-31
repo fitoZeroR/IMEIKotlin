@@ -17,11 +17,10 @@ class DescripcionActivity : BaseActivity() {
 
         Objects.requireNonNull(supportActionBar)?.setHomeAsUpIndicator(R.drawable.ic_chevron_left)
 
-        val bundle = intent.extras
         var descripcion: String? = null
-        if (bundle != null) {
-            descripcion = bundle.getString(BUNDLE_DESCRIPCION)
-            title = bundle.getString(BUNDLE_NOMBRE_OPCION)
+        intent.extras.let {
+            descripcion = it.getString(BUNDLE_DESCRIPCION)
+            title = it.getString(BUNDLE_NOMBRE_OPCION)
         }
 
         txv_descripcion_id.setText(Html.fromHtml(descripcion, 0), TextView.BufferType.SPANNABLE)

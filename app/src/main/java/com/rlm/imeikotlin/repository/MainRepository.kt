@@ -1,5 +1,6 @@
 package com.rlm.imeikotlin.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
 import com.rlm.imeikotlin.repository.local.dao.AlumnoDao
@@ -11,6 +12,7 @@ import com.rlm.imeikotlin.repository.local.entity.embedded.Pago
 import com.rlm.imeikotlin.repository.local.entity.embedded.Plan
 import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
 import com.rlm.imeikotlin.repository.remote.api.IRetrofitApi
+import com.rlm.imeikotlin.repository.remote.modelo.response.DescargaBoletaResponse
 import com.rlm.imeikotlin.repository.remote.modelo.response.PagosAsignaturasResponse
 import com.rlm.imeikotlin.utils.AppExecutors
 import com.rlm.imeikotlin.utils.Resource
@@ -56,13 +58,28 @@ constructor(private val appExecutors: AppExecutors,
                 detalleAlumnoViewDao.getDetalleAlumno()
 
             override fun createCall(): LiveData<ApiResponse<PagosAsignaturasResponse>> {
-                alumnoEntity = doAsyncResult {
-                    val resultado = alumnoDao.getAlumno()
-                    resultado
-                }.get()
+                alumnoEntity = obtieneAlumno()
 
                 return iRetrofitApi.obtieneAsignaturasPagos(alumnoEntity.tokenSesion!!)
             }
 
         }.asLiveData()
+
+    fun downloadFileOnFromServer() =
+        object : NetworkResource<DescargaBoletaResponse>() {
+            override fun createCall() =
+                iRetrofitApi.obtieneBoleta(obtieneAlumno().tokenSesion!!)
+        }.asLiveData()
+
+    fun cleanLogin() = doAsyncResult {
+        //Log.i("RLM", "Tamaño Alumno = " + alumnoDao.getTotalAlumno())
+        alumnoDao.clearAlumno()
+        //Log.i("RLM", "Tamaño Alumno = " + alumnoDao.getTotalAlumno())
+        Unit
+    }.get()
+
+    private fun obtieneAlumno() = doAsyncResult {
+        val resultado = alumnoDao.getAlumno()
+        resultado
+    }.get()
 }

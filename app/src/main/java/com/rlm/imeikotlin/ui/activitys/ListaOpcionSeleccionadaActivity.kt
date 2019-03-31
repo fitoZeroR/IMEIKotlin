@@ -25,14 +25,13 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
 
         Objects.requireNonNull(supportActionBar)?.setHomeAsUpIndicator(R.drawable.ic_chevron_left)
 
-        val bundleExtras = intent.extras
-        if (bundleExtras != null) {
-            titulo = bundleExtras.getString(BUNDLE_NOMBRE_OPCION)
+        intent.extras.let {
+            titulo = it.getString(BUNDLE_NOMBRE_OPCION)
             setTitle(titulo)
 
-            indice = bundleExtras.getInt(BUNDLE_INDICE_OPCION)
+            indice = it.getInt(BUNDLE_INDICE_OPCION)
 
-            opcionSeleccionada = bundleExtras.getString(BUNDLE_OPCION_SELECCIONADA)
+            opcionSeleccionada = it.getString(BUNDLE_OPCION_SELECCIONADA)
             opcionEstudioEntityList = Gson().fromJson<List<OpcionEstudioEntity>>(opcionSeleccionada,
                 object : TypeToken<ArrayList<OpcionEstudioEntity>>() {}.type
             )

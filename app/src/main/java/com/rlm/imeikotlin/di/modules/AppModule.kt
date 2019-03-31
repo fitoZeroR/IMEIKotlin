@@ -1,6 +1,5 @@
 package com.rlm.imeikotlin.di.modules
 
-import android.app.Activity
 import android.app.Application
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
@@ -18,9 +17,9 @@ class AppModule {
     @Singleton
     fun provideContext(application: ApplicationIMEI) = application
 
-    @Provides
+    /*@Provides
     @Singleton
-    internal fun provideActivity(activity: Activity) = activity
+    fun provideActivity(activity: Activity) = activity*/
 
     @Provides
     @Singleton

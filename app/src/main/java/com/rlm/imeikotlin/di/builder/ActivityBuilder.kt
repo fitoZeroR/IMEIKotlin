@@ -32,15 +32,4 @@ abstract class ActivityBuilder {
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class, DirectorioFragmentProvider::class))
     abstract fun bindMainActivity(): MainActivity
-
-    /* Checar (Si no eliminar)
-
-    @ContributesAndroidInjector
-    abstract fun contributeDescripcionActivity(): DescripcionActivity
-
-    @ContributesAndroidInjector
-    abstract fun contributeListaOpcionSeleccionadaActivity(): ListaOpcionSeleccionadaActivity
-
-    @ContributesAndroidInjector
-    abstract fun contributeListaOpcionSeleccionadaDiplomadosActivity(): ListaOpcionSeleccionadaDiplomadosActivity*/
 }

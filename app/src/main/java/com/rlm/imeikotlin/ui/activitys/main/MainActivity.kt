@@ -4,6 +4,7 @@ import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -35,29 +36,29 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import androidx.lifecycle.Observer
 import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
-import com.rlm.imeikotlin.repository.remote.modelo.response.EstatusPago
-import com.rlm.imeikotlin.repository.remote.modelo.response.Materia
-import com.rlm.imeikotlin.repository.remote.modelo.response.Pagos
-import com.rlm.imeikotlin.repository.remote.modelo.response.Plan
+import com.rlm.imeikotlin.repository.remote.modelo.response.*
 import com.rlm.imeikotlin.ui.activity.main.fragment.AsignaturasFragment
 import com.rlm.imeikotlin.ui.activity.main.fragment.EstadisticasFragment
 import com.rlm.imeikotlin.ui.activity.main.fragment.PagosFragment
 import com.rlm.imeikotlin.ui.activity.main.fragment.directorio.DirectorioFragment
+import com.rlm.imeikotlin.utils.Tools.Companion.archivoBase64
 import com.rlm.imeikotlin.utils.Tools.Companion.getAccountNames
+import com.rlm.imeikotlin.utils.Tools.Companion.getFilePathFromContentUri
 import com.rlm.imeikotlin.utils.Tools.Companion.getImageUri
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import java.util.*
 
 class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     @Inject
     lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
     @Inject
     lateinit var mainViewModel: MainViewModel
+    @Inject
+    lateinit var picasso: Picasso
 
     private var uriImagen: Uri? = null
-    private lateinit var picasso: Picasso
 
     private lateinit var listaDetalleAlumnoView: List<DetalleAlumnoView>
     private val pagos: MutableList<Pagos> = mutableListOf()
@@ -120,6 +121,39 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
                 }
             }
         })
+
+        mainViewModel.getDownloadFileResourceLiveData.observe(this, Observer {
+            when (it.status) {
+                Status.LOADING -> showLoading()
+                Status.SUCCESS -> {
+                    hideLoading()
+                    compartirBoleta(it.data!!)
+                }
+                Status.ERROR -> {
+                    hideLoading()
+                    showError(it.message)
+                }
+            }
+        })
+    }
+
+    private fun compartirBoleta(descargaBoletaResponse: DescargaBoletaResponse) {
+        // registrer receiver in order to verify when download is complete
+        registerReceiver(DonwloadCompleteReceiver(), IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+
+        val request = DownloadManager.Request(Uri.parse(descargaBoletaResponse.data.boletaUrl))
+        request.setDescription("Descargando Archivo: $NOMBRE_ARCHIVO_PDF")
+        request.setTitle("Descargando")
+        // in order for this if to run, you must use the android 3.2 to compile your app
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        request.allowScanningByMediaScanner()
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        //}
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, NOMBRE_ARCHIVO_PDF)
+
+        // get download service and enqueue file
+        val manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        Objects.requireNonNull(manager).enqueue(request)
     }
 
     private inner class DonwloadCompleteReceiver : BroadcastReceiver() {
@@ -296,21 +330,17 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
         txv_plantel_id.setText(listaDetalleAlumnoView[0].plantel)
         txv_cuatrimestre_id.setText(listaDetalleAlumnoView[0].cuatrimestre + " Cuatrimestre")
 
-        //picasso = Picasso.with(getApplicationContext());
-        picasso = Picasso.get()
         obtieneImagenUsuario()
     }
 
     private fun obtieneImagenUsuario() {
         if (uriImagen != null) {
             picasso?.let { it.load(uriImagen).transform(PicassoCircleTransformation()).into(imv_estudiante_id) }
-            //} else if (login?.data?.alumno?.foto == null || login?.data?.alumno?.foto.equals("")) {
         } else if (listaDetalleAlumnoView[0].foto == null || listaDetalleAlumnoView[0].foto.equals("")) {
             picasso?.let { it.load(R.drawable.silueta_usuario).transform(PicassoCircleTransformation()).into(imv_estudiante_id) }
         } else {
             picasso?.let { it.load(listaDetalleAlumnoView[0].foto).transform(PicassoCircleTransformation()).placeholder(R.drawable.silueta_usuario)
                 .error(R.drawable.silueta_usuario).into(imv_estudiante_id) }
-            //.into((ImageView) findViewById(R.id.imv_estudiante_id));
         }
     }
 
@@ -318,7 +348,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
         mensajeOpcional(this, mensaje)
             .setPositiveButton(R.string.action_accept) { dialog, which ->
                 if (bandera) {
-                    TODO("Falta eliminar tablas")
+                    mainViewModel.deleteAlumno()
                     navigate<LoginActivity>()
                     finish()
                 } else {
@@ -359,6 +389,6 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     private fun limpiaFiltro() = filtroEdt_id.setText("")
 
     private fun comparteArchivo() {
-        //mainPresenter.descargaBoleta(login!!.data.tokenSesion)
+        mainViewModel.downloadPdfOnFromServer(true)
     }
 }

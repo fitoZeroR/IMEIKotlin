@@ -3,9 +3,16 @@ package com.rlm.imeikotlin.utils
 // Build Variant
 const val DEBUG = true
 
-// Tipo Información Alumno
+// Tipo Información Alumno Tabla
 const val TIPO_PLAN = "tipoPlan"
 const val TIPO_PAGO = "tipoPago"
+
+// Key Picasso
+const val CIRCLE = "Circle"
+
+// Etiqueta @Named Dagger2
+const val NAMED_LISTA_TELEFONICA = "ListaTelefonica"
+const val NAMED_LISTA_PLANTEL = "ListaPlantel"
 
 //Network Response Constant
 const val ERROR_SERVICE_RESPONSE = "Error en servicio"
@@ -26,8 +33,6 @@ const val BUNDLE_DESCRIPCION = "descripcion"
 const val BUNDLE_OPCION_SELECCIONADA = "opcionSeleccionada"
 const val BUNDLE_NOMBRE_OPCION = "nombreOpcion"
 const val BUNDLE_INDICE_OPCION = "nombreIndice"
-/*const val BUNDLE_INFORMACION_USUARIO = "informacionUsuario"
-const val BUNDLE_INFORMACION_PAGOS_ASIGNATURAS = "informacionPagosAsignaturas"*/
 const val BUNDLE_LISTA_PAGO = "listaPago"
 const val BUNDLE_LISTA_PLAN = "listaPlan"
 
@@ -41,12 +46,6 @@ const val MIME_PDF = "application/pdf"
 const val RUTA_ARCHIVO_PDF = "/Download/"
 const val FORMATO_CUMPLEANOS = "dd MMMM yyyy"
 //public final static String FORMATO_CUMPLEANOS = "d 'de' MMMM 'de' yyyy";
-
-// SharedPreferences
-/*const val MATRICULA_SP = "matricula"
-const val PASSWORD = "password"
-const val JSON_LOGIN = "jsonLogin"
-const val JSON_ASIGNATURAS_PAGOS = "jsonAsignaturasPagos"*/
 
 // TODO REFACTORIZAR EN UN OBJJECT COMPANION EN CADA CLASE QUE LO LLAMA
 // Mapeo Gson

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
 import com.google.gson.Gson
 import com.rlm.imeikotlin.repository.remote.api.IRetrofitApi
-import com.rlm.imeikotlin.repository.local.dao.OpcionEstudioDao
 import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
 import com.rlm.imeikotlin.repository.remote.modelo.response.OpcionesResponse
 import com.rlm.imeikotlin.utils.*
@@ -14,9 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class OpcionesRepository
 @Inject
-constructor(private val appExecutors: AppExecutors,
-            private val opcionEstudioDao: OpcionEstudioDao,
-            private val iRetrofitApi: IRetrofitApi) {
+constructor(private val iRetrofitApi: IRetrofitApi) {
 
     fun loadAllOptions(): LiveData<Resource<List<OpcionEstudioEntity>>> {
         return object : ProcessedNetworkResource<OpcionesResponse, List<OpcionEstudioEntity>>() {

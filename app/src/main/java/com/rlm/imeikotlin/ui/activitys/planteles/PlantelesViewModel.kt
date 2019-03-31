@@ -7,7 +7,6 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.rlm.imeikotlin.repository.PlantelesRepository
 import com.rlm.imeikotlin.repository.local.entity.PlantelEntity
-import com.rlm.imeikotlin.repository.remote.modelo.response.InformacionPlantelesResponse
 import com.rlm.imeikotlin.utils.AbsentLiveData
 import com.rlm.imeikotlin.utils.Resource
 import javax.inject.Inject

@@ -22,7 +22,6 @@ import javax.inject.Singleton
 @Module
 class RetrofitModule {
     // --- NETWORK INJECTION ---
-
     @Provides
     @Singleton
     fun provideCache(application: Application): Cache {
@@ -71,7 +70,5 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideApiWebservice(restAdapter: Retrofit): IRetrofitApi {
-        return restAdapter.create(IRetrofitApi::class.java)
-    }
+    fun provideApiWebservice(restAdapter: Retrofit) = restAdapter.create(IRetrofitApi::class.java)
 }

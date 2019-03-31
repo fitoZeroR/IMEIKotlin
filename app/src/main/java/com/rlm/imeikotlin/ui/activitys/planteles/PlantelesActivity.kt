@@ -34,9 +34,8 @@ class PlantelesActivity : BaseActivity(), OnMapReadyCallback {
 
         Objects.requireNonNull(supportActionBar)?.setHomeAsUpIndicator(R.drawable.ic_chevron_left)
 
-        val bundleExtras = intent.extras
-        if (bundleExtras != null) {
-            title = bundleExtras.getString(BUNDLE_NOMBRE_OPCION)
+        intent.extras.let {
+            title = it.getString(BUNDLE_NOMBRE_OPCION)
         }
 
         val mapFragment = fragmentManager.findFragmentById(R.id.map) as MapFragment

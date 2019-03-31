@@ -17,10 +17,9 @@ class ListaOpcionSeleccionadaDiplomadosActivity : BaseActivity() {
 
         Objects.requireNonNull(supportActionBar)?.setHomeAsUpIndicator(R.drawable.ic_chevron_left)
 
-        val bundleExtras = intent.extras
-        if (bundleExtras != null) {
-            listaOpcionDiplomados = bundleExtras.getStringArrayList(BUNDLE_OPCION_SELECCIONADA)
-            title = bundleExtras.getString(BUNDLE_NOMBRE_OPCION)
+        intent.extras.let {
+            listaOpcionDiplomados = it.getStringArrayList(BUNDLE_OPCION_SELECCIONADA)
+            title = it.getString(BUNDLE_NOMBRE_OPCION)
         }
 
         llamaAdaptador()

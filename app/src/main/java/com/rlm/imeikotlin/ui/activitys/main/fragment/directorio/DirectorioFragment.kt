@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.ui.adapter.CustomAdapterDirectorio
+import com.rlm.imeikotlin.utils.NAMED_LISTA_PLANTEL
+import com.rlm.imeikotlin.utils.NAMED_LISTA_TELEFONICA
 import kotlinx.android.synthetic.main.fragment_menu_bottom_navigation_view.*
 import javax.inject.Inject
 import dagger.android.support.AndroidSupportInjection
@@ -19,10 +21,10 @@ import javax.inject.Named
 class DirectorioFragment : Fragment() {
 //class DirectorioFragment : DaggerFragment() {
     @Inject
-    @field:Named("ListaTelefonica")
+    @field:Named(NAMED_LISTA_TELEFONICA)
     lateinit var listaDirectoriotelefonico: List<String>
     @Inject
-    @field:Named("ListaPlantel")
+    @field:Named(NAMED_LISTA_PLANTEL)
     lateinit var listaDirectorioPlantel: List<String>
 
     override fun onAttach(context: Context?) {

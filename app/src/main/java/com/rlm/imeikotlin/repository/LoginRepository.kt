@@ -20,12 +20,11 @@ constructor(private val appExecutors: AppExecutors,
             private val alumnoDao: AlumnoDao,
             private val iRetrofitApi: IRetrofitApi) {
 
-    fun saveUserOnFromServer(newPassword: String): LiveData<Resource<RecuperarPasswordResponse>> {
-        return object : NetworkResource<RecuperarPasswordResponse>(){
+    fun saveUserOnFromServer(newPassword: String) =
+        object : NetworkResource<RecuperarPasswordResponse>() {
             override fun createCall()
                     = iRetrofitApi.recuperaPassword(newPassword)
         }.asLiveData()
-    }
 
     fun getLoginFromServer(usuario: String, password: String): LiveData<Resource<AlumnoEntity>> =
         object : DetailNetworkResource<AlumnoEntity, LoginResponse>(appExecutors) {
