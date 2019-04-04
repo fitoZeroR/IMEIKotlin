@@ -135,6 +135,21 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
                 }
             }
         })
+
+        mainViewModel.postCambiaImagenResponseResourceLiveData.observe(this, Observer {
+            when (it.status) {
+                Status.LOADING -> showLoading()
+                Status.SUCCESS -> {
+                    hideLoading()
+                    showToast(it.data!!.message)
+                }
+                Status.ERROR -> {
+                    hideLoading()
+                    showError(it.message)
+                }
+            }
+
+        })
     }
 
     private fun compartirBoleta(descargaBoletaResponse: DescargaBoletaResponse) {
@@ -348,16 +363,17 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
         mensajeOpcional(this, mensaje)
             .setPositiveButton(R.string.action_accept) { dialog, which ->
                 if (bandera) {
-                    mainViewModel.deleteAlumno()
-                    navigate<LoginActivity>()
-                    finish()
+                    if(mainViewModel.getAllInformationResourceLiveData.hasObservers()) {
+                        mainViewModel.getAllInformationResourceLiveData.removeObservers(this@MainActivity)
+                        if (mainViewModel.deleteAlumno()) {
+                            navigate<LoginActivity>()
+                            finish()
+                        }
+                    }
                 } else {
                     if (wifiManager.isWifiEnabled()) {
                         obtieneImagenUsuario()
-                        /*mainPresenter.enviarImagen(
-                            login?.let { it.data.tokenSesion }!!,
-                            archivoBase64(uriImagen?.let { getFilePathFromContentUri(it) })
-                        )*/
+                        mainViewModel.changePictureOnFromServer(archivoBase64(uriImagen?.let { getFilePathFromContentUri(it, this@MainActivity) }))
                     } else {
                         Tools.informaErrorConexionWifi(
                             this@MainActivity,

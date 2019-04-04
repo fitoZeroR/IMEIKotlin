@@ -2,6 +2,7 @@ package com.rlm.imeikotlin.repository.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
@@ -24,4 +25,7 @@ interface AlumnoDao {
 
     @Query("DELETE FROM " + AlumnoEntity.TABLE_NAME_ALUMNO)
     fun clearAlumno()
+
+    @Delete
+    fun deleteAlumno(alumnoEntity: AlumnoEntity) : Int
 }

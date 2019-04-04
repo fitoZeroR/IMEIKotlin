@@ -18,7 +18,8 @@ interface IRetrofitApi {
     fun obtienePlanteles(): LiveData<ApiResponse<InformacionPlantelesResponse>>
 
     // se necesita que el servidor acepte un Body (una clase), para poder implementarlo de esta forma
-    /*@POST(APIConstants.URL_ENVIAR_INFORMACION)
+    /*@Headers({"Accept: application/json"})
+    //@POST(APIConstants.URL_ENVIAR_INFORMACION)
     //@FormUrlEncoded
     fun enviarInformacion(@Body enviarInformacionRequest: EnviarInformacionRequest): LiveData<ApiResponse<EnviarInformacionResponse>>*/
     @POST(APIConstants.URL_ENVIAR_INFORMACION)

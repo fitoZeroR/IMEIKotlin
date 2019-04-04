@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.rlm.imeikotlin.repository.MainRepository
 import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
 import com.rlm.imeikotlin.repository.remote.modelo.response.DescargaBoletaResponse
+import com.rlm.imeikotlin.repository.remote.modelo.response.FotoResponse
 import com.rlm.imeikotlin.utils.AbsentLiveData
 import com.rlm.imeikotlin.utils.Resource
 import javax.inject.Inject
@@ -23,6 +24,10 @@ constructor(private val mainRepository: MainRepository) : ViewModel() {
     private val descargaArchivoMutableLiveData: MutableLiveData<Boolean> = MutableLiveData()
     var getDownloadFileResourceLiveData: LiveData<Resource<DescargaBoletaResponse>>
 
+    @VisibleForTesting
+    private val cambiaImagenMutableLiveData: MutableLiveData<String> = MutableLiveData()
+    var postCambiaImagenResponseResourceLiveData: LiveData<Resource<FotoResponse>>
+
     init {
         getAllInformationResourceLiveData = Transformations.switchMap(allInformationMutableLiveData) {
             if (it == false) AbsentLiveData.create()
@@ -33,6 +38,11 @@ constructor(private val mainRepository: MainRepository) : ViewModel() {
             if (it == false) AbsentLiveData.create()
             else mainRepository.downloadFileOnFromServer()
         }
+
+        postCambiaImagenResponseResourceLiveData = Transformations.switchMap(cambiaImagenMutableLiveData) {
+            if (it == null) AbsentLiveData.create()
+            else mainRepository.changeImageOnFromServer(it)
+        }
     }
 
     fun loadAllInformation(fetchAllInformation: Boolean) {
@@ -42,9 +52,18 @@ constructor(private val mainRepository: MainRepository) : ViewModel() {
         allInformationMutableLiveData.value = fetchAllInformation
     }
 
+    fun changePictureOnFromServer(base64: String) {
+        cambiaImagenMutableLiveData.value = base64
+    }
+
     fun downloadPdfOnFromServer(fetchDownloadFile: Boolean) {
         descargaArchivoMutableLiveData.value = fetchDownloadFile
     }
 
-    fun deleteAlumno() = mainRepository.cleanLogin()
+    fun deleteAlumno() : Boolean {
+        if (mainRepository.cleanLogin() != 0) {
+            return true
+        }
+        return false
+    }
 }

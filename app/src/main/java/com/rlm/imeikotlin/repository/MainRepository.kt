@@ -1,6 +1,5 @@
 package com.rlm.imeikotlin.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
 import com.rlm.imeikotlin.repository.local.dao.AlumnoDao
@@ -13,6 +12,7 @@ import com.rlm.imeikotlin.repository.local.entity.embedded.Plan
 import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
 import com.rlm.imeikotlin.repository.remote.api.IRetrofitApi
 import com.rlm.imeikotlin.repository.remote.modelo.response.DescargaBoletaResponse
+import com.rlm.imeikotlin.repository.remote.modelo.response.FotoResponse
 import com.rlm.imeikotlin.repository.remote.modelo.response.PagosAsignaturasResponse
 import com.rlm.imeikotlin.utils.AppExecutors
 import com.rlm.imeikotlin.utils.Resource
@@ -59,7 +59,6 @@ constructor(private val appExecutors: AppExecutors,
 
             override fun createCall(): LiveData<ApiResponse<PagosAsignaturasResponse>> {
                 alumnoEntity = obtieneAlumno()
-
                 return iRetrofitApi.obtieneAsignaturasPagos(alumnoEntity.tokenSesion!!)
             }
 
@@ -71,11 +70,15 @@ constructor(private val appExecutors: AppExecutors,
                 iRetrofitApi.obtieneBoleta(obtieneAlumno().tokenSesion!!)
         }.asLiveData()
 
+    fun changeImageOnFromServer(base64: String) =
+        object : NetworkResource<FotoResponse>() {
+            override fun createCall(): LiveData<ApiResponse<FotoResponse>> =
+                iRetrofitApi.enviarFotografia(obtieneAlumno().tokenSesion!!, base64)
+        }.asLiveData()
+
     fun cleanLogin() = doAsyncResult {
-        //Log.i("RLM", "Tamaño Alumno = " + alumnoDao.getTotalAlumno())
-        alumnoDao.clearAlumno()
-        //Log.i("RLM", "Tamaño Alumno = " + alumnoDao.getTotalAlumno())
-        Unit
+        val resultado = alumnoDao.deleteAlumno(alumnoDao.getAlumno())
+        resultado
     }.get()
 
     private fun obtieneAlumno() = doAsyncResult {
