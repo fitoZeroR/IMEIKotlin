@@ -4,14 +4,17 @@ import androidx.room.*
 import com.rlm.imeikotlin.repository.local.entity.embedded.Pago
 import com.rlm.imeikotlin.repository.local.entity.embedded.Plan
 
-@Entity(tableName = InformacionEntity.TABLE_NAME_INFORMACION,
+@Entity(
+    tableName = InformacionEntity.TABLE_NAME_INFORMACION,
     foreignKeys = arrayOf(
         ForeignKey(
-        entity = AlumnoEntity::class,
-        parentColumns = arrayOf("id"),
-        childColumns = arrayOf(InformacionEntity.COLUMNA_ID_ALUMNO),
-        onDelete = ForeignKey.CASCADE)
-    ))
+            entity = AlumnoEntity::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf(InformacionEntity.COLUMNA_ID_ALUMNO),
+            onDelete = ForeignKey.CASCADE)),
+    indices = arrayOf(
+        Index(
+            value = [InformacionEntity.COLUMNA_ID_ALUMNO])))
 data class InformacionEntity(
     @ColumnInfo(name = COLUMNA_ID_ALUMNO)
     val idAlumno: Int,

@@ -70,7 +70,7 @@ class Tools {
 
         fun parsearFechaCumpleanos(fecha: String, formato: String): String {
             try {
-                val ArregloFecha = if (fecha.length > 10) fecha.substring(
+                val arregloFecha = if (fecha.length > 10) fecha.substring(
                     0,
                     10
                 ).split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray() else fecha.split(
@@ -78,9 +78,9 @@ class Tools {
                 ).dropLastWhile { it.isEmpty() }.toTypedArray()
 
                 val calendar = Calendar.getInstance()
-                calendar.set(Calendar.YEAR, Integer.parseInt(ArregloFecha[0]))
-                calendar.set(Calendar.MONTH, Integer.parseInt(ArregloFecha[1]) - 1)
-                calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(ArregloFecha[2]))
+                calendar.set(Calendar.YEAR, Integer.parseInt(arregloFecha[0]))
+                calendar.set(Calendar.MONTH, Integer.parseInt(arregloFecha[1]) - 1)
+                calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(arregloFecha[2]))
 
                 return SimpleDateFormat(formato).format(calendar.time)
             } catch (exception: Exception) {

@@ -51,4 +51,5 @@ ext {
     commons_version = '2.6'
     mpandroidchart_version = 'v2.2.4'
     //mpandroidchart_version = 'v3.0.3'
+    coroutines_version = '1.2.0-alpha-2'
 }
