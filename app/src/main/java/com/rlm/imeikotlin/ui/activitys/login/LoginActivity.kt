@@ -49,34 +49,18 @@ class LoginActivity : BaseActivity() {
 
     private fun subscribeToLoginModel() {
         loginViewModel.getLoginResourceLiveData.observe(this, Observer {
-            when(it.status) {
-                Status.LOADING -> showLoading()
-                Status.SUCCESS -> {
-                    hideLoading()
-                    if (it.data!!.mensaje.equals(getString(R.string.msg_operacion_exitosa))) {
-                        inicializaMain()
-                    } else {
-                        mensajeInformativo(this, it.data.mensaje, false)
-                    }
-                }
-                Status.ERROR -> {
-                    hideLoading()
-                    showError(it.message)
+            administraObserverResources(it) {
+                if (it.data!!.mensaje.equals(getString(R.string.msg_operacion_exitosa))) {
+                    inicializaMain()
+                } else {
+                    mensajeInformativo(this, it.data.mensaje, false)
                 }
             }
         })
 
         loginViewModel.postCambiaPasswordResponseResourceLiveData.observe(this, Observer {
-            when(it.status) {
-                Status.LOADING -> showLoading()
-                Status.SUCCESS -> {
-                    hideLoading()
-                    mensajeInformativo(this, it.data!!.message, false)
-                }
-                Status.ERROR -> {
-                    hideLoading()
-                    showError(it.message)
-                }
+            administraObserverResources(it) {
+                mensajeInformativo(this, it.data!!.message, false)
             }
         })
     }

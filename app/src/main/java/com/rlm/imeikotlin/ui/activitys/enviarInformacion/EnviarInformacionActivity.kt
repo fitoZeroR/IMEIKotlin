@@ -8,7 +8,6 @@ import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.remote.modelo.request.EnviarInformacionRequest
 import com.rlm.imeikotlin.repository.remote.modelo.response.EnviarInformacionResponse
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
-import com.rlm.imeikotlin.utils.Status
 import com.rlm.imeikotlin.utils.Tools.Companion.hideKeyboard
 import com.rlm.imeikotlin.utils.Tools.Companion.informaErrorConexionWifi
 import com.rlm.imeikotlin.utils.Tools.Companion.mensajeInformativo
@@ -50,16 +49,8 @@ class EnviarInformacionActivity : BaseActivity() {
 
     private fun subscribeToEnviarinformacionModel() {
         enviarInformacionViewModel.postEnviarInformacionResourceLiveData.observe(this, androidx.lifecycle.Observer {
-            when(it.status) {
-                Status.LOADING -> showLoading()
-                Status.SUCCESS -> {
-                    hideLoading()
-                    respuestaEnvioInformacion(it.data!!)
-                }
-                Status.ERROR -> {
-                    hideLoading()
-                    showError(it.message)
-                }
+            administraObserverResources(it) {
+                respuestaEnvioInformacion(it.data!!)
             }
         })
     }

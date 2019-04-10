@@ -15,7 +15,6 @@ import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.local.entity.PlantelEntity
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.utils.BUNDLE_NOMBRE_OPCION
-import com.rlm.imeikotlin.utils.Status
 import com.rlm.imeikotlin.utils.Tools
 import dagger.android.AndroidInjection
 import org.jetbrains.anko.wifiManager
@@ -63,16 +62,8 @@ class PlantelesActivity : BaseActivity(), OnMapReadyCallback {
 
     private fun subscribeToPlantelesModel() {
         plantelesViewModel.getAllOPlantelesResourceLiveData.observe(this, Observer {
-            when(it.status) {
-                Status.LOADING -> showLoading()
-                Status.SUCCESS -> {
-                    hideLoading()
-                    despliegaPlanteles(it.data)
-                }
-                Status.ERROR -> {
-                    hideLoading()
-                    showError(it.message)
-                }
+            administraObserverResources(it) {
+                despliegaPlanteles(it.data)
             }
         })
     }

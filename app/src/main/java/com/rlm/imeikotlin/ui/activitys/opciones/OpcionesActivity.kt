@@ -37,16 +37,8 @@ class OpcionesActivity : BaseActivity() {
 
     private fun subscribeToOpcionModel() {
         opcionesViewModel.getAllOptionsResourceLiveData.observe(this, Observer {
-            when(it.status) {
-                Status.LOADING -> showLoading()
-                Status.SUCCESS -> {
-                    hideLoading()
-                    despliegaAdaptadorOpciones(it.data!!)
-                }
-                Status.ERROR -> {
-                    hideLoading()
-                    showError(it.message)
-                }
+            administraObserverResources(it) {
+                despliegaAdaptadorOpciones(it.data!!)
             }
         })
     }

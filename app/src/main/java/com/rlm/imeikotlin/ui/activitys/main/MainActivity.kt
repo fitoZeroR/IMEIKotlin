@@ -103,52 +103,26 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
 
     private fun subscribeToMainModel() {
         mainViewModel.getAllInformationResourceLiveData.observe(this, Observer {
-            when (it.status) {
-                Status.LOADING -> showLoading()
-                Status.SUCCESS -> {
-                    hideLoading()
-
-                    inicializaVariables(it.data!!)
-                    confingToolBar()
-                    inicializaMenuLateral()
-                    createMenuBottomNavigationView()
-                    inicializaActividad()
-                    asignaEventos()
-                }
-                Status.ERROR -> {
-                    hideLoading()
-                    showError(it.message)
-                }
+            administraObserverResources(it) {
+                inicializaVariables(it.data!!)
+                confingToolBar()
+                inicializaMenuLateral()
+                createMenuBottomNavigationView()
+                inicializaActividad()
+                asignaEventos()
             }
         })
 
         mainViewModel.getDownloadFileResourceLiveData.observe(this, Observer {
-            when (it.status) {
-                Status.LOADING -> showLoading()
-                Status.SUCCESS -> {
-                    hideLoading()
-                    compartirBoleta(it.data!!)
-                }
-                Status.ERROR -> {
-                    hideLoading()
-                    showError(it.message)
-                }
+            administraObserverResources(it) {
+                compartirBoleta(it.data!!)
             }
         })
 
         mainViewModel.postCambiaImagenResponseResourceLiveData.observe(this, Observer {
-            when (it.status) {
-                Status.LOADING -> showLoading()
-                Status.SUCCESS -> {
-                    hideLoading()
-                    showToast(it.data!!.message)
-                }
-                Status.ERROR -> {
-                    hideLoading()
-                    showError(it.message)
-                }
+            administraObserverResources(it) {
+                showToast(it.data!!.message)
             }
-
         })
     }
 

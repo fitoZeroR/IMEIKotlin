@@ -14,9 +14,7 @@ import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionActivity
 import com.rlm.imeikotlin.ui.activitys.login.LoginActivity
 import com.rlm.imeikotlin.ui.activitys.main.MainActivity
-import com.rlm.imeikotlin.utils.Tools
-import com.rlm.imeikotlin.utils.navigate
-import com.rlm.imeikotlin.utils.replaceFragment
+import com.rlm.imeikotlin.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
@@ -119,4 +117,19 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected fun addFragment(fragment: Fragment) = replaceFragment(fragment, R.id.frame_container)
+
+    // Metodo de control del evento de las llamadas al Repository
+    protected inline fun <T> administraObserverResources(resource: Resource<T>, funcionGenerica: () -> Unit) {
+        when(resource.status) {
+            Status.LOADING -> showLoading()
+            Status.SUCCESS -> {
+                hideLoading()
+                funcionGenerica()
+            }
+            Status.ERROR -> {
+                hideLoading()
+                showError(resource.message)
+            }
+        }
+    }
 }
