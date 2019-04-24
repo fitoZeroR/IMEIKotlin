@@ -7,8 +7,8 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.rlm.imeikotlin.repository.MainRepository
 import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
-import com.rlm.imeikotlin.repository.remote.modelo.response.DescargaBoletaResponse
-import com.rlm.imeikotlin.repository.remote.modelo.response.FotoResponse
+import com.rlm.imeikotlin.repository.remote.model.response.DescargaBoletaResponse
+import com.rlm.imeikotlin.repository.remote.model.response.FotoResponse
 import com.rlm.imeikotlin.utils.AbsentLiveData
 import com.rlm.imeikotlin.utils.Resource
 import javax.inject.Inject

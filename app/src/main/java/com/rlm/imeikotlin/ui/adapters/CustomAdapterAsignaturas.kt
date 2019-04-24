@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.modelo.response.Plan
+import com.rlm.imeikotlin.repository.remote.model.response.Plan
 import com.rlm.imeikotlin.utils.inflate
 import kotlinx.android.synthetic.main.row_asignaturas_pagos.view.*
 import org.jetbrains.anko.dip

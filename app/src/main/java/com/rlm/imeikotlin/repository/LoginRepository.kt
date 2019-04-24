@@ -2,11 +2,11 @@ package com.rlm.imeikotlin.repository
 
 import androidx.lifecycle.LiveData
 import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
-import com.rlm.imeikotlin.repository.remote.api.IRetrofitApi
+import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi
 import com.rlm.imeikotlin.repository.local.dao.AlumnoDao
 import com.rlm.imeikotlin.repository.local.entity.AlumnoEntity
-import com.rlm.imeikotlin.repository.remote.modelo.response.LoginResponse
-import com.rlm.imeikotlin.repository.remote.modelo.response.RecuperarPasswordResponse
+import com.rlm.imeikotlin.repository.remote.model.response.LoginResponse
+import com.rlm.imeikotlin.repository.remote.model.response.RecuperarPasswordResponse
 import com.rlm.imeikotlin.utils.AppExecutors
 import com.rlm.imeikotlin.utils.Resource
 import org.jetbrains.anko.doAsyncResult
@@ -16,14 +16,15 @@ import javax.inject.Singleton
 @Singleton
 class LoginRepository
 @Inject
-constructor(private val appExecutors: AppExecutors,
-            private val alumnoDao: AlumnoDao,
-            private val iRetrofitApi: IRetrofitApi) {
+constructor(
+    private val appExecutors: AppExecutors,
+    private val alumnoDao: AlumnoDao,
+    private val iRetrofitApi: IRetrofitApi
+) {
 
     fun saveUserOnFromServer(newPassword: String) =
         object : NetworkResource<RecuperarPasswordResponse>() {
-            override fun createCall()
-                    = iRetrofitApi.recuperaPassword(newPassword)
+            override fun createCall() = iRetrofitApi.recuperaPassword(newPassword)
         }.asLiveData()
 
     fun getLoginFromServer(usuario: String, password: String): LiveData<Resource<AlumnoEntity>> =
@@ -31,11 +32,13 @@ constructor(private val appExecutors: AppExecutors,
             override fun saveCallResult(item: LoginResponse) {
                 alumnoDao.clearAlumno()
 
-                alumnoDao.save(with(item.data.alumno){
-                    AlumnoEntity(item.data.tokenSesion, usuario, password, this?.idAlumno, this?.idLicenciatura,
+                alumnoDao.save(with(item.data.alumno) {
+                    AlumnoEntity(
+                        item.data.tokenSesion, usuario, password, this?.idAlumno, this?.idLicenciatura,
                         this?.idPlantel, this?.nombre, this?.paterno, this?.materno, this?.nacimiento,
                         this?.licenciatura, this?.matricula, this?.curp, this?.foto, this?.cuatrimestre, this?.plantel,
-                        this?.telefono, item.message)
+                        this?.telefono, item.message
+                    )
                 })
             }
 
@@ -51,8 +54,8 @@ constructor(private val appExecutors: AppExecutors,
         }.asLiveData()
 
     fun validaLogin() = doAsyncResult {
-            val validaLogin = alumnoDao.getTotalAlumno()
-            //onComplete { valida }
-            validaLogin
-        }.get()
+        val validaLogin = alumnoDao.getTotalAlumno()
+        //onComplete { valida }
+        validaLogin
+    }.get()
 }

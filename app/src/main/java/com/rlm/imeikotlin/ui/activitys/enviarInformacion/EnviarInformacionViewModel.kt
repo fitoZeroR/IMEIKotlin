@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.rlm.imeikotlin.repository.EnviarInformacionRepository
-import com.rlm.imeikotlin.repository.remote.modelo.response.EnviarInformacionResponse
-import com.rlm.imeikotlin.repository.remote.modelo.request.EnviarInformacionRequest
+import com.rlm.imeikotlin.repository.remote.model.response.EnviarInformacionResponse
+import com.rlm.imeikotlin.repository.remote.model.request.EnviarInformacionRequest
 import com.rlm.imeikotlin.utils.AbsentLiveData
 import com.rlm.imeikotlin.utils.Resource
 import javax.inject.Inject

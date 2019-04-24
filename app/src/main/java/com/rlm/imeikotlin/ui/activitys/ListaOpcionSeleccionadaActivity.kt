@@ -6,7 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
-import com.rlm.imeikotlin.repository.remote.modelo.response.Grado
+import com.rlm.imeikotlin.repository.remote.model.response.Grado
 import com.rlm.imeikotlin.ui.adapters.CustomAdapterOpciones
 import com.rlm.imeikotlin.utils.*
 import kotlinx.android.synthetic.main.activity_opciones.*

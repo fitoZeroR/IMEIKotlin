@@ -19,7 +19,7 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Named
 
 class DirectorioFragment : Fragment() {
-//class DirectorioFragment : DaggerFragment() {
+    //class DirectorioFragment : DaggerFragment() {
     @Inject
     @field:Named(NAMED_LISTA_TELEFONICA)
     lateinit var listaDirectoriotelefonico: List<String>
@@ -32,8 +32,8 @@ class DirectorioFragment : Fragment() {
         super.onAttach(context)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-            = inflater.inflate(R.layout.fragment_menu_bottom_navigation_view, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+        inflater.inflate(R.layout.fragment_menu_bottom_navigation_view, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import androidx.lifecycle.Observer
 import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
-import com.rlm.imeikotlin.repository.remote.modelo.response.*
+import com.rlm.imeikotlin.repository.remote.model.response.*
 import com.rlm.imeikotlin.ui.activity.main.fragment.AsignaturasFragment
 import com.rlm.imeikotlin.ui.activity.main.fragment.EstadisticasFragment
 import com.rlm.imeikotlin.ui.activity.main.fragment.PagosFragment
@@ -207,9 +207,21 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
             val listaM: MutableList<Materia> = mutableListOf()
             dataAlumnoList.forEachIndexed { indexDetalle, detalleAlumnoView ->
                 if (id.toInt() == detalleAlumnoView.idCuatrimestre.toInt()) {
-                    when(detalleAlumnoView.tipoInformacion) {
-                        TIPO_PAGO -> listaEP.add(EstatusPago(detalleAlumnoView.pago, detalleAlumnoView.concepto, detalleAlumnoView.estatusPago))
-                        TIPO_PLAN -> listaM.add(Materia(detalleAlumnoView.idMateria!!, detalleAlumnoView.materia!!, detalleAlumnoView.estatusPlan!!))
+                    when (detalleAlumnoView.tipoInformacion) {
+                        TIPO_PAGO -> listaEP.add(
+                            EstatusPago(
+                                detalleAlumnoView.pago,
+                                detalleAlumnoView.concepto,
+                                detalleAlumnoView.estatusPago
+                            )
+                        )
+                        TIPO_PLAN -> listaM.add(
+                            Materia(
+                                detalleAlumnoView.idMateria!!,
+                                detalleAlumnoView.materia!!,
+                                detalleAlumnoView.estatusPlan!!
+                            )
+                        )
                     }
                 }
             }
@@ -326,10 +338,15 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
         if (uriImagen != null) {
             picasso?.let { it.load(uriImagen).transform(PicassoCircleTransformation()).into(imv_estudiante_id) }
         } else if (listaDetalleAlumnoView[0].foto == null || listaDetalleAlumnoView[0].foto.equals("")) {
-            picasso?.let { it.load(R.drawable.silueta_usuario).transform(PicassoCircleTransformation()).into(imv_estudiante_id) }
+            picasso?.let {
+                it.load(R.drawable.silueta_usuario).transform(PicassoCircleTransformation()).into(imv_estudiante_id)
+            }
         } else {
-            picasso?.let { it.load(listaDetalleAlumnoView[0].foto).transform(PicassoCircleTransformation()).placeholder(R.drawable.silueta_usuario)
-                .error(R.drawable.silueta_usuario).into(imv_estudiante_id) }
+            picasso?.let {
+                it.load(listaDetalleAlumnoView[0].foto).transform(PicassoCircleTransformation())
+                    .placeholder(R.drawable.silueta_usuario)
+                    .error(R.drawable.silueta_usuario).into(imv_estudiante_id)
+            }
         }
     }
 
@@ -337,7 +354,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
         mensajeOpcional(this, mensaje)
             .setPositiveButton(R.string.action_accept) { dialog, which ->
                 if (bandera) {
-                    if(mainViewModel.getAllInformationResourceLiveData.hasObservers()) {
+                    if (mainViewModel.getAllInformationResourceLiveData.hasObservers()) {
                         mainViewModel.getAllInformationResourceLiveData.removeObservers(this@MainActivity)
                         if (mainViewModel.deleteAlumno()) {
                             navigate<LoginActivity>()
@@ -347,7 +364,12 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
                 } else {
                     if (wifiManager.isWifiEnabled()) {
                         obtieneImagenUsuario()
-                        mainViewModel.changePictureOnFromServer(archivoBase64(uriImagen?.let { getFilePathFromContentUri(it, this@MainActivity) }))
+                        mainViewModel.changePictureOnFromServer(archivoBase64(uriImagen?.let {
+                            getFilePathFromContentUri(
+                                it,
+                                this@MainActivity
+                            )
+                        }))
                     } else {
                         Tools.informaErrorConexionWifi(
                             this@MainActivity,
@@ -360,7 +382,10 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     }
 
     private fun seleccionaImagen() {
-        selector(getString(R.string.msg_seleccione_opcion), resources.getStringArray(R.array.lista_opcion_foto).toList()) { dialogInterface, i ->
+        selector(
+            getString(R.string.msg_seleccione_opcion),
+            resources.getStringArray(R.array.lista_opcion_foto).toList()
+        ) { dialogInterface, i ->
             var iPicture: Intent? = null
             var code = TAKE_PICTURE
             when (i) {

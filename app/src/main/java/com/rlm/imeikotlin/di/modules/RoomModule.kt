@@ -16,9 +16,9 @@ class RoomModule {
     @Singleton
     @Provides
     fun provideDb(application: Application): DataBaseIMEI =
-            Room.databaseBuilder(application.applicationContext, DataBaseIMEI::class.java, DATABASE_NAME)
-                .fallbackToDestructiveMigration()
-                .build()
+        Room.databaseBuilder(application.applicationContext, DataBaseIMEI::class.java, DATABASE_NAME)
+            .fallbackToDestructiveMigration()
+            .build()
 
     // Refactorizarlo
     @Singleton
@@ -43,8 +43,10 @@ class RoomModule {
 
     @Singleton
     @Provides
-    fun provideAppExecutors() = AppExecutors(Executors.newSingleThreadExecutor(),
-        Executors.newFixedThreadPool(THREAD_COUNT), AppExecutors.MainThreadExecutor())
+    fun provideAppExecutors() = AppExecutors(
+        Executors.newSingleThreadExecutor(),
+        Executors.newFixedThreadPool(THREAD_COUNT), AppExecutors.MainThreadExecutor()
+    )
 
     companion object {
         const val THREAD_COUNT = 3

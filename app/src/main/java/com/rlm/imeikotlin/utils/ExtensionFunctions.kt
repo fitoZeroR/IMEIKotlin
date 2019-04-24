@@ -17,13 +17,13 @@ fun Activity.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
 }
 
 fun ViewGroup.inflate(layoutRes: Int, attachToRoot: Boolean = false): View =
-        LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+    LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
 inline fun <reified T : Activity> Activity.navigate() =
-        startActivity(Intent(this, T::class.java))
+    startActivity(Intent(this, T::class.java))
 
-inline fun <T: Fragment> T.withArgs(argsBuilder: Bundle.() -> Unit): T = this.apply {
-        arguments = Bundle().apply(argsBuilder)
+inline fun <T : Fragment> T.withArgs(argsBuilder: Bundle.() -> Unit): T = this.apply {
+    arguments = Bundle().apply(argsBuilder)
 }
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
@@ -31,5 +31,5 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Fragmen
 }
 
 fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
-    supportFragmentManager.inTransaction{replace(frameId, fragment)}
+    supportFragmentManager.inTransaction { replace(frameId, fragment) }
 }

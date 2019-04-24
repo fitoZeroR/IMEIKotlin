@@ -7,8 +7,8 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.rlm.imeikotlin.repository.LoginRepository
 import com.rlm.imeikotlin.repository.local.entity.AlumnoEntity
-import com.rlm.imeikotlin.repository.remote.modelo.request.LoginRequest
-import com.rlm.imeikotlin.repository.remote.modelo.response.RecuperarPasswordResponse
+import com.rlm.imeikotlin.repository.remote.model.request.LoginRequest
+import com.rlm.imeikotlin.repository.remote.model.response.RecuperarPasswordResponse
 import com.rlm.imeikotlin.utils.AbsentLiveData
 import com.rlm.imeikotlin.utils.Resource
 import javax.inject.Inject

@@ -63,10 +63,12 @@ class OpcionesActivity : BaseActivity() {
                     8, // Diplomados
                     9 // Cursos
                     -> {
-                        startActivity<ListaOpcionSeleccionadaActivity>(BUNDLE_OPCION_SELECCIONADA to
-                                Gson().toJson(listaOpcionEstudioEntity),
+                        startActivity<ListaOpcionSeleccionadaActivity>(
+                            BUNDLE_OPCION_SELECCIONADA to
+                                    Gson().toJson(listaOpcionEstudioEntity),
                             BUNDLE_NOMBRE_OPCION to mutableSetTitulo.elementAt(it),
-                            BUNDLE_INDICE_OPCION to it)
+                            BUNDLE_INDICE_OPCION to it
+                        )
                     }
                     7 // Planteles
                     -> if (wifiManager.isWifiEnabled())
@@ -80,11 +82,13 @@ class OpcionesActivity : BaseActivity() {
                     0, // Que es Grupo Educativo IMEI
                     10 // Aviso de privacidad
                     -> {
-                        startActivity<DescripcionActivity>(BUNDLE_DESCRIPCION to if (it === 0)
-                            listaOpcionEstudioEntity[0].descripcion
-                        else
-                            listaOpcionEstudioEntity[listaOpcionEstudioEntity.size - 1].descripcion,
-                            BUNDLE_NOMBRE_OPCION to mutableSetTitulo.elementAt(it))
+                        startActivity<DescripcionActivity>(
+                            BUNDLE_DESCRIPCION to if (it === 0)
+                                listaOpcionEstudioEntity[0].descripcion
+                            else
+                                listaOpcionEstudioEntity[listaOpcionEstudioEntity.size - 1].descripcion,
+                            BUNDLE_NOMBRE_OPCION to mutableSetTitulo.elementAt(it)
+                        )
                     }
                 }
             }

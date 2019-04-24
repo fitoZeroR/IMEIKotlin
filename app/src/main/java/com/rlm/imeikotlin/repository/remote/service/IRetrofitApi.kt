@@ -1,8 +1,8 @@
-package com.rlm.imeikotlin.repository.remote.api
+package com.rlm.imeikotlin.repository.remote.service
 
 import androidx.lifecycle.LiveData
 import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
-import com.rlm.imeikotlin.repository.remote.modelo.response.*
+import com.rlm.imeikotlin.repository.remote.model.response.*
 import com.rlm.imeikotlin.utils.APIConstants
 import com.rlm.imeikotlin.utils.APIConstants.URL_ASIGNATURAS_PAGOS
 import com.rlm.imeikotlin.utils.APIConstants.URL_DESCARGA_BOLETA

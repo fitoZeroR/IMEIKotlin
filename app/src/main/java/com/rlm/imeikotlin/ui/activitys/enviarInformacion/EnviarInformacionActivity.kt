@@ -5,8 +5,8 @@ import android.text.TextUtils
 import android.view.Menu
 import com.jakewharton.rxbinding2.view.RxView
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.modelo.request.EnviarInformacionRequest
-import com.rlm.imeikotlin.repository.remote.modelo.response.EnviarInformacionResponse
+import com.rlm.imeikotlin.repository.remote.model.request.EnviarInformacionRequest
+import com.rlm.imeikotlin.repository.remote.model.response.EnviarInformacionResponse
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.utils.Tools.Companion.hideKeyboard
 import com.rlm.imeikotlin.utils.Tools.Companion.informaErrorConexionWifi
@@ -62,7 +62,10 @@ class EnviarInformacionActivity : BaseActivity() {
             .subscribe {
                 hideKeyboard(this@EnviarInformacionActivity)
                 if (TextUtils.isEmpty(edt_escribe_nombre_id.getText()) || TextUtils.isEmpty(edt_escribe_telefono_id.getText())
-                    || TextUtils.isEmpty(edt_escribe_correo_electronico_id.getText()) || TextUtils.isEmpty(edt_informacion_interes_id.getText())) {
+                    || TextUtils.isEmpty(edt_escribe_correo_electronico_id.getText()) || TextUtils.isEmpty(
+                        edt_informacion_interes_id.getText()
+                    )
+                ) {
                     mensajeInformativo(
                         this@EnviarInformacionActivity,
                         getString(R.string.msg_no_campos_vacios),
@@ -71,11 +74,20 @@ class EnviarInformacionActivity : BaseActivity() {
                 } else {
                     if (wifiManager.isWifiEnabled()) {
                         enviarInformacionViewModel.saveEnviarInformacionOnFromServer(
-                            EnviarInformacionRequest(edt_escribe_nombre_id.text.toString(), edt_escribe_telefono_id.text.toString(),
-                            edt_escribe_correo_electronico_id.text.toString(), "vacio", edt_informacion_interes_id.text.toString())
+                            EnviarInformacionRequest(
+                                edt_escribe_nombre_id.text.toString(),
+                                edt_escribe_telefono_id.text.toString(),
+                                edt_escribe_correo_electronico_id.text.toString(),
+                                "vacio",
+                                edt_informacion_interes_id.text.toString()
+                            )
                         )
                     } else
-                        informaErrorConexionWifi(this@EnviarInformacionActivity, getString(R.string.msg_no_conexion_internet), false)
+                        informaErrorConexionWifi(
+                            this@EnviarInformacionActivity,
+                            getString(R.string.msg_no_conexion_internet),
+                            false
+                        )
                 }
             }
     }

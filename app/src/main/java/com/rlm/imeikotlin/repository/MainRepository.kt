@@ -10,10 +10,10 @@ import com.rlm.imeikotlin.repository.local.entity.InformacionEntity
 import com.rlm.imeikotlin.repository.local.entity.embedded.Pago
 import com.rlm.imeikotlin.repository.local.entity.embedded.Plan
 import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
-import com.rlm.imeikotlin.repository.remote.api.IRetrofitApi
-import com.rlm.imeikotlin.repository.remote.modelo.response.DescargaBoletaResponse
-import com.rlm.imeikotlin.repository.remote.modelo.response.FotoResponse
-import com.rlm.imeikotlin.repository.remote.modelo.response.PagosAsignaturasResponse
+import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi
+import com.rlm.imeikotlin.repository.remote.model.response.DescargaBoletaResponse
+import com.rlm.imeikotlin.repository.remote.model.response.FotoResponse
+import com.rlm.imeikotlin.repository.remote.model.response.PagosAsignaturasResponse
 import com.rlm.imeikotlin.utils.AppExecutors
 import com.rlm.imeikotlin.utils.Resource
 import com.rlm.imeikotlin.utils.TIPO_PAGO
@@ -25,11 +25,13 @@ import javax.inject.Singleton
 @Singleton
 class MainRepository
 @Inject
-constructor(private val appExecutors: AppExecutors,
-            private val informacionDao: InformacionDao,
-            private val detalleAlumnoViewDao: DetalleAlumnoViewDao,
-            private val alumnoDao: AlumnoDao,
-            private val iRetrofitApi: IRetrofitApi) {
+constructor(
+    private val appExecutors: AppExecutors,
+    private val informacionDao: InformacionDao,
+    private val detalleAlumnoViewDao: DetalleAlumnoViewDao,
+    private val alumnoDao: AlumnoDao,
+    private val iRetrofitApi: IRetrofitApi
+) {
 
     lateinit var alumnoEntity: AlumnoEntity
 
@@ -38,15 +40,23 @@ constructor(private val appExecutors: AppExecutors,
             override fun saveCallResult(item: PagosAsignaturasResponse) {
                 item.data.pagos.forEachIndexed { indexPago, pagos ->
                     item.data.pagos[indexPago].estatusPagos.forEach {
-                        informacionDao.saveInformacion(InformacionEntity(alumnoEntity.id, pagos.cuatrimestre,
-                            pagos.nombre, TIPO_PAGO, null, Pago(it.pago, it.nombre, it.estatus)))
+                        informacionDao.saveInformacion(
+                            InformacionEntity(
+                                alumnoEntity.id, pagos.cuatrimestre,
+                                pagos.nombre, TIPO_PAGO, null, Pago(it.pago, it.nombre, it.estatus)
+                            )
+                        )
                     }
                 }
 
                 item.data.plan.forEachIndexed { indexPlan, plan ->
                     item.data.plan[indexPlan].materia.forEach {
-                        informacionDao.saveInformacion(InformacionEntity(alumnoEntity.id, plan.idCuatrimestre,
-                            plan.nombre, TIPO_PLAN, Plan(it.idMateria, it.materia, it.estatus), null))
+                        informacionDao.saveInformacion(
+                            InformacionEntity(
+                                alumnoEntity.id, plan.idCuatrimestre,
+                                plan.nombre, TIPO_PLAN, Plan(it.idMateria, it.materia, it.estatus), null
+                            )
+                        )
                     }
                 }
             }

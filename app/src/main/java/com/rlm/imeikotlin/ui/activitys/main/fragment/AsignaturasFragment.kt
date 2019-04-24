@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.modelo.response.Plan
+import com.rlm.imeikotlin.repository.remote.model.response.Plan
 import com.rlm.imeikotlin.ui.adapter.CustomAdapterAsignaturas
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PLAN
 import kotlinx.android.synthetic.main.fragment_menu_bottom_navigation_view.*
@@ -26,8 +25,8 @@ class AsignaturasFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-            = inflater.inflate(R.layout.fragment_menu_bottom_navigation_view, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+        inflater.inflate(R.layout.fragment_menu_bottom_navigation_view, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

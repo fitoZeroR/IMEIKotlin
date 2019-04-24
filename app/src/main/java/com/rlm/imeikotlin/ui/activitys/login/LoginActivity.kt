@@ -22,7 +22,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import  androidx.lifecycle.Observer
-import com.rlm.imeikotlin.repository.remote.modelo.request.LoginRequest
+import com.rlm.imeikotlin.repository.remote.model.request.LoginRequest
 import com.rlm.imeikotlin.ui.activitys.main.MainActivity
 import com.rlm.imeikotlin.utils.*
 
@@ -68,12 +68,15 @@ class LoginActivity : BaseActivity() {
     private fun disparaDialogRecuperarPassword() {
         // DSL
         var matricula: TextInputEditText? = null
-        val dialogoRecuperaPassword = alert(getString(R.string.msg_dialog_mensaje) + " " + getString(R.string.hint_dialog_mensaje).toLowerCase(), getString(R.string.msg_dialog_titulo)) {
+        val dialogoRecuperaPassword = alert(
+            getString(R.string.msg_dialog_mensaje) + " " + getString(R.string.hint_dialog_mensaje).toLowerCase(),
+            getString(R.string.msg_dialog_titulo)
+        ) {
             customView {
                 verticalLayout {
                     textInputLayout {
                         hint = getString(R.string.hint_dialog_mensaje)
-                        matricula = textInputEditText{
+                        matricula = textInputEditText {
                             textSize = 16f
                         }
                     }
@@ -83,9 +86,11 @@ class LoginActivity : BaseActivity() {
                 it.dismiss()
                 hideKeyboard(this@LoginActivity)
                 if (matricula?.text!!.isEmpty()) {
-                    mensajeInformativo(this@LoginActivity,
+                    mensajeInformativo(
+                        this@LoginActivity,
                         getString(R.string.msg_matricula_vacio),
-                        false)
+                        false
+                    )
                 } else {
                     if (wifiManager.isWifiEnabled()) {
                         loginViewModel.changePasswordOnFromServer(matricula.let { it?.text.toString() })
@@ -130,8 +135,12 @@ class LoginActivity : BaseActivity() {
                     )
                 else
                     if (wifiManager.isWifiEnabled())
-                        loginViewModel.getLoginFromServer(LoginRequest(edt_matricula_alumno_id.getText().toString(),
-                            edt_password_id.getText().toString()))
+                        loginViewModel.getLoginFromServer(
+                            LoginRequest(
+                                edt_matricula_alumno_id.getText().toString(),
+                                edt_password_id.getText().toString()
+                            )
+                        )
                     else
                         Tools.informaErrorConexionWifi(
                             this@LoginActivity,

@@ -13,8 +13,8 @@ import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PAGO
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PLAN
 import com.google.gson.reflect.TypeToken
-import com.rlm.imeikotlin.repository.remote.modelo.response.Pagos
-import com.rlm.imeikotlin.repository.remote.modelo.response.Plan
+import com.rlm.imeikotlin.repository.remote.model.response.Pagos
+import com.rlm.imeikotlin.repository.remote.model.response.Plan
 import com.rlm.imeikotlin.utils.withArgs
 import kotlinx.android.synthetic.main.fragment_estadisticas.*
 import java.util.ArrayList
@@ -24,11 +24,11 @@ class EstadisticasFragment : Fragment() {
     private lateinit var plan: List<Plan>
 
     private var aprobada = 0
-    private var cursada:Int = 0
-    private var noCursada:Int = 0
-    private var pagado:Int = 0
-    private var noPagado:Int = 0
-    private var demorado:Int = 0
+    private var cursada: Int = 0
+    private var noCursada: Int = 0
+    private var pagado: Int = 0
+    private var noPagado: Int = 0
+    private var demorado: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +38,8 @@ class EstadisticasFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-            = inflater.inflate(R.layout.fragment_estadisticas, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+        inflater.inflate(R.layout.fragment_estadisticas, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -82,7 +82,7 @@ class EstadisticasFragment : Fragment() {
 
     private fun addValuesToBarEntryLabelsPagos(): List<String> {
         val entryLabels = ArrayList<String>()
-        with(entryLabels){
+        with(entryLabels) {
             add("Pagado")
             add("No Pagado")
             add("Demorado")
@@ -114,9 +114,9 @@ class EstadisticasFragment : Fragment() {
     private fun addValuesToPieEntryAsignaturas(): List<Entry> {
         val entries = ArrayList<Entry>()
         with(entries) {
-        add(BarEntry(aprobada.toFloat(), 0))
-        add(BarEntry(cursada.toFloat(), 1))
-        add(BarEntry(noCursada.toFloat(), 2))
+            add(BarEntry(aprobada.toFloat(), 0))
+            add(BarEntry(cursada.toFloat(), 1))
+            add(BarEntry(noCursada.toFloat(), 2))
         }
         return entries
     }

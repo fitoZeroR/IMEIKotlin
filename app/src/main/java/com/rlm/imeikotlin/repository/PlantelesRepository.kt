@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
 import com.rlm.imeikotlin.repository.local.dao.PlantelDao
 import com.rlm.imeikotlin.repository.local.entity.PlantelEntity
-import com.rlm.imeikotlin.repository.remote.api.IRetrofitApi
-import com.rlm.imeikotlin.repository.remote.modelo.response.InformacionPlantelesResponse
+import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi
+import com.rlm.imeikotlin.repository.remote.model.response.InformacionPlantelesResponse
 import com.rlm.imeikotlin.utils.AppExecutors
 import com.rlm.imeikotlin.utils.Resource
 import javax.inject.Inject
@@ -14,9 +14,11 @@ import javax.inject.Singleton
 @Singleton
 class PlantelesRepository
 @Inject
-constructor(private val appExecutors: AppExecutors,
-            private val plantelDao: PlantelDao,
-            private val iRetrofitApi: IRetrofitApi) {
+constructor(
+    private val appExecutors: AppExecutors,
+    private val plantelDao: PlantelDao,
+    private val iRetrofitApi: IRetrofitApi
+) {
 
     fun loadAllPlanteles(): LiveData<Resource<List<PlantelEntity>>> =
         object : DetailNetworkResource<List<PlantelEntity>, InformacionPlantelesResponse>(appExecutors) {

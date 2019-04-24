@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.modelo.response.Pagos
+import com.rlm.imeikotlin.repository.remote.model.response.Pagos
 import com.rlm.imeikotlin.ui.adapter.CustomAdapterPagos
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PAGO
 import kotlinx.android.synthetic.main.fragment_menu_bottom_navigation_view.*
