@@ -46,7 +46,7 @@ class RetrofitModule {
         .cache(cache)
         .build()
 
-    @Provides
+    /*@Provides
     @Singleton
     fun provideGson() = GsonBuilder()
         .setLenient()
@@ -81,14 +81,14 @@ class RetrofitModule {
             DescargaBoletaResponse::class.java,
             JsonDeserializer { json, _, _ -> Gson().fromJson(json, DescargaBoletaResponse::class.java) }
         )
-        .create()
+        .create()*/
 
     @Provides
     @Singleton
-    fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient) = Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient) = Retrofit.Builder()
         .baseUrl(URL)
         .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create(gson))
+        .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(LiveDataCallAdapterFactory())
         .build()
 
