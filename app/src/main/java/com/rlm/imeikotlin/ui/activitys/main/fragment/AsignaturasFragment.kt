@@ -11,6 +11,7 @@ import com.rlm.imeikotlin.repository.remote.model.response.Plan
 import com.rlm.imeikotlin.ui.adapter.CustomAdapterAsignaturas
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PLAN
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import kotlinx.android.synthetic.main.fragment_menu_bottom_navigation_view.*
 
 class AsignaturasFragment : Fragment() {
@@ -21,7 +22,7 @@ class AsignaturasFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments.let {
             //plan = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PLAN), object : TypeToken<List<Plan>>() {}.type)
-            plan = Moshi.Builder().build().adapter<List<Plan>>(Plan::class.java).fromJson(it!!.getString(BUNDLE_LISTA_PLAN))!!
+            plan = Moshi.Builder().build().adapter<List<Plan>>(Types.newParameterizedType(List::class.java, Plan::class.java)).fromJson(it!!.getString(BUNDLE_LISTA_PLAN))!!
         }
     }
 
@@ -50,7 +51,7 @@ class AsignaturasFragment : Fragment() {
 
             val bundle = Bundle()
             //bundle.putString(BUNDLE_LISTA_PLAN, Gson().toJson(plan))
-            bundle.putString(BUNDLE_LISTA_PLAN, Moshi.Builder().build().adapter<List<Plan>>(Plan::class.java).toJson(plan))
+            bundle.putString(BUNDLE_LISTA_PLAN, Moshi.Builder().build().adapter<List<Plan>>(Types.newParameterizedType(List::class.java, Plan::class.java)).toJson(plan))
 
             asignaturasFragmentFun.arguments = bundle
 

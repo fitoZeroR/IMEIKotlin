@@ -10,7 +10,9 @@ import com.rlm.imeikotlin.ui.activitys.ListaOpcionSeleccionadaActivity
 import com.rlm.imeikotlin.ui.activitys.planteles.PlantelesActivity
 import com.rlm.imeikotlin.ui.adapters.CustomAdapterOpciones
 import com.rlm.imeikotlin.utils.*
+import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_opciones.*
 import org.jetbrains.anko.startActivity
@@ -66,7 +68,8 @@ class OpcionesActivity : BaseActivity() {
                         startActivity<ListaOpcionSeleccionadaActivity>(
                             BUNDLE_OPCION_SELECCIONADA to
                                     //Gson().toJson(listaOpcionEstudioEntity)
-                                    Moshi.Builder().build().adapter<List<OpcionEstudioEntity>>(OpcionEstudioEntity::class.java).toJson(listaOpcionEstudioEntity),
+                                    Moshi.Builder().build().adapter<List<OpcionEstudioEntity>>(Types.newParameterizedType(List::class.java, OpcionEstudioEntity::class.java)).toJson(listaOpcionEstudioEntity),
+                                    //Moshi.Builder().build().adapter<List<OpcionEstudioEntity>>(List<OpcionEstudioEntity>::class.java).toJson(listaOpcionEstudioEntity),
                             BUNDLE_NOMBRE_OPCION to mutableSetTitulo.elementAt(it),
                             BUNDLE_INDICE_OPCION to it
                         )

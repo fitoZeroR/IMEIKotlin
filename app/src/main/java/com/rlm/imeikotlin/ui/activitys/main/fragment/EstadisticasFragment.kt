@@ -15,6 +15,7 @@ import com.rlm.imeikotlin.repository.remote.model.response.Pagos
 import com.rlm.imeikotlin.repository.remote.model.response.Plan
 import com.rlm.imeikotlin.utils.withArgs
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import kotlinx.android.synthetic.main.fragment_estadisticas.*
 import java.util.ArrayList
 
@@ -32,8 +33,8 @@ class EstadisticasFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.let {
-            pagos = Moshi.Builder().build().adapter<List<Pagos>>(Pagos::class.java).fromJson(it!!.getString(BUNDLE_LISTA_PAGO))!!
-            plan = Moshi.Builder().build().adapter<List<Plan>>(Plan::class.java).fromJson(it!!.getString(BUNDLE_LISTA_PLAN))!!
+            pagos = Moshi.Builder().build().adapter<List<Pagos>>(Types.newParameterizedType(List::class.java, Pagos::class.java)).fromJson(it!!.getString(BUNDLE_LISTA_PAGO))!!
+            plan = Moshi.Builder().build().adapter<List<Plan>>(Types.newParameterizedType(List::class.java, Plan::class.java)).fromJson(it!!.getString(BUNDLE_LISTA_PLAN))!!
         }
     }
 
@@ -153,8 +154,8 @@ class EstadisticasFragment : Fragment() {
 
     companion object {
         fun newInstance(pagos: List<Pagos>, plan: List<Plan>) = EstadisticasFragment().withArgs {
-            putString(BUNDLE_LISTA_PAGO, Moshi.Builder().build().adapter<List<Pagos>>(Pagos::class.java).toJson(pagos))
-            putString(BUNDLE_LISTA_PLAN, Moshi.Builder().build().adapter<List<Plan>>(Plan::class.java).toJson(plan))
+            putString(BUNDLE_LISTA_PAGO, Moshi.Builder().build().adapter<List<Pagos>>(Types.newParameterizedType(List::class.java, Pagos::class.java)).toJson(pagos))
+            putString(BUNDLE_LISTA_PLAN, Moshi.Builder().build().adapter<List<Plan>>(Types.newParameterizedType(List::class.java, Plan::class.java)).toJson(plan))
         }
     }
 }

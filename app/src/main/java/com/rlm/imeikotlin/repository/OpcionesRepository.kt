@@ -27,7 +27,7 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                 opcionEstudioEntityList.add(
                     OpcionEstudioEntity(
                         encabezadoOpciones[0],
-                        opcionesResponse.somos[0].descripcion,
+                        opcionesResponse.somos[0].descripcion!!,
                         opcionesResponse.somos[0].titulo,
                         opcionesResponse.somos[0].planteles,
                         ""
@@ -39,7 +39,7 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                     opcionEstudioEntityList.add(
                         OpcionEstudioEntity(
                             encabezadoOpciones[1],
-                            it.descripcion,
+                            it.descripcion!!,
                             it.titulo,
                             it.planteles,
                             ""
@@ -52,7 +52,7 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                     opcionEstudioEntityList.add(
                         OpcionEstudioEntity(
                             encabezadoOpciones[2],
-                            it.descripcion,
+                            it.descripcion!!,
                             it.titulo,
                             it.planteles,
                             ""
@@ -65,7 +65,7 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                     opcionEstudioEntityList.add(
                         OpcionEstudioEntity(
                             encabezadoOpciones[3],
-                            it.descripcion,
+                            it.descripcion!!,
                             it.titulo,
                             it.planteles,
                             ""
@@ -78,7 +78,7 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                     opcionEstudioEntityList.add(
                         OpcionEstudioEntity(
                             encabezadoOpciones[4],
-                            it.descripcion,
+                            it.descripcion!!,
                             it.titulo,
                             it.planteles,
                             ""
@@ -91,7 +91,7 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                     opcionEstudioEntityList.add(
                         OpcionEstudioEntity(
                             encabezadoOpciones[5],
-                            it.descripcion,
+                            it.descripcion!!,
                             it.titulo,
                             it.planteles,
                             ""
@@ -104,7 +104,7 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                     opcionEstudioEntityList.add(
                         OpcionEstudioEntity(
                             encabezadoOpciones[6],
-                            it.descripcion,
+                            it.descripcion!!,
                             it.titulo,
                             it.planteles,
                             ""
@@ -120,16 +120,16 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                     opcionEstudioEntityList.add(
                         OpcionEstudioEntity(
                             encabezadoOpciones[8],
-                            opcionesResponse.diplomados[x].descripcion,
+                            opcionesResponse.diplomados[x].descripcion!!,
                             opcionesResponse.diplomados[x].titulo,
                             opcionesResponse.diplomados[x].planteles,
                             when (x) {
                                 /*1 -> Gson().toJson(listaDiplomadoPsicologia)
                                 2 -> Gson().toJson(listaDiplomadoDerechoCriminologia)
                                 else -> Gson().toJson(listaDiplomadoCriminalistica)*/
-                                1 -> Moshi.Builder().build().adapter<Array<String>>(String::class.java).toJson(listaDiplomadoPsicologia)
-                                2 -> Moshi.Builder().build().adapter<Array<String>>(String::class.java).toJson(listaDiplomadoDerechoCriminologia)
-                                else -> Moshi.Builder().build().adapter<Array<String>>(String::class.java).toJson(listaDiplomadoCriminalistica)
+                                1 -> Moshi.Builder().build().adapter<Array<String>>(Array<String>::class.java).toJson(listaDiplomadoPsicologia)
+                                2 -> Moshi.Builder().build().adapter<Array<String>>(Array<String> ::class.java).toJson(listaDiplomadoDerechoCriminologia)
+                                else -> Moshi.Builder().build().adapter<Array<String>>(Array<String> ::class.java).toJson(listaDiplomadoCriminalistica)
                             }
                         )
                     )
@@ -142,7 +142,7 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                 opcionEstudioEntityList.add(
                     OpcionEstudioEntity(
                         encabezadoOpciones[10],
-                        opcionesResponse.somos[0].descripcionAviso,
+                        opcionesResponse.somos[0].descripcionAviso!!,
                         opcionesResponse.somos[0].titulo,
                         opcionesResponse.somos[0].planteles,
                         ""

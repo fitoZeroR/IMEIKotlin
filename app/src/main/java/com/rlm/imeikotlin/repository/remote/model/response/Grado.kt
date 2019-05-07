@@ -9,9 +9,9 @@ data class Grado(
     @Json(name = TITULO)
     val titulo: String,
     @Json(name = DESCRIPCION)
-    val descripcion: String,
+    val descripcion: String?,
     @Json(name = DESCRIPCION_AVISO)
-    val descripcionAviso: String,
+    val descripcionAviso: String?,
     @Json(name = PLANTELES)
     val planteles: String?
 )

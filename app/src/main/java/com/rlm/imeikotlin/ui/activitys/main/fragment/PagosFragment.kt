@@ -10,6 +10,7 @@ import com.rlm.imeikotlin.repository.remote.model.response.Pagos
 import com.rlm.imeikotlin.ui.adapter.CustomAdapterPagos
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PAGO
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import kotlinx.android.synthetic.main.fragment_menu_bottom_navigation_view.*
 
 class PagosFragment : Fragment() {
@@ -21,7 +22,7 @@ class PagosFragment : Fragment() {
 
         arguments.let {
             //pagos = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PAGO), object : TypeToken<List<Pagos>>() {}.type)
-            pagos = Moshi.Builder().build().adapter<List<Pagos>>(Pagos::class.java).fromJson(it!!.getString(BUNDLE_LISTA_PAGO))!!
+            pagos = Moshi.Builder().build().adapter<List<Pagos>>(Types.newParameterizedType(List::class.java, Pagos::class.java)).fromJson(it!!.getString(BUNDLE_LISTA_PAGO))!!
         }
     }
 
@@ -49,7 +50,7 @@ class PagosFragment : Fragment() {
 
             val bundle = Bundle()
             //bundle.putString(BUNDLE_LISTA_PAGO, Gson().toJson(pagos))
-            bundle.putString(BUNDLE_LISTA_PAGO, Moshi.Builder().build().adapter<List<Pagos>>(Pagos::class.java).toJson(pagos))
+            bundle.putString(BUNDLE_LISTA_PAGO, Moshi.Builder().build().adapter<List<Pagos>>(Types.newParameterizedType(List::class.java, Pagos::class.java)).toJson(pagos))
             pagosFragmentFun.arguments = bundle
 
             pagosFragment = pagosFragmentFun
