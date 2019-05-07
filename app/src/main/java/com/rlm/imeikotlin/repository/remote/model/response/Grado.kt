@@ -1,15 +1,17 @@
 package com.rlm.imeikotlin.repository.remote.model.response
 
-import com.google.gson.annotations.SerializedName
 import com.rlm.imeikotlin.utils.*
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Grado(
-    @SerializedName(TITULO)
+    @Json(name = TITULO)
     val titulo: String,
-    @SerializedName(DESCRIPCION)
+    @Json(name = DESCRIPCION)
     val descripcion: String,
-    @SerializedName(DESCRIPCION_AVISO)
+    @Json(name = DESCRIPCION_AVISO)
     val descripcionAviso: String,
-    @SerializedName(PLANTELES)
+    @Json(name = PLANTELES)
     val planteles: String?
 )

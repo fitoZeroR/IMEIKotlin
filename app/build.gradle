@@ -109,7 +109,8 @@ dependencies {
     // RETROFIT2
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    //implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit-converters:$retrofit_version"
 
     // OKHTTP3
@@ -134,7 +135,7 @@ dependencies {
     implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rxpermissions_java"
 
     // GSON
-    implementation "com.google.code.gson:gson:$gson_version"
+    //implementation "com.google.code.gson:gson:$gson_version"
 
     // MULTIDEX
     implementation "com.android.support:multidex:$multidex_version"
@@ -167,10 +168,13 @@ dependencies {
     implementation "commons-io:commons-io:$commons_version"
 
     // MPAndroidChart
-
     implementation "com.github.PhilJay:MPAndroidChart:$mpandroidchart_version"
 
     // Coroutines
     //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    //Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi"
 }

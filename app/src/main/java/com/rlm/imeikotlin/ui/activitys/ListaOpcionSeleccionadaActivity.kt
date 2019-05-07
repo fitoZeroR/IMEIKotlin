@@ -2,13 +2,12 @@ package com.rlm.imeikotlin.ui.activitys
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
 import com.rlm.imeikotlin.repository.remote.model.response.Grado
 import com.rlm.imeikotlin.ui.adapters.CustomAdapterOpciones
 import com.rlm.imeikotlin.utils.*
+import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.activity_opciones.*
 import java.util.*
 
@@ -32,9 +31,10 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
             indice = it.getInt(BUNDLE_INDICE_OPCION)
 
             opcionSeleccionada = it.getString(BUNDLE_OPCION_SELECCIONADA)
-            opcionEstudioEntityList = Gson().fromJson<List<OpcionEstudioEntity>>(opcionSeleccionada,
+            /*opcionEstudioEntityList = Gson().fromJson<List<OpcionEstudioEntity>>(opcionSeleccionada,
                 object : TypeToken<ArrayList<OpcionEstudioEntity>>() {}.type
-            )
+            )*/
+            opcionEstudioEntityList = Moshi.Builder().build().adapter<List<OpcionEstudioEntity>>(OpcionEstudioEntity::class.java).fromJson(opcionSeleccionada)!!
             opcionEstudioEntityList.forEach {
                 mutableSetTitulo.add(it.encabezado)
             }
@@ -48,8 +48,9 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
     private fun llamaAdaptdor() {
         rcv_opciones_id.also {
             if (indice == 9) {
-                mutableGradoList = Gson().fromJson<List<Grado>>(opcionEstudioEntityList[opcionEstudioEntityList.size - 2].listaDiplomados,
-                    object : TypeToken<ArrayList<Grado>>() {}.type) as MutableList<Grado>
+                /*mutableGradoList = Gson().fromJson<List<Grado>>(opcionEstudioEntityList[opcionEstudioEntityList.size - 2].listaDiplomados,
+                    object : TypeToken<ArrayList<Grado>>() {}.type) as MutableList<Grado>*/
+                mutableGradoList = Moshi.Builder().build().adapter<List<Grado>>(Grado::class.java).fromJson(opcionEstudioEntityList[opcionEstudioEntityList.size - 2].listaDiplomados) as MutableList<Grado>
             } else {
                 mutableGradoList = mutableListOf()
                 opcionEstudioEntityList.filter {
@@ -81,14 +82,17 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
                         bundle.putString(BUNDLE_NOMBRE_OPCION, titulo)
                         bundle.putStringArrayList(
                             BUNDLE_OPCION_SELECCIONADA, if (it === 0)
-                                Gson().fromJson<List<String>>(listaOpcionDiplomados[0].listaDiplomados,
-                                    object : TypeToken<ArrayList<String>>() {}.type).toList() as ArrayList<String>?
+                                /*Gson().fromJson<List<String>>(listaOpcionDiplomados[0].listaDiplomados,
+                                    object : TypeToken<ArrayList<String>>() {}.type).toList() as ArrayList<String>?*/
+                                (Moshi.Builder().build().adapter<List<String>>(String::class.java).fromJson(listaOpcionDiplomados[0].listaDiplomados) as ArrayList<String>?)!!
                             else if (it === 1)
-                                Gson().fromJson<List<String>>(listaOpcionDiplomados[1].listaDiplomados,
-                                    object : TypeToken<ArrayList<String>>() {}.type).toList() as ArrayList<String>?
+                                /*Gson().fromJson<List<String>>(listaOpcionDiplomados[1].listaDiplomados,
+                                    object : TypeToken<ArrayList<String>>() {}.type).toList() as ArrayList<String>?*/
+                                (Moshi.Builder().build().adapter<List<String>>(String::class.java).fromJson(listaOpcionDiplomados[1].listaDiplomados) as ArrayList<String>?)!!
                             else
-                                Gson().fromJson<List<String>>(listaOpcionDiplomados[2].listaDiplomados,
-                                    object : TypeToken<ArrayList<String>>() {}.type).toList() as ArrayList<String>?
+                                /*Gson().fromJson<List<String>>(listaOpcionDiplomados[2].listaDiplomados,
+                                    object : TypeToken<ArrayList<String>>() {}.type).toList() as ArrayList<String>?*/
+                                (Moshi.Builder().build().adapter<List<String>>(String::class.java).fromJson(listaOpcionDiplomados[2].listaDiplomados) as ArrayList<String>?)!!
                         )
                     } else {
                         intent = Intent(this, DescripcionActivity::class.java)

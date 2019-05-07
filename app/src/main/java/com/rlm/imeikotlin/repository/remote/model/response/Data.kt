@@ -1,11 +1,13 @@
 package com.rlm.imeikotlin.repository.remote.model.response
 
-import com.google.gson.annotations.SerializedName
 import com.rlm.imeikotlin.utils.*
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Data(
-    @SerializedName(TOKEN_SESION)
+    @Json(name = TOKEN_SESION)
     val tokenSesion: String,
-    @SerializedName(ALUMNO)
+    @Json(name = ALUMNO)
     val alumno: Alumno?
 )

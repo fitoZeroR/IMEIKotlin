@@ -2,20 +2,16 @@ package com.rlm.imeikotlin.di.modules
 
 import android.app.Application
 import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.LiveDataCallAdapterFactory
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonDeserializer
 import com.rlm.imeikotlin.utils.APIConstants.URL
 import com.rlm.imeikotlin.utils.DEBUG
 import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi
-import com.rlm.imeikotlin.repository.remote.model.response.*
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -88,7 +84,8 @@ class RetrofitModule {
     fun provideRetrofit(okHttpClient: OkHttpClient) = Retrofit.Builder()
         .baseUrl(URL)
         .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create())
+        //.addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(LiveDataCallAdapterFactory())
         .build()
 

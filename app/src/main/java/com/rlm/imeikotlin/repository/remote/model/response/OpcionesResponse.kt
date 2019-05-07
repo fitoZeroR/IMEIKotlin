@@ -1,22 +1,24 @@
 package com.rlm.imeikotlin.repository.remote.model.response
 
-import com.google.gson.annotations.SerializedName
 import com.rlm.imeikotlin.utils.*
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class OpcionesResponse(
-    @SerializedName(SOMOS)
+    @Json(name = SOMOS)
     val somos: List<Grado>,
-    @SerializedName(KINDER)
+    @Json(name = KINDER)
     val kinder: List<Grado>,
-    @SerializedName(PRIMARIA)
+    @Json(name = PRIMARIA)
     val primaria: List<Grado>,
-    @SerializedName(BACHILLERATO)
+    @Json(name = BACHILLERATO)
     val bachillerato: List<Grado>,
-    @SerializedName(lICENCIATURAS)
+    @Json(name = lICENCIATURAS)
     val licenciaturas: List<Grado>,
-    @SerializedName(MAESTRIAS)
+    @Json(name = MAESTRIAS)
     val maestrias: List<Grado>,
-    @SerializedName(DOCTORADOS)
+    @Json(name = DOCTORADOS)
     val doctorados: List<Grado>,
-    @SerializedName(DIPLOMADOS)
+    @Json(name = DIPLOMADOS)
     val diplomados: List<Grado>)

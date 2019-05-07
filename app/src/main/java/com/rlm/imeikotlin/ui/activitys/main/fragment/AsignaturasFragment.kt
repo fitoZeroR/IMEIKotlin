@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.remote.model.response.Plan
 import com.rlm.imeikotlin.ui.adapter.CustomAdapterAsignaturas
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PLAN
+import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.fragment_menu_bottom_navigation_view.*
 
 class AsignaturasFragment : Fragment() {
@@ -21,7 +20,8 @@ class AsignaturasFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.let {
-            plan = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PLAN), object : TypeToken<List<Plan>>() {}.type)
+            //plan = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PLAN), object : TypeToken<List<Plan>>() {}.type)
+            plan = Moshi.Builder().build().adapter<List<Plan>>(Plan::class.java).fromJson(it!!.getString(BUNDLE_LISTA_PLAN))!!
         }
     }
 
@@ -49,7 +49,8 @@ class AsignaturasFragment : Fragment() {
             var asignaturasFragmentFun = AsignaturasFragment()
 
             val bundle = Bundle()
-            bundle.putString(BUNDLE_LISTA_PLAN, Gson().toJson(plan))
+            //bundle.putString(BUNDLE_LISTA_PLAN, Gson().toJson(plan))
+            bundle.putString(BUNDLE_LISTA_PLAN, Moshi.Builder().build().adapter<List<Plan>>(Plan::class.java).toJson(plan))
 
             asignaturasFragmentFun.arguments = bundle
 

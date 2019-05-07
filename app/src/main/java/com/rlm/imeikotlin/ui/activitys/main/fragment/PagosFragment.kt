@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.remote.model.response.Pagos
 import com.rlm.imeikotlin.ui.adapter.CustomAdapterPagos
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PAGO
+import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.fragment_menu_bottom_navigation_view.*
 
 class PagosFragment : Fragment() {
@@ -21,7 +20,8 @@ class PagosFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments.let {
-            pagos = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PAGO), object : TypeToken<List<Pagos>>() {}.type)
+            //pagos = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PAGO), object : TypeToken<List<Pagos>>() {}.type)
+            pagos = Moshi.Builder().build().adapter<List<Pagos>>(Pagos::class.java).fromJson(it!!.getString(BUNDLE_LISTA_PAGO))!!
         }
     }
 
@@ -48,7 +48,8 @@ class PagosFragment : Fragment() {
             var pagosFragmentFun = PagosFragment()
 
             val bundle = Bundle()
-            bundle.putString(BUNDLE_LISTA_PAGO, Gson().toJson(pagos))
+            //bundle.putString(BUNDLE_LISTA_PAGO, Gson().toJson(pagos))
+            bundle.putString(BUNDLE_LISTA_PAGO, Moshi.Builder().build().adapter<List<Pagos>>(Pagos::class.java).toJson(pagos))
             pagosFragmentFun.arguments = bundle
 
             pagosFragment = pagosFragmentFun

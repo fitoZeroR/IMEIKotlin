@@ -7,15 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.utils.ColorTemplate
-import com.google.gson.Gson
 
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PAGO
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PLAN
-import com.google.gson.reflect.TypeToken
 import com.rlm.imeikotlin.repository.remote.model.response.Pagos
 import com.rlm.imeikotlin.repository.remote.model.response.Plan
 import com.rlm.imeikotlin.utils.withArgs
+import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.fragment_estadisticas.*
 import java.util.ArrayList
 
@@ -33,8 +32,8 @@ class EstadisticasFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.let {
-            pagos = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PAGO), object : TypeToken<List<Pagos>>() {}.type)
-            plan = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PLAN), object : TypeToken<List<Plan>>() {}.type)
+            pagos = Moshi.Builder().build().adapter<List<Pagos>>(Pagos::class.java).fromJson(it!!.getString(BUNDLE_LISTA_PAGO))!!
+            plan = Moshi.Builder().build().adapter<List<Plan>>(Plan::class.java).fromJson(it!!.getString(BUNDLE_LISTA_PLAN))!!
         }
     }
 
@@ -154,8 +153,8 @@ class EstadisticasFragment : Fragment() {
 
     companion object {
         fun newInstance(pagos: List<Pagos>, plan: List<Plan>) = EstadisticasFragment().withArgs {
-            putString(BUNDLE_LISTA_PAGO, Gson().toJson(pagos))
-            putString(BUNDLE_LISTA_PLAN, Gson().toJson(plan))
+            putString(BUNDLE_LISTA_PAGO, Moshi.Builder().build().adapter<List<Pagos>>(Pagos::class.java).toJson(pagos))
+            putString(BUNDLE_LISTA_PLAN, Moshi.Builder().build().adapter<List<Plan>>(Plan::class.java).toJson(plan))
         }
     }
 }

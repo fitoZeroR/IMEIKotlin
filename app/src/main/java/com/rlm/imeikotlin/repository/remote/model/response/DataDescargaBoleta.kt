@@ -1,8 +1,10 @@
 package com.rlm.imeikotlin.repository.remote.model.response
 
-import com.google.gson.annotations.SerializedName
 import com.rlm.imeikotlin.utils.BOLETA_URL
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class DataDescargaBoleta(
-    @SerializedName(BOLETA_URL)
+    @Json(name = BOLETA_URL)
     val boletaUrl: String)

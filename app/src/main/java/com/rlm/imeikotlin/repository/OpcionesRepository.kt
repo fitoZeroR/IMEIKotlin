@@ -2,11 +2,11 @@ package com.rlm.imeikotlin.repository
 
 import androidx.lifecycle.LiveData
 import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
-import com.google.gson.Gson
 import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi
 import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
 import com.rlm.imeikotlin.repository.remote.model.response.OpcionesResponse
 import com.rlm.imeikotlin.utils.*
+import com.squareup.moshi.Moshi
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -124,9 +124,12 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                             opcionesResponse.diplomados[x].titulo,
                             opcionesResponse.diplomados[x].planteles,
                             when (x) {
-                                1 -> Gson().toJson(listaDiplomadoPsicologia)
+                                /*1 -> Gson().toJson(listaDiplomadoPsicologia)
                                 2 -> Gson().toJson(listaDiplomadoDerechoCriminologia)
-                                else -> Gson().toJson(listaDiplomadoCriminalistica)
+                                else -> Gson().toJson(listaDiplomadoCriminalistica)*/
+                                1 -> Moshi.Builder().build().adapter<Array<String>>(String::class.java).toJson(listaDiplomadoPsicologia)
+                                2 -> Moshi.Builder().build().adapter<Array<String>>(String::class.java).toJson(listaDiplomadoDerechoCriminologia)
+                                else -> Moshi.Builder().build().adapter<Array<String>>(String::class.java).toJson(listaDiplomadoCriminalistica)
                             }
                         )
                     )

@@ -1,8 +1,12 @@
 package com.rlm.imeikotlin.repository.remote.model.response
 
-import com.google.gson.annotations.SerializedName
 import com.rlm.imeikotlin.utils.MAPA_PLANTELES
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+
+@JsonClass(generateAdapter = true)
 data class InformacionPlantelesResponse(
-    @SerializedName(MAPA_PLANTELES)
-    val planteles: List<Planteles>)
+    @field:Json(name = MAPA_PLANTELES)
+    val planteles: List<Planteles>
+)

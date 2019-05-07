@@ -1,14 +1,16 @@
 package com.rlm.imeikotlin.repository.remote.model.response
 
-import com.google.gson.annotations.SerializedName
 import com.rlm.imeikotlin.utils.*
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class RecuperarPasswordResponse(
-    @SerializedName(CODE)
+    @field:Json(name = CODE)
     val code: Int,
-    @SerializedName(DATA)
+    @field:Json(name = DATA)
     val data: List<String>,
-    @SerializedName(TRACE)
+    @field:Json(name = TRACE)
     val trace: String,
-    @SerializedName(MESSAGE)
+    @field:Json(name = MESSAGE)
     val message: String)

@@ -5,8 +5,6 @@ import androidx.annotation.NonNull
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
-import com.google.gson.Gson
-import com.orhanobut.logger.Logger
 import com.rlm.imeikotlin.utils.ERROR_SERVICE_RESPONSE
 import com.rlm.imeikotlin.utils.Resource
 
@@ -28,7 +26,7 @@ abstract class NetworkResource<R> {
             result.removeSource(apiResponseLiveData)
             if (it != null) {
                 if (it.isSuccessful()) {
-                    Logger.json(Gson().toJson(it.body))
+                    //Logger.json(Gson().toJson(it.body))
                     setValue(Resource.success(it.body))
                 } else {
                     setValue(Resource.error(it.errorMessage!!, null))

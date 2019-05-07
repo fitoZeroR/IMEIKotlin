@@ -1,34 +1,36 @@
 package com.rlm.imeikotlin.repository.remote.model.response
 
-import com.google.gson.annotations.SerializedName
 import com.rlm.imeikotlin.utils.*
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Alumno(
-    @SerializedName(ID_ALUMNO)
+    @Json(name = ID_ALUMNO)
     val idAlumno: String?,
-    @SerializedName(NOMBRE)
+    @Json(name = NOMBRE)
     val nombre: String?,
-    @SerializedName(PATERNO)
+    @Json(name = PATERNO)
     val paterno: String?,
-    @SerializedName(MATERNO)
+    @Json(name = MATERNO)
     val materno: String?,
-    @SerializedName(CUATRIMESTRE)
+    @Json(name = CUATRIMESTRE)
     val cuatrimestre: String?,
-    @SerializedName(ID_LICENCIATURA)
+    @Json(name = ID_LICENCIATURA)
     val idLicenciatura: String?,
-    @SerializedName(ID_PLANTEL)
+    @Json(name = ID_PLANTEL)
     val idPlantel: String?,
-    @SerializedName(CURP)
+    @Json(name = CURP)
     val curp: String?,
-    @SerializedName(TELEFONO)
+    @Json(name = TELEFONO)
     val telefono: String?,
-    @SerializedName(MATRICULA)
+    @Json(name = MATRICULA)
     val matricula: String?,
-    @SerializedName(NACIMIENTO)
+    @Json(name = NACIMIENTO)
     val nacimiento: String?,
-    @SerializedName(FOTO)
+    @Json(name = FOTO)
     val foto: String?,
-    @SerializedName(LICENCIATURA)
+    @Json(name = LICENCIATURA)
     val licenciatura: String?,
-    @SerializedName(PLANTEL)
+    @Json(name = PLANTEL)
     val plantel: String?)
