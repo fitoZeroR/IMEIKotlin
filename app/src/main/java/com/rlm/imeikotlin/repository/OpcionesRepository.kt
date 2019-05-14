@@ -124,9 +124,6 @@ constructor(private val iRetrofitApi: IRetrofitApi) {
                             opcionesResponse.diplomados[x].titulo,
                             opcionesResponse.diplomados[x].planteles,
                             when (x) {
-                                /*1 -> Gson().toJson(listaDiplomadoPsicologia)
-                                2 -> Gson().toJson(listaDiplomadoDerechoCriminologia)
-                                else -> Gson().toJson(listaDiplomadoCriminalistica)*/
                                 1 -> Moshi.Builder().build().adapter<Array<String>>(Array<String>::class.java).toJson(listaDiplomadoPsicologia)
                                 2 -> Moshi.Builder().build().adapter<Array<String>>(Array<String> ::class.java).toJson(listaDiplomadoDerechoCriminologia)
                                 else -> Moshi.Builder().build().adapter<Array<String>>(Array<String> ::class.java).toJson(listaDiplomadoCriminalistica)

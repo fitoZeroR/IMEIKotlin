@@ -17,7 +17,6 @@ import javax.inject.Singleton
 
 @Module
 class RetrofitModule {
-    // --- NETWORK INJECTION ---
     @Provides
     @Singleton
     fun provideCache(application: Application): Cache {
@@ -42,49 +41,11 @@ class RetrofitModule {
         .cache(cache)
         .build()
 
-    /*@Provides
-    @Singleton
-    fun provideGson() = GsonBuilder()
-        .setLenient()
-        .registerTypeAdapter(
-            LoginResponse::class.java,
-            JsonDeserializer { json, typeOfT, context -> Gson().fromJson(json, LoginResponse::class.java) })
-        .registerTypeAdapter(
-            RecuperarPasswordResponse::class.java,
-            JsonDeserializer { json, typeOfT, context -> Gson().fromJson(json, RecuperarPasswordResponse::class.java) }
-        )
-        .registerTypeAdapter(
-            PagosAsignaturasResponse::class.java,
-            JsonDeserializer { json, _, _ -> Gson().fromJson(json, PagosAsignaturasResponse::class.java) }
-        )
-        .registerTypeAdapter(
-            OpcionesResponse::class.java,
-            JsonDeserializer { json, _, _ -> Gson().fromJson(json, OpcionesResponse::class.java) }
-        )
-        .registerTypeAdapter(
-            InformacionPlantelesResponse::class.java,
-            JsonDeserializer { json, _, _ -> Gson().fromJson(json, InformacionPlantelesResponse::class.java) }
-        )
-        .registerTypeAdapter(
-            EnviarInformacionResponse::class.java,
-            JsonDeserializer { json, _, _ -> Gson().fromJson(json, EnviarInformacionResponse::class.java) }
-        )
-        .registerTypeAdapter(
-            FotoResponse::class.java,
-            JsonDeserializer { json, _, _ -> Gson().fromJson(json, FotoResponse::class.java) }
-        )
-        .registerTypeAdapter(
-            DescargaBoletaResponse::class.java,
-            JsonDeserializer { json, _, _ -> Gson().fromJson(json, DescargaBoletaResponse::class.java) }
-        )
-        .create()*/
-
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient) = Retrofit.Builder()
         .baseUrl(URL)
         .client(okHttpClient)
-        //.addConverterFactory(GsonConverterFactory.create())
         .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(LiveDataCallAdapterFactory())
         .build()

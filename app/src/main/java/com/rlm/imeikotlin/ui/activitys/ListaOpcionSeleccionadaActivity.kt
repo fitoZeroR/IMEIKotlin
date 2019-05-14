@@ -32,9 +32,6 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
             indice = it.getInt(BUNDLE_INDICE_OPCION)
 
             opcionSeleccionada = it.getString(BUNDLE_OPCION_SELECCIONADA)
-            /*opcionEstudioEntityList = Gson().fromJson<List<OpcionEstudioEntity>>(opcionSeleccionada,
-                object : TypeToken<ArrayList<OpcionEstudioEntity>>() {}.type
-            )*/
             opcionEstudioEntityList = Moshi.Builder().build().adapter<List<OpcionEstudioEntity>>(Types.newParameterizedType(List::class.java, OpcionEstudioEntity::class.java)).fromJson(opcionSeleccionada)!!
             opcionEstudioEntityList.forEach {
                 mutableSetTitulo.add(it.encabezado)
@@ -49,8 +46,6 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
     private fun llamaAdaptdor() {
         rcv_opciones_id.also {
             if (indice == 9) {
-                /*mutableGradoList = Gson().fromJson<List<Grado>>(opcionEstudioEntityList[opcionEstudioEntityList.size - 2].listaDiplomados,
-                    object : TypeToken<ArrayList<Grado>>() {}.type) as MutableList<Grado>*/
                 mutableGradoList =
                     Moshi.Builder().build().adapter<List<Grado>>(Types.newParameterizedType(List::class.java, Grado::class.java)).fromJson(opcionEstudioEntityList[opcionEstudioEntityList.size - 2].listaDiplomados) as MutableList<Grado>
             } else {
@@ -84,16 +79,10 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
                         bundle.putString(BUNDLE_NOMBRE_OPCION, titulo)
                         bundle.putStringArrayList(
                             BUNDLE_OPCION_SELECCIONADA, if (it === 0)
-                                /*Gson().fromJson<List<String>>(listaOpcionDiplomados[0].listaDiplomados,
-                                    object : TypeToken<ArrayList<String>>() {}.type).toList() as ArrayList<String>?*/
                                 (Moshi.Builder().build().adapter<List<String>>(Types.newParameterizedType(List::class.java, String::class.java)).fromJson(listaOpcionDiplomados[0].listaDiplomados) as ArrayList<String>?)!!
                             else if (it === 1)
-                                /*Gson().fromJson<List<String>>(listaOpcionDiplomados[1].listaDiplomados,
-                                    object : TypeToken<ArrayList<String>>() {}.type).toList() as ArrayList<String>?*/
                                 (Moshi.Builder().build().adapter<List<String>>(Types.newParameterizedType(List::class.java, String::class.java)).fromJson(listaOpcionDiplomados[1].listaDiplomados) as ArrayList<String>?)!!
                             else
-                                /*Gson().fromJson<List<String>>(listaOpcionDiplomados[2].listaDiplomados,
-                                    object : TypeToken<ArrayList<String>>() {}.type).toList() as ArrayList<String>?*/
                                 (Moshi.Builder().build().adapter<List<String>>(Types.newParameterizedType(List::class.java, String::class.java)).fromJson(listaOpcionDiplomados[2].listaDiplomados) as ArrayList<String>?)!!
                         )
                     } else {

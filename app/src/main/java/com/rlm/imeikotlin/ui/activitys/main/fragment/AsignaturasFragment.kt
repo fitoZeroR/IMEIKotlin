@@ -21,7 +21,6 @@ class AsignaturasFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.let {
-            //plan = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PLAN), object : TypeToken<List<Plan>>() {}.type)
             plan = Moshi.Builder().build().adapter<List<Plan>>(Types.newParameterizedType(List::class.java, Plan::class.java)).fromJson(it!!.getString(BUNDLE_LISTA_PLAN))!!
         }
     }
@@ -50,7 +49,6 @@ class AsignaturasFragment : Fragment() {
             var asignaturasFragmentFun = AsignaturasFragment()
 
             val bundle = Bundle()
-            //bundle.putString(BUNDLE_LISTA_PLAN, Gson().toJson(plan))
             bundle.putString(BUNDLE_LISTA_PLAN, Moshi.Builder().build().adapter<List<Plan>>(Types.newParameterizedType(List::class.java, Plan::class.java)).toJson(plan))
 
             asignaturasFragmentFun.arguments = bundle

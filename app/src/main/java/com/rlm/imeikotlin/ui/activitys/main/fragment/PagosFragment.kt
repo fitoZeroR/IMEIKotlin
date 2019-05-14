@@ -21,7 +21,6 @@ class PagosFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         arguments.let {
-            //pagos = Gson().fromJson(it!!.getString(BUNDLE_LISTA_PAGO), object : TypeToken<List<Pagos>>() {}.type)
             pagos = Moshi.Builder().build().adapter<List<Pagos>>(Types.newParameterizedType(List::class.java, Pagos::class.java)).fromJson(it!!.getString(BUNDLE_LISTA_PAGO))!!
         }
     }
@@ -49,7 +48,6 @@ class PagosFragment : Fragment() {
             var pagosFragmentFun = PagosFragment()
 
             val bundle = Bundle()
-            //bundle.putString(BUNDLE_LISTA_PAGO, Gson().toJson(pagos))
             bundle.putString(BUNDLE_LISTA_PAGO, Moshi.Builder().build().adapter<List<Pagos>>(Types.newParameterizedType(List::class.java, Pagos::class.java)).toJson(pagos))
             pagosFragmentFun.arguments = bundle
 
