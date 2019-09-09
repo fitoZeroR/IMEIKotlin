@@ -47,12 +47,14 @@ import com.rlm.imeikotlin.utils.Tools.Companion.getFilePathFromContentUri
 import com.rlm.imeikotlin.utils.Tools.Companion.getImageUri
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import java.util.*
 
-class MainActivity : BaseActivity(), HasSupportFragmentInjector {
+class MainActivity : BaseActivity(), HasAndroidInjector {
+    //@Inject
+    //lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
     @Inject
-    lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
     @Inject
     lateinit var mainViewModel: MainViewModel
     @Inject
@@ -79,7 +81,8 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
 
     override fun getLayoutResource() = R.layout.activity_main
 
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentDispatchingAndroidInjector
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
+    //override fun supportFragmentInjector(): AndroidInjector<Fragment> = fragmentDispatchingAndroidInjector
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
