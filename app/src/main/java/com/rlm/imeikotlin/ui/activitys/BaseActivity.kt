@@ -20,8 +20,8 @@ import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
 abstract class BaseActivity : AppCompatActivity() {
-    protected lateinit var mDrawerToggle: ActionBarDrawerToggle
-    protected lateinit var progressDialog: ProgressDialog
+    private lateinit var mDrawerToggle: ActionBarDrawerToggle
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,16 +61,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected abstract fun getLayoutResource(): Int
 
-    protected fun setActionBarIcon(iconRes: Int) = toolbar.setNavigationIcon(iconRes)
-
-    protected fun cambiarTituloActionBar(titulo: String) = toolbar.setTitle(titulo)
-
     protected fun showLoading() {
         progressDialog = ProgressDialog.show(this@BaseActivity, "", getString(R.string.prb_cargando), true, false)
     }
 
     protected fun hideLoading() {
-        progressDialog?.dismiss()
+        progressDialog.dismiss()
     }
 
     protected fun showError(mensaje: String?) = Tools.mensajeInformativo(this,
@@ -93,7 +89,7 @@ abstract class BaseActivity : AppCompatActivity() {
         animatedToMenu()
     }
 
-    protected fun animateToBackArrow() {
+    private fun animateToBackArrow() {
         val anim = ValueAnimator.ofFloat(0f, 1f)
         anim.addUpdateListener {
             val slideOffset = it.animatedValue as Float
@@ -105,7 +101,7 @@ abstract class BaseActivity : AppCompatActivity() {
         anim.start()
     }
 
-    protected fun animatedToMenu() {
+    private fun animatedToMenu() {
         val anim = ValueAnimator.ofFloat(0f, 1f)
         anim.addUpdateListener {
             mDrawerToggle.onDrawerClosed(drawer_layout)

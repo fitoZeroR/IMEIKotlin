@@ -28,7 +28,7 @@ constructor(
                 }
 
             override fun shouldFetch(data: List<PlantelEntity>?): Boolean =
-                data == null || data.size == 0
+                data == null || data.isEmpty()
 
             override fun loadFromDb(): LiveData<List<PlantelEntity>> =
                 plantelDao.getAllPlanteles()

@@ -62,7 +62,7 @@ constructor(
             }
 
             override fun shouldFetch(data: List<DetalleAlumnoView>?): Boolean =
-                data == null || data.size == 0
+                data == null || data.isEmpty()
 
             override fun loadFromDb(): LiveData<List<DetalleAlumnoView>> =
                 detalleAlumnoViewDao.getDetalleAlumno()

@@ -40,7 +40,7 @@ class PlantelesActivity : BaseActivity(), OnMapReadyCallback {
         val mapFragment = fragmentManager.findFragmentById(R.id.map) as MapFragment
         mapFragment.getMapAsync(this)
 
-        if (wifiManager.isWifiEnabled()) {
+        if (wifiManager.isWifiEnabled) {
             subscribeToPlantelesModel()
             plantelesViewModel.loadAllPlanteles(true)
         } else
@@ -57,7 +57,7 @@ class PlantelesActivity : BaseActivity(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap?) {
         this.googleMap = googleMap
-        this.googleMap?.setMyLocationEnabled(true)
+        this.googleMap?.isMyLocationEnabled = true
     }
 
     private fun subscribeToPlantelesModel() {
@@ -69,7 +69,7 @@ class PlantelesActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     private fun despliegaPlanteles(listaPlanteles: List<PlantelEntity>?) {
-        for (x in 0 until listaPlanteles!!.size) {
+        for (x in listaPlanteles!!.indices) {
             this.googleMap?.addMarker(
                 MarkerOptions()
                     .position(LatLng(listaPlanteles[x].latitud.toDouble(), listaPlanteles[x].longitud.toDouble()))
@@ -84,7 +84,7 @@ class PlantelesActivity : BaseActivity(), OnMapReadyCallback {
         }
 
         this.googleMap?.setOnMarkerClickListener { marker ->
-            for (x in 0 until listaPlanteles.size) {
+            for (x in listaPlanteles.indices) {
                 if (marker.title == listaPlanteles[x].nombre) {
                     val uri = Uri.parse(
                         "geo:" + listaPlanteles[x].latitud + "," + listaPlanteles[x].longitud + "?q="

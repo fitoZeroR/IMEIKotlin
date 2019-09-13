@@ -61,9 +61,9 @@ class EnviarInformacionActivity : BaseActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 hideKeyboard(this@EnviarInformacionActivity)
-                if (TextUtils.isEmpty(edt_escribe_nombre_id.getText()) || TextUtils.isEmpty(edt_escribe_telefono_id.getText())
-                    || TextUtils.isEmpty(edt_escribe_correo_electronico_id.getText()) || TextUtils.isEmpty(
-                        edt_informacion_interes_id.getText()
+                if (TextUtils.isEmpty(edt_escribe_nombre_id.text) || TextUtils.isEmpty(edt_escribe_telefono_id.text)
+                    || TextUtils.isEmpty(edt_escribe_correo_electronico_id.text) || TextUtils.isEmpty(
+                        edt_informacion_interes_id.text
                     )
                 ) {
                     mensajeInformativo(
@@ -72,7 +72,7 @@ class EnviarInformacionActivity : BaseActivity() {
                         false
                     )
                 } else {
-                    if (wifiManager.isWifiEnabled()) {
+                    if (wifiManager.isWifiEnabled) {
                         enviarInformacionViewModel.saveEnviarInformacionOnFromServer(
                             EnviarInformacionRequest(
                                 edt_escribe_nombre_id.text.toString(),
@@ -92,7 +92,7 @@ class EnviarInformacionActivity : BaseActivity() {
             }
     }
 
-    fun respuestaEnvioInformacion(enviarInformacionResponse: EnviarInformacionResponse) {
+    private fun respuestaEnvioInformacion(enviarInformacionResponse: EnviarInformacionResponse) {
         if (enviarInformacionResponse.code === 0) {
             mensajeInformativo(this, getString(R.string.msg_datos_enviados_exitosamente), true)
         } else {

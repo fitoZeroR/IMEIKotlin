@@ -31,22 +31,22 @@ class AsignaturasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        customAdapterAsignaturas = CustomAdapterAsignaturas(plan!!, context!!)
+        customAdapterAsignaturas = CustomAdapterAsignaturas(plan, context!!)
         rcv_principal_id.also {
             it.adapter = customAdapterAsignaturas
         }
     }
 
 
-    fun filtro(palabra: String) = customAdapterAsignaturas?.let {
-        it.getFilter()?.filter(palabra)
+    fun filtro(palabra: String) = customAdapterAsignaturas.let {
+        it.filter?.filter(palabra)
     }
 
     companion object {
-        var asignaturasFragment: AsignaturasFragment? = null
+        private var asignaturasFragment: AsignaturasFragment? = null
 
         fun initInstance(plan: List<Plan>): AsignaturasFragment {
-            var asignaturasFragmentFun = AsignaturasFragment()
+            val asignaturasFragmentFun = AsignaturasFragment()
 
             val bundle = Bundle()
             bundle.putString(BUNDLE_LISTA_PLAN, Moshi.Builder().build().adapter<List<Plan>>(Types.newParameterizedType(List::class.java, Plan::class.java)).toJson(plan))

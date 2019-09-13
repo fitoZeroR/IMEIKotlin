@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -51,8 +50,6 @@ import dagger.android.HasAndroidInjector
 import java.util.*
 
 class MainActivity : BaseActivity(), HasAndroidInjector {
-    //@Inject
-    //lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
     @Inject
@@ -99,7 +96,7 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
             alertaOpcional(false, getString(R.string.msg_actualiza_imagen))
         }
         if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
-            uriImagen = getImageUri(data?.getParcelableExtra<Bitmap>("data")!!, this@MainActivity)
+            uriImagen = getImageUri(data?.getParcelableExtra("data")!!, this@MainActivity)
             alertaOpcional(false, getString(R.string.msg_actualiza_imagen))
         }
     }
@@ -167,14 +164,14 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
                 val accountNames = getAccountNames(this@MainActivity)
                 intentEnvioArchivo.putExtra(
                     Intent.EXTRA_EMAIL,
-                    arrayOf(if (accountNames.size == 0) "" else accountNames[0])
+                    arrayOf(if (accountNames.isEmpty()) "" else accountNames[0])
                 )
                 intentEnvioArchivo.putExtra(Intent.EXTRA_SUBJECT, "Envio de archivo PDF.")
                 intentEnvioArchivo.putExtra(Intent.EXTRA_TEXT, "Hola te envío un archivo PDF.")
                 intentEnvioArchivo.putExtra(Intent.EXTRA_STREAM, uri)
 
-                val builder = StrictMode.VmPolicy.Builder();
-                StrictMode.setVmPolicy(builder.build());
+                val builder = StrictMode.VmPolicy.Builder()
+                StrictMode.setVmPolicy(builder.build())
                 startActivity(Intent.createChooser(intentEnvioArchivo, getString(R.string.msg_compartir_archivo)))
             }
         }
@@ -192,7 +189,7 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
         dataAlumnoList.filter {
             it.tipoInformacion.equals(TIPO_PAGO)
         }.forEach {
-            var banderaRepetido: Boolean = true
+            var banderaRepetido = true
             listaIdCuatrimestre.forEachIndexed { index, nombre ->
                 if (nombre == it.idCuatrimestre) {
                     banderaRepetido = false
@@ -241,7 +238,7 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
     private fun inicializaActividad() {
         title = getString(R.string.title_fragment_pagos)
         pagosFragment = PagosFragment.initInstance(pagos)
-        addFragment(pagosFragment!!)
+        addFragment(pagosFragment)
         asignaturasFragment = AsignaturasFragment.initInstance(plan)
     }
 
@@ -250,9 +247,9 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
             .subscribe {
                 if (it.toString().length > 0) {
                     if (selectedFragment is PagosFragment || selectedFragment == null) {
-                        pagosFragment?.filtro(it.toString())
+                        pagosFragment.filtro(it.toString())
                     } else if (selectedFragment is AsignaturasFragment) {
-                        asignaturasFragment?.filtro(it.toString())
+                        asignaturasFragment.filtro(it.toString())
                     }
                 }
             }
@@ -269,7 +266,7 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
             .debounce(500, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                if (wifiManager.isWifiEnabled()) {
+                if (wifiManager.isWifiEnabled) {
                     drawer_layout.closeDrawer(GravityCompat.START)
                     comparteArchivo()
                 } else {
@@ -288,17 +285,17 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
     }
 
     private fun createMenuBottomNavigationView() {
-        bottomNavigationView.setOnNavigationItemSelectedListener {
-            when (it.getItemId()) {
+        bottomNavigationView.setOnNavigationItemSelectedListener { it ->
+            when (it.itemId) {
                 R.id.menu_pagos_item -> {
                     selectedFragment = PagosFragment.newInstance()!!
                     title = getString(R.string.title_fragment_pagos)
-                    filtroEdt_id.setVisibility(View.VISIBLE)
+                    filtroEdt_id.visibility = View.VISIBLE
                 }
                 R.id.menu_asignaturas_item -> {
                     selectedFragment = AsignaturasFragment.newInstance()!!
                     title = getString(R.string.title_fragment_asignaturas)
-                    filtroEdt_id.setVisibility(View.VISIBLE)
+                    filtroEdt_id.visibility = View.VISIBLE
                 }
                 R.id.menu_estadisticas_item -> {
                     selectedFragment = EstadisticasFragment.newInstance(
@@ -306,12 +303,12 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
                         plan
                     )
                     title = getString(R.string.title_fragment_estadisticas)
-                    filtroEdt_id.setVisibility(View.GONE)
+                    filtroEdt_id.visibility = View.GONE
                 }
                 R.id.menu_directorio_item -> {
                     selectedFragment = DirectorioFragment.newInstance()
                     title = getString(R.string.title_fragment_directorio)
-                    filtroEdt_id.setVisibility(View.GONE)
+                    filtroEdt_id.visibility = View.GONE
                 }
             }
             selectedFragment?.let { addFragment(it) }
@@ -322,34 +319,30 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
     }
 
     private fun inicializaMenuLateral() {
-        txv_matricula_id.setText(listaDetalleAlumnoView[0].matricula)
-        txv_nombre_completo_id.setText(listaDetalleAlumnoView[0].nombre + " " + listaDetalleAlumnoView[0].apellidoPaterno + " " + listaDetalleAlumnoView[0].apellidoMaterno)
+        txv_matricula_id.text = listaDetalleAlumnoView[0].matricula
+        txv_nombre_completo_id.text = listaDetalleAlumnoView[0].nombre + " " + listaDetalleAlumnoView[0].apellidoPaterno + " " + listaDetalleAlumnoView[0].apellidoMaterno
         txv_fecha_nacimiento_id.text = parsearFechaCumpleanos(
             listaDetalleAlumnoView[0].fechaNacimiento!!,
             FORMATO_CUMPLEANOS
         )
-        txv_curp_id.setText(listaDetalleAlumnoView[0].curp)
-        txv_telefono_id.setText(listaDetalleAlumnoView[0].telefono)
-        txv_carrera_id.setText(listaDetalleAlumnoView[0].licenciatura)
-        txv_plantel_id.setText(listaDetalleAlumnoView[0].plantel)
-        txv_cuatrimestre_id.setText(listaDetalleAlumnoView[0].cuatrimestre + " Cuatrimestre")
+        txv_curp_id.text = listaDetalleAlumnoView[0].curp
+        txv_telefono_id.text = listaDetalleAlumnoView[0].telefono
+        txv_carrera_id.text = listaDetalleAlumnoView[0].licenciatura
+        txv_plantel_id.text = listaDetalleAlumnoView[0].plantel
+        txv_cuatrimestre_id.text = listaDetalleAlumnoView[0].cuatrimestre + " Cuatrimestre"
 
         obtieneImagenUsuario()
     }
 
     private fun obtieneImagenUsuario() {
         if (uriImagen != null) {
-            picasso?.let { it.load(uriImagen).transform(PicassoCircleTransformation()).into(imv_estudiante_id) }
+            picasso.load(uriImagen)?.transform(PicassoCircleTransformation())?.into(imv_estudiante_id)
         } else if (listaDetalleAlumnoView[0].foto == null || listaDetalleAlumnoView[0].foto.equals("")) {
-            picasso?.let {
-                it.load(R.drawable.silueta_usuario).transform(PicassoCircleTransformation()).into(imv_estudiante_id)
-            }
+            picasso.load(R.drawable.silueta_usuario)?.transform(PicassoCircleTransformation())
+                ?.into(imv_estudiante_id)
         } else {
-            picasso?.let {
-                it.load(listaDetalleAlumnoView[0].foto).transform(PicassoCircleTransformation())
-                    .placeholder(R.drawable.silueta_usuario)
-                    .error(R.drawable.silueta_usuario).into(imv_estudiante_id)
-            }
+            picasso.load(listaDetalleAlumnoView[0].foto)?.transform(PicassoCircleTransformation())
+                ?.placeholder(R.drawable.silueta_usuario)?.error(R.drawable.silueta_usuario)?.into(imv_estudiante_id)
         }
     }
 
@@ -365,7 +358,7 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
                         }
                     }
                 } else {
-                    if (wifiManager.isWifiEnabled()) {
+                    if (wifiManager.isWifiEnabled) {
                         obtieneImagenUsuario()
                         mainViewModel.changePictureOnFromServer(archivoBase64(uriImagen?.let {
                             getFilePathFromContentUri(
@@ -394,7 +387,7 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
             when (i) {
                 0 -> iPicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 1 -> {
-                    iPicture = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    iPicture = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                     iPicture.type = "image/*"
                     code = SELECT_PICTURE
                 }

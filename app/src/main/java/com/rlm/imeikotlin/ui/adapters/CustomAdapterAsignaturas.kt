@@ -43,7 +43,7 @@ class CustomAdapterAsignaturas() : RecyclerView.Adapter<CustomAdapterAsignaturas
             txv_titulo_cuatrimestre_id.text = planFiltro[position].nombre
 
             val linearLayout = LinearLayout(context)
-            for (x in 0 until planFiltro[position].materia.size) {
+            for (x in planFiltro[position].materia.indices) {
                 linearLayout.layoutParams =
                     LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
                 linearLayout.orientation = LinearLayout.VERTICAL
@@ -53,7 +53,7 @@ class CustomAdapterAsignaturas() : RecyclerView.Adapter<CustomAdapterAsignaturas
                     LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 layoutParamsMateria.topMargin = dip(5)
                 txvMateria.layoutParams = layoutParamsMateria
-                txvMateria.setText(planFiltro[position].materia[x].materia)
+                txvMateria.text = planFiltro[position].materia[x].materia
                 txvMateria.setTypeface(txvMateria.typeface, Typeface.BOLD)
                 txvMateria.id = position
                 linearLayout.addView(txvMateria)
@@ -63,7 +63,7 @@ class CustomAdapterAsignaturas() : RecyclerView.Adapter<CustomAdapterAsignaturas
                     LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                 layoutParamsEstatus.bottomMargin = dip(5)
                 txvEstatus.layoutParams = layoutParamsEstatus
-                txvEstatus.setText(planFiltro[position].materia[x].estatus)
+                txvEstatus.text = planFiltro[position].materia[x].estatus
                 txvEstatus.id = position
                 linearLayout.addView(txvEstatus)
 
@@ -77,15 +77,15 @@ class CustomAdapterAsignaturas() : RecyclerView.Adapter<CustomAdapterAsignaturas
             }
 
             lly_contenido_id.removeAllViews()
-            lly_contenido_id.addView(linearLayout);
+            lly_contenido_id.addView(linearLayout)
         }
     }
 
     inner class CustomFilterAsignaturas(private val customAdapterAsignaturas: CustomAdapterAsignaturas) : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             planFiltro.clear()
-            val results = Filter.FilterResults()
-            if (constraint!!.length == 0) {
+            val results = FilterResults()
+            if (constraint!!.isEmpty()) {
                 planFiltro.addAll(plan!!)
             } else {
                 val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
@@ -96,7 +96,7 @@ class CustomAdapterAsignaturas() : RecyclerView.Adapter<CustomAdapterAsignaturas
                 }
             }
             results.values = planFiltro
-            results.count = planFiltro!!.size
+            results.count = planFiltro.size
             return results
         }
 

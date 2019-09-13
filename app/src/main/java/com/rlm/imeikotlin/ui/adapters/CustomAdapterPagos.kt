@@ -28,9 +28,9 @@ class CustomAdapterPagos() : RecyclerView.Adapter<CustomAdapterPagos.ViewHolder>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)= ViewHolder(parent.inflate(R.layout.row_asignaturas_pagos))
 
-    override fun getItemCount() = pagosFiltro!!.size
+    override fun getItemCount() = pagosFiltro.size
 
-    override fun onBindViewHolder(holder: CustomAdapterPagos.ViewHolder, position: Int) = holder.bind(position, pagosFiltro, context)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(position, pagosFiltro, context)
 
     override fun getFilter() = mFilter
 
@@ -39,7 +39,7 @@ class CustomAdapterPagos() : RecyclerView.Adapter<CustomAdapterPagos.ViewHolder>
             txv_titulo_cuatrimestre_id.text = pagosFiltro[position].nombre
 
             val linearLayoutVertical = LinearLayout(context)
-            for (x in 0 until pagosFiltro[position].estatusPagos.size) {
+            for (x in pagosFiltro[position].estatusPagos.indices) {
                 val imvEstatusPago = ImageView(context)
                 imvEstatusPago.id = (position + 1) * 1000
                 val layoutParamsImagen = RelativeLayout.LayoutParams(
@@ -80,7 +80,7 @@ class CustomAdapterPagos() : RecyclerView.Adapter<CustomAdapterPagos.ViewHolder>
                 layoutParamsMateria.topMargin = dip(5)
                 layoutParamsMateria.addRule(RelativeLayout.RIGHT_OF, (position + 1) * 1000)
                 txvNombre.layoutParams = layoutParamsMateria
-                txvNombre.setText(pagosFiltro[position].estatusPagos[x].nombre)
+                txvNombre.text = pagosFiltro[position].estatusPagos[x].nombre
                 txvNombre.setTypeface(txvNombre.typeface, Typeface.BOLD)
 
                 val txvEstatus = TextView(context)
@@ -93,7 +93,7 @@ class CustomAdapterPagos() : RecyclerView.Adapter<CustomAdapterPagos.ViewHolder>
                 layoutParamsEstatus.addRule(RelativeLayout.RIGHT_OF, (position + 1) * 1000)
                 layoutParamsEstatus.addRule(RelativeLayout.BELOW, (position + 1) * 1001)
                 txvEstatus.layoutParams = layoutParamsEstatus
-                txvEstatus.setText(pagosFiltro[position].estatusPagos[x].estatus)
+                txvEstatus.text = pagosFiltro[position].estatusPagos[x].estatus
 
                 val relativeLayout = RelativeLayout(context)
                 relativeLayout.layoutParams = RelativeLayout.LayoutParams(
@@ -120,7 +120,7 @@ class CustomAdapterPagos() : RecyclerView.Adapter<CustomAdapterPagos.ViewHolder>
                 linearLayoutVertical.addView(relativeLayout)
             }
 
-            lly_contenido_id.removeAllViews();
+            lly_contenido_id.removeAllViews()
             lly_contenido_id.addView(linearLayoutVertical)
         }
     }
@@ -128,19 +128,19 @@ class CustomAdapterPagos() : RecyclerView.Adapter<CustomAdapterPagos.ViewHolder>
     inner class CustomFilterPagos(private val customAdapterPagos: CustomAdapterPagos) : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             pagosFiltro.clear()
-            val results = Filter.FilterResults()
-            if (constraint!!.length == 0) {
-                pagosFiltro.addAll(pagos!!)
+            val results = FilterResults()
+            if (constraint!!.isEmpty()) {
+                pagosFiltro.addAll(pagos)
             } else {
                 val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
-                for (p in pagos!!) {
+                for (p in pagos) {
                     if (p.nombre.toLowerCase().contains(filterPattern)) {
                         pagosFiltro.add(p)
                     }
                 }
             }
             results.values = pagosFiltro
-            results.count = pagosFiltro!!.size
+            results.count = pagosFiltro.size
             return results
         }
 

@@ -34,7 +34,8 @@ class EstadisticasFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments.let {
             pagos = Moshi.Builder().build().adapter<List<Pagos>>(Types.newParameterizedType(List::class.java, Pagos::class.java)).fromJson(it!!.getString(BUNDLE_LISTA_PAGO))!!
-            plan = Moshi.Builder().build().adapter<List<Plan>>(Types.newParameterizedType(List::class.java, Plan::class.java)).fromJson(it!!.getString(BUNDLE_LISTA_PLAN))!!
+            plan = Moshi.Builder().build().adapter<List<Plan>>(Types.newParameterizedType(List::class.java, Plan::class.java)).fromJson(
+                it.getString(BUNDLE_LISTA_PLAN))!!
         }
     }
 
@@ -49,7 +50,7 @@ class EstadisticasFragment : Fragment() {
         val barDataSet = BarDataSet(addValuesToBarEntryPagos(), "Etiqueta")
         val barData = BarData(addValuesToBarEntryLabelsPagos(), barDataSet)
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
-        bar_chart_id.setData(barData)
+        bar_chart_id.data = barData
         bar_chart_id.setDescription(getString(R.string.title_fragment_pagos))
         bar_chart_id.animateY(3000)
 
@@ -58,7 +59,7 @@ class EstadisticasFragment : Fragment() {
         val pieDataSet = PieDataSet(addValuesToPieEntryAsignaturas(), "")
         val pieData = PieData(addValuesToEntryLabelsAsignaturas(), pieDataSet)
         pieDataSet.setColors(ColorTemplate.PASTEL_COLORS)
-        pie_chart_id.setData(pieData)
+        pie_chart_id.data = pieData
         pie_chart_id.setDescription(getString(R.string.title_fragment_asignaturas))
         pie_chart_id.animateY(3000)
 
@@ -93,7 +94,7 @@ class EstadisticasFragment : Fragment() {
     private fun obtieneStatusPago() {
         pagos.forEachIndexed { indexPago, pago ->
             pagos[indexPago].estatusPagos.forEachIndexed { indexEstatus, estatusPago ->
-                when (pagos!![indexPago].estatusPagos[indexEstatus].estatus) {
+                when (pagos[indexPago].estatusPagos[indexEstatus].estatus) {
                     "Pagado" -> pagado++
                     "No Pagado" -> noPagado++
                     else -> demorado++
@@ -134,7 +135,7 @@ class EstadisticasFragment : Fragment() {
     private fun obtieneStatusAsignaturas() {
         plan.forEachIndexed { indexPlan, p ->
             plan[indexPlan].materia.forEachIndexed { indexMateria, materia ->
-                when (plan!![indexPlan].materia[indexMateria].estatus) {
+                when (plan[indexPlan].materia[indexMateria].estatus) {
                     "Aprobada" -> aprobada++
                     "Cursada" -> cursada++
                     else -> noCursada++

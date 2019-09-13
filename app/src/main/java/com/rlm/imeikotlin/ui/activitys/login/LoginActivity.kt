@@ -92,8 +92,8 @@ class LoginActivity : BaseActivity() {
                         false
                     )
                 } else {
-                    if (wifiManager.isWifiEnabled()) {
-                        loginViewModel.changePasswordOnFromServer(matricula.let { it?.text.toString() })
+                    if (wifiManager.isWifiEnabled) {
+                        loginViewModel.changePasswordOnFromServer(matricula.let { it -> it?.text.toString() })
                     } else
                         Tools.informaErrorConexionWifi(
                             this@LoginActivity,
@@ -127,18 +127,18 @@ class LoginActivity : BaseActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { aVoid ->
                 hideKeyboard(this)
-                if (TextUtils.isEmpty(edt_matricula_alumno_id.text) || TextUtils.isEmpty(edt_password_id.getText()))
+                if (TextUtils.isEmpty(edt_matricula_alumno_id.text) || TextUtils.isEmpty(edt_password_id.text))
                     mensajeInformativo(
                         this@LoginActivity,
                         getString(R.string.msg_no_campos_vacios),
                         false
                     )
                 else
-                    if (wifiManager.isWifiEnabled())
+                    if (wifiManager.isWifiEnabled)
                         loginViewModel.getLoginFromServer(
                             LoginRequest(
-                                edt_matricula_alumno_id.getText().toString(),
-                                edt_password_id.getText().toString()
+                                edt_matricula_alumno_id.text.toString(),
+                                edt_password_id.text.toString()
                             )
                         )
                     else
@@ -154,7 +154,7 @@ class LoginActivity : BaseActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { aVoid ->
                 hideKeyboard(this)
-                if (wifiManager.isWifiEnabled())
+                if (wifiManager.isWifiEnabled)
                     navigate<OpcionesActivity>()
                 else
                     Tools.informaErrorConexionWifi(

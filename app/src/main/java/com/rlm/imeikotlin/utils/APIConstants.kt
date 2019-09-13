@@ -1,7 +1,7 @@
 package com.rlm.imeikotlin.utils
 
 object APIConstants {
-    val URL = "https://grupoeducativoimei.com/"
+    const val URL = "https://grupoeducativoimei.com/"
 
     const val URL_OPCIONES = "json/types.json"
     const val URL_PLANTELES = "json/planteles.json"

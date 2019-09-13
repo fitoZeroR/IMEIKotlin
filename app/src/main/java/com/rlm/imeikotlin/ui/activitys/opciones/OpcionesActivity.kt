@@ -47,7 +47,7 @@ class OpcionesActivity : BaseActivity() {
     private fun despliegaAdaptadorOpciones(listaOpcionEstudioEntity: List<OpcionEstudioEntity>) {
         //Setting up Adapter
         //Setting up RecyclerView
-        rcv_opciones_id.also {
+        rcv_opciones_id.also { it ->
             val mutableSetTitulo: MutableSet<String> = mutableSetOf()
             listaOpcionEstudioEntity.forEach {
                 mutableSetTitulo.add(it.encabezado)
@@ -72,7 +72,7 @@ class OpcionesActivity : BaseActivity() {
                         )
                     }
                     7 // Planteles
-                    -> if (wifiManager.isWifiEnabled())
+                    -> if (wifiManager.isWifiEnabled)
                         startActivity<PlantelesActivity>(BUNDLE_NOMBRE_OPCION to mutableSetTitulo.elementAt(it))
                     else
                         Tools.informaErrorConexionWifi(

@@ -28,7 +28,7 @@ class Tools {
             try {
                 val imm = activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 Objects.requireNonNull(imm)
-                    .hideSoftInputFromWindow(Objects.requireNonNull<View>(activity.currentFocus).getWindowToken(), 0)
+                    .hideSoftInputFromWindow(Objects.requireNonNull<View>(activity.currentFocus).windowToken, 0)
             } catch (ignored: Exception) {
             }
 

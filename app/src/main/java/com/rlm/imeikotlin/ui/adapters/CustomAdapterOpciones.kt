@@ -41,22 +41,22 @@ class CustomAdapterOpciones(
         fun create(eListado: EListado) = with(itemView) {
             when (eListado) {
                 EListado.SELECCIONA_OPCION -> {
-                    rll_selecciona_opcion_id.setVisibility(View.VISIBLE)
-                    rll_opcion_id.setVisibility(View.GONE)
-                    rll_selecciona_opcion_titulo_id.setVisibility(View.GONE)
-                    rll_opcion_sin_flecha_id.setVisibility(View.GONE)
+                    rll_selecciona_opcion_id.visibility = View.VISIBLE
+                    rll_opcion_id.visibility = View.GONE
+                    rll_selecciona_opcion_titulo_id.visibility = View.GONE
+                    rll_opcion_sin_flecha_id.visibility = View.GONE
                 }
                 EListado.SELECCIONA_OPCION_SIN_PLANTEL -> {
-                    rll_selecciona_opcion_id.setVisibility(View.GONE)
-                    rll_opcion_id.setVisibility(View.GONE)
-                    rll_selecciona_opcion_titulo_id.setVisibility(View.VISIBLE)
-                    rll_opcion_sin_flecha_id.setVisibility(View.GONE)
+                    rll_selecciona_opcion_id.visibility = View.GONE
+                    rll_opcion_id.visibility = View.GONE
+                    rll_selecciona_opcion_titulo_id.visibility = View.VISIBLE
+                    rll_opcion_sin_flecha_id.visibility = View.GONE
                 }
                 EListado.SELECCIONA_OPCION_DIPLOMADO -> {
-                    rll_selecciona_opcion_id.setVisibility(View.GONE)
-                    rll_opcion_id.setVisibility(View.GONE)
-                    rll_selecciona_opcion_titulo_id.setVisibility(View.GONE)
-                    rll_opcion_sin_flecha_id.setVisibility(View.VISIBLE)
+                    rll_selecciona_opcion_id.visibility = View.GONE
+                    rll_opcion_id.visibility = View.GONE
+                    rll_selecciona_opcion_titulo_id.visibility = View.GONE
+                    rll_opcion_sin_flecha_id.visibility = View.VISIBLE
                 }
             }
         }
@@ -66,11 +66,12 @@ class CustomAdapterOpciones(
                 when (eListado) {
                     EListado.SELECCIONA_OPCION -> {
                         txv_titulo_id.text = grado?.titulo
-                        txv_planteles_id.setText(grado?.planteles)
+                        txv_planteles_id.text = grado?.planteles
                     }
                     EListado.SELECCIONA_OPCION_SIN_PLANTEL -> txv_titulo_sin_plantel_id.text = grado?.titulo
-                    EListado.SELECCIONA_OPCION_DIPLOMADO -> texto_opciones_sin_flecha_id.setText(opcionLista)
-                    else -> texto_opciones_id.setText(opcionLista)
+                    EListado.SELECCIONA_OPCION_DIPLOMADO -> texto_opciones_sin_flecha_id.text =
+                        opcionLista
+                    else -> texto_opciones_id.text = opcionLista
                 }
 
                 setOnClickListener { listener(position) }

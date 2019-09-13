@@ -22,8 +22,8 @@ class CustomAdapterDirectorio(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(position: Int, plantel: String, telefono: String, listener: (Int) -> Unit) = with(itemView) {
 
-            txv_plantel_id.setText(plantel)
-            txv_telefono_id.setText(telefono)
+            txv_plantel_id.text = plantel
+            txv_telefono_id.text = telefono
 
             setOnClickListener { listener(position) }
         }

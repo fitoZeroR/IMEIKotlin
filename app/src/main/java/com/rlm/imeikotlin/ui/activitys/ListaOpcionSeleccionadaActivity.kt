@@ -25,9 +25,9 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
 
         Objects.requireNonNull(supportActionBar)?.setHomeAsUpIndicator(R.drawable.ic_chevron_left)
 
-        intent.extras.let {
+        intent.extras.let { it ->
             titulo = it.getString(BUNDLE_NOMBRE_OPCION)
-            setTitle(titulo)
+            title = titulo
 
             indice = it.getInt(BUNDLE_INDICE_OPCION)
 
@@ -44,7 +44,7 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
     override fun getLayoutResource() = R.layout.activity_opciones
 
     private fun llamaAdaptdor() {
-        rcv_opciones_id.also {
+        rcv_opciones_id.also { it ->
             if (indice == 9) {
                 mutableGradoList =
                     Moshi.Builder().build().adapter<List<Grado>>(Types.newParameterizedType(List::class.java, Grado::class.java)).fromJson(opcionEstudioEntityList[opcionEstudioEntityList.size - 2].listaDiplomados) as MutableList<Grado>
@@ -67,7 +67,7 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
             val eListado =
                 if (titulo == "Cursos") EListado.SELECCIONA_OPCION_SIN_PLANTEL else EListado.SELECCIONA_OPCION
 
-            it.adapter = CustomAdapterOpciones(null, mutableGradoList, eListado) {
+            it.adapter = CustomAdapterOpciones(null, mutableGradoList, eListado) { it ->
                 if (eListado === EListado.SELECCIONA_OPCION) {
                     val bundle = Bundle()
                     val intent: Intent
@@ -78,18 +78,17 @@ class ListaOpcionSeleccionadaActivity : BaseActivity() {
                         intent = Intent(this, ListaOpcionSeleccionadaDiplomadosActivity::class.java)
                         bundle.putString(BUNDLE_NOMBRE_OPCION, titulo)
                         bundle.putStringArrayList(
-                            BUNDLE_OPCION_SELECCIONADA, if (it === 0)
-                                (Moshi.Builder().build().adapter<List<String>>(Types.newParameterizedType(List::class.java, String::class.java)).fromJson(listaOpcionDiplomados[0].listaDiplomados) as ArrayList<String>?)!!
-                            else if (it === 1)
-                                (Moshi.Builder().build().adapter<List<String>>(Types.newParameterizedType(List::class.java, String::class.java)).fromJson(listaOpcionDiplomados[1].listaDiplomados) as ArrayList<String>?)!!
-                            else
-                                (Moshi.Builder().build().adapter<List<String>>(Types.newParameterizedType(List::class.java, String::class.java)).fromJson(listaOpcionDiplomados[2].listaDiplomados) as ArrayList<String>?)!!
+                            BUNDLE_OPCION_SELECCIONADA, when {
+                                it === 0 -> (Moshi.Builder().build().adapter<List<String>>(Types.newParameterizedType(List::class.java, String::class.java)).fromJson(listaOpcionDiplomados[0].listaDiplomados) as ArrayList<String>?)!!
+                                it === 1 -> (Moshi.Builder().build().adapter<List<String>>(Types.newParameterizedType(List::class.java, String::class.java)).fromJson(listaOpcionDiplomados[1].listaDiplomados) as ArrayList<String>?)!!
+                                else -> (Moshi.Builder().build().adapter<List<String>>(Types.newParameterizedType(List::class.java, String::class.java)).fromJson(listaOpcionDiplomados[2].listaDiplomados) as ArrayList<String>?)!!
+                            }
                         )
                     } else {
                         intent = Intent(this, DescripcionActivity::class.java)
                         bundle.putString(
                             BUNDLE_DESCRIPCION,
-                            mutableGradoList.get(it).descripcion
+                            mutableGradoList[it].descripcion
                         )
                         bundle.putString(BUNDLE_NOMBRE_OPCION, titulo)
                     }

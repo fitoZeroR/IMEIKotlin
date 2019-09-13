@@ -31,21 +31,19 @@ class PagosFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        customAdapterPagos = CustomAdapterPagos(pagos!!, context!!)
+        customAdapterPagos = CustomAdapterPagos(pagos, context!!)
         rcv_principal_id.also {
             it.adapter = customAdapterPagos
         }
     }
 
-    fun filtro(palabra: String) = customAdapterPagos?.let {
-        it.getFilter()?.filter(palabra)
-    }
+    fun filtro(palabra: String) = customAdapterPagos.filter.filter(palabra)
 
     companion object {
-        var pagosFragment: PagosFragment? = null
+        private var pagosFragment: PagosFragment? = null
 
         fun initInstance(pagos: List<Pagos>): PagosFragment {
-            var pagosFragmentFun = PagosFragment()
+            val pagosFragmentFun = PagosFragment()
 
             val bundle = Bundle()
             bundle.putString(BUNDLE_LISTA_PAGO, Moshi.Builder().build().adapter<List<Pagos>>(Types.newParameterizedType(List::class.java, Pagos::class.java)).toJson(pagos))

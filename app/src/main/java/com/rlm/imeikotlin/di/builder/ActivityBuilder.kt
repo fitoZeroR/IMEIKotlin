@@ -30,6 +30,6 @@ abstract class ActivityBuilder {
     abstract fun bindPlantelesActivity(): PlantelesActivity
 
     @PerActivity
-    @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class, DirectorioFragmentProvider::class))
+    @ContributesAndroidInjector(modules = [MainActivityModule::class, DirectorioFragmentProvider::class])
     abstract fun bindMainActivity(): MainActivity
 }

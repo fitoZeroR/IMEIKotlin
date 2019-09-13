@@ -36,8 +36,8 @@ class DirectorioFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        rcv_principal_id.also {
-            it.adapter = CustomAdapterDirectorio(listaDirectorioPlantel, listaDirectoriotelefonico) {
+        rcv_principal_id.also { recyclerView ->
+            recyclerView.adapter = CustomAdapterDirectorio(listaDirectorioPlantel, listaDirectoriotelefonico) {
                 startActivity(Intent(Intent.ACTION_CALL).setData(phoneNumberFormat(listaDirectoriotelefonico[it])))
             }
         }

@@ -17,7 +17,7 @@ import com.rlm.imeikotlin.utils.DATABASE_VERSION
         OpcionEstudioEntity::class,
         PlantelEntity::class,
         InformacionEntity::class],
-    views = arrayOf(DetalleAlumnoView::class),
+    views = [DetalleAlumnoView::class],
     version = DATABASE_VERSION,
     exportSchema = false
 )
