@@ -15,11 +15,9 @@ import com.rlm.imeikotlin.utils.NAMED_LISTA_TELEFONICA
 import kotlinx.android.synthetic.main.fragment_menu_bottom_navigation_view.*
 import javax.inject.Inject
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.DaggerFragment
 import javax.inject.Named
 
 class DirectorioFragment : Fragment() {
-    //class DirectorioFragment : DaggerFragment() {
     @Inject
     @field:Named(NAMED_LISTA_TELEFONICA)
     lateinit var listaDirectoriotelefonico: List<String>
@@ -27,7 +25,7 @@ class DirectorioFragment : Fragment() {
     @field:Named(NAMED_LISTA_PLANTEL)
     lateinit var listaDirectorioPlantel: List<String>
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }

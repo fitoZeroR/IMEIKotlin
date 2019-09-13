@@ -30,7 +30,7 @@ task clean(type: Delete) {
 
 ext {
     room_version = '2.1.0'
-    archCore= '2.0.1'
+    archCore= '2.1.0'
     lifecycle_version = '2.2.0-alpha01'
     work_runtime = '2.3.0-alpha01'
     dagger_version = '2.24'
@@ -38,7 +38,7 @@ ext {
     inject_version = '1'
     logger_version = '2.2.0'
     retrofit_version = '2.6.1'
-    okHttp_version = '4.1.1'
+    okHttp_version = '4.2.0'
     rxjava_version = '2.2.7'
     rxkotlin_version = '2.3.0'
     rxandroid_version = '2.1.1'
