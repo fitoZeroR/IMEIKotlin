@@ -1,4 +1,4 @@
-package com.rlm.imeikotlin.ui.adapter
+package com.rlm.imeikotlin.ui.adapters
 
 import android.content.Context
 import android.graphics.Typeface

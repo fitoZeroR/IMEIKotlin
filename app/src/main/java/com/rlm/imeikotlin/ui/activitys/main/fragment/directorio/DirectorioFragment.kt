@@ -1,4 +1,4 @@
-package com.rlm.imeikotlin.ui.activity.main.fragment.directorio
+package com.rlm.imeikotlin.ui.activitys.main.fragment.directorio
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.ui.adapter.CustomAdapterDirectorio
+import com.rlm.imeikotlin.ui.adapters.CustomAdapterDirectorio
 import com.rlm.imeikotlin.utils.NAMED_LISTA_PLANTEL
 import com.rlm.imeikotlin.utils.NAMED_LISTA_TELEFONICA
 import kotlinx.android.synthetic.main.fragment_menu_bottom_navigation_view.*
@@ -30,7 +30,7 @@ class DirectorioFragment : Fragment() {
         super.onAttach(context)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(R.layout.fragment_menu_bottom_navigation_view, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

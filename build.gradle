@@ -37,7 +37,7 @@ ext {
     jsr250_version = '1.0'
     inject_version = '1'
     logger_version = '2.2.0'
-    retrofit_version = '2.6.1'
+    retrofit_version = '2.6.2'
     okHttp_version = '4.2.0'
     rxjava_version = '2.2.7'
     rxkotlin_version = '2.3.0'

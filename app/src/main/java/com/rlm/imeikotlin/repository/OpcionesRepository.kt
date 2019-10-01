@@ -1,7 +1,7 @@
 package com.rlm.imeikotlin.repository
 
 import androidx.lifecycle.LiveData
-import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
+import com.rlm.imeikotlin.repository.remote.api.ApiResponse
 import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi
 import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
 import com.rlm.imeikotlin.repository.remote.model.response.OpcionesResponse

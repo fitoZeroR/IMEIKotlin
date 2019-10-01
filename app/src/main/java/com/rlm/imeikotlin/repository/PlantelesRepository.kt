@@ -1,7 +1,7 @@
 package com.rlm.imeikotlin.repository
 
 import androidx.lifecycle.LiveData
-import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
+import com.rlm.imeikotlin.repository.remote.api.ApiResponse
 import com.rlm.imeikotlin.repository.local.dao.PlantelDao
 import com.rlm.imeikotlin.repository.local.entity.PlantelEntity
 import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi

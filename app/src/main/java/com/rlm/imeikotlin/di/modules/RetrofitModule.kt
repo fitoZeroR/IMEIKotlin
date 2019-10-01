@@ -1,7 +1,7 @@
 package com.rlm.imeikotlin.di.modules
 
 import android.app.Application
-import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.LiveDataCallAdapterFactory
+import com.rlm.imeikotlin.repository.remote.api.LiveDataCallAdapterFactory
 import com.rlm.imeikotlin.utils.APIConstants.URL
 import com.rlm.imeikotlin.utils.DEBUG
 import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi
@@ -48,7 +48,7 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient) = Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(URL)
         .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create())
@@ -57,5 +57,5 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideApiWebservice(restAdapter: Retrofit) = restAdapter.create(IRetrofitApi::class.java)
+    fun provideApiWebservice(restAdapter: Retrofit): IRetrofitApi = restAdapter.create(IRetrofitApi::class.java)
 }

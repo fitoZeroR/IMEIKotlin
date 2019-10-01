@@ -1,4 +1,4 @@
-package com.elcomercio.mvvm_dagger_kotlin.viewmodel
+package com.rlm.imeikotlin.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

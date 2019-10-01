@@ -1,4 +1,4 @@
-package com.rlm.imeikotlin.ui.activity.main.fragment
+package com.rlm.imeikotlin.ui.activitys.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.remote.model.response.Plan
-import com.rlm.imeikotlin.ui.adapter.CustomAdapterAsignaturas
+import com.rlm.imeikotlin.ui.adapters.CustomAdapterAsignaturas
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PLAN
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -25,7 +25,7 @@ class AsignaturasFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(R.layout.fragment_menu_bottom_navigation_view, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

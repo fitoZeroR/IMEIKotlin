@@ -1,4 +1,4 @@
-package com.elcomercio.mvvm_dagger_kotlin.repository.remote.api
+package com.rlm.imeikotlin.repository.remote.api
 
 import retrofit2.Response
 

@@ -1,4 +1,4 @@
-package com.elcomercio.mvvm_dagger_kotlin.repository.remote.api
+package com.rlm.imeikotlin.repository.remote.api
 
 import androidx.lifecycle.LiveData
 import retrofit2.Call

@@ -1,7 +1,7 @@
 package com.rlm.imeikotlin.repository
 
 import androidx.lifecycle.LiveData
-import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
+import com.rlm.imeikotlin.repository.remote.api.ApiResponse
 import com.rlm.imeikotlin.repository.local.dao.AlumnoDao
 import com.rlm.imeikotlin.repository.local.dao.DetalleAlumnoViewDao
 import com.rlm.imeikotlin.repository.local.dao.InformacionDao
@@ -86,7 +86,7 @@ constructor(
                 iRetrofitApi.enviarFotografia(obtieneAlumno().tokenSesion!!, base64)
         }.asLiveData()
 
-    fun cleanLogin() = doAsyncResult {
+    fun cleanLogin(): Int = doAsyncResult {
         val resultado = alumnoDao.deleteAlumno(alumnoDao.getAlumno())
         resultado
     }.get()

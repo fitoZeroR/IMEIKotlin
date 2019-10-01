@@ -1,4 +1,4 @@
-package com.rlm.imeikotlin.ui.activity.main.fragment
+package com.rlm.imeikotlin.ui.activitys.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.repository.remote.model.response.Pagos
-import com.rlm.imeikotlin.ui.adapter.CustomAdapterPagos
+import com.rlm.imeikotlin.ui.adapters.CustomAdapterPagos
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PAGO
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -25,7 +25,7 @@ class PagosFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(R.layout.fragment_menu_bottom_navigation_view, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

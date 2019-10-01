@@ -36,10 +36,10 @@ import javax.inject.Inject
 import androidx.lifecycle.Observer
 import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
 import com.rlm.imeikotlin.repository.remote.model.response.*
-import com.rlm.imeikotlin.ui.activity.main.fragment.AsignaturasFragment
-import com.rlm.imeikotlin.ui.activity.main.fragment.EstadisticasFragment
-import com.rlm.imeikotlin.ui.activity.main.fragment.PagosFragment
-import com.rlm.imeikotlin.ui.activity.main.fragment.directorio.DirectorioFragment
+import com.rlm.imeikotlin.ui.activitys.main.fragment.AsignaturasFragment
+import com.rlm.imeikotlin.ui.activitys.main.fragment.EstadisticasFragment
+import com.rlm.imeikotlin.ui.activitys.main.fragment.PagosFragment
+import com.rlm.imeikotlin.ui.activitys.main.fragment.directorio.DirectorioFragment
 import com.rlm.imeikotlin.utils.Tools.Companion.archivoBase64
 import com.rlm.imeikotlin.utils.Tools.Companion.getAccountNames
 import com.rlm.imeikotlin.utils.Tools.Companion.getFilePathFromContentUri

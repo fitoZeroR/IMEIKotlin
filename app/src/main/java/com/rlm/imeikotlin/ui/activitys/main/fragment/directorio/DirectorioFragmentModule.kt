@@ -1,4 +1,4 @@
-package com.rlm.imeikotlin.ui.activity.main.fragment.directorio
+package com.rlm.imeikotlin.ui.activitys.main.fragment.directorio
 
 import android.app.Application
 import com.rlm.imeikotlin.R

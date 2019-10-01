@@ -1,7 +1,7 @@
 package com.rlm.imeikotlin.repository
 
 import androidx.lifecycle.LiveData
-import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
+import com.rlm.imeikotlin.repository.remote.api.ApiResponse
 import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi
 import com.rlm.imeikotlin.repository.local.dao.AlumnoDao
 import com.rlm.imeikotlin.repository.local.entity.AlumnoEntity
@@ -53,7 +53,7 @@ constructor(
 
         }.asLiveData()
 
-    fun validaLogin() = doAsyncResult {
+    fun validaLogin(): Int = doAsyncResult {
         val validaLogin = alumnoDao.getTotalAlumno()
         //onComplete { valida }
         validaLogin

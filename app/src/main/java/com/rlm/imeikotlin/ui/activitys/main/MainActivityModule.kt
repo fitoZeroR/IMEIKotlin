@@ -7,5 +7,5 @@ import dagger.Provides
 @Module
 class MainActivityModule {
     @Provides
-    fun providePicasso() = Picasso.get()
+    fun providePicasso(): Picasso = Picasso.get()
 }

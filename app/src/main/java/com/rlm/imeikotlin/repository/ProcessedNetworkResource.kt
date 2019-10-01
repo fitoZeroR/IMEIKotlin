@@ -5,7 +5,7 @@ import androidx.annotation.NonNull
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.elcomercio.mvvm_dagger_kotlin.repository.remote.api.ApiResponse
+import com.rlm.imeikotlin.repository.remote.api.ApiResponse
 import com.rlm.imeikotlin.utils.ERROR_SERVICE_RESPONSE
 import com.rlm.imeikotlin.utils.Resource
 
