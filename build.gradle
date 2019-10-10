@@ -38,7 +38,7 @@ ext {
     inject_version = '1'
     logger_version = '2.2.0'
     retrofit_version = '2.6.2'
-    okHttp_version = '4.2.0'
+    okHttp_version = '4.2.1'
     rxjava_version = '2.2.7'
     rxkotlin_version = '2.3.0'
     rxandroid_version = '2.1.1'
