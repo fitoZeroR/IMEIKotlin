@@ -29,11 +29,11 @@ task clean(type: Delete) {
 }
 
 ext {
-    room_version = '2.1.0'
+    room_version = '2.2.1'
     archCore= '2.1.0'
     lifecycle_version = '2.2.0-beta01'
-    work_runtime = '2.3.0-alpha01'
-    dagger_version = '2.24'
+    work_runtime = '2.3.0-alpha03'
+    dagger_version = '2.25.2'
     jsr250_version = '1.0'
     inject_version = '1'
     logger_version = '2.2.0'
@@ -54,5 +54,5 @@ ext {
     mpandroidchart_version = 'v2.2.4'
     //mpandroidchart_version = 'v3.0.3'
     //coroutines_version = '1.2.0'
-    moshi='1.8.0'
+    moshi= '1.9.1'
 }
