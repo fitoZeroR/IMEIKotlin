@@ -2,7 +2,7 @@ package com.rlm.imeikotlin.di.modules
 
 import android.app.Application
 import androidx.room.Room
-import com.rlm.imeikotlin.repository.local.DataBaseIMEI
+import com.rlm.imeikotlin.data.local.DataBaseIMEI
 import com.rlm.imeikotlin.utils.AppExecutors
 import com.rlm.imeikotlin.utils.DATABASE_NAME
 import dagger.Module

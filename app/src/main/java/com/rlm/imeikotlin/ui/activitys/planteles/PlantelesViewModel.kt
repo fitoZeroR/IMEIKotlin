@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.rlm.imeikotlin.repository.PlantelesRepository
-import com.rlm.imeikotlin.repository.local.entity.PlantelEntity
+import com.rlm.imeikotlin.data.PlantelesRepository
+import com.rlm.imeikotlin.data.local.entity.PlantelEntity
 import com.rlm.imeikotlin.utils.AbsentLiveData
-import com.rlm.imeikotlin.utils.Resource
+import com.rlm.imeikotlin.data.Resource
 import javax.inject.Inject
 
 class PlantelesViewModel

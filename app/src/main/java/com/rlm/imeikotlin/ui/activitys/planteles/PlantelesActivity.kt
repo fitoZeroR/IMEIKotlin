@@ -12,7 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.local.entity.PlantelEntity
+import com.rlm.imeikotlin.data.local.entity.PlantelEntity
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.utils.BUNDLE_NOMBRE_OPCION
 import com.rlm.imeikotlin.utils.Tools

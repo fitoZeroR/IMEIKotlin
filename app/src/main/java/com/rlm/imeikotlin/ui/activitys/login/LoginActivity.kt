@@ -22,7 +22,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import  androidx.lifecycle.Observer
-import com.rlm.imeikotlin.repository.remote.model.request.LoginRequest
+import com.rlm.imeikotlin.data.remote.model.request.LoginRequest
 import com.rlm.imeikotlin.ui.activitys.main.MainActivity
 import com.rlm.imeikotlin.utils.*
 

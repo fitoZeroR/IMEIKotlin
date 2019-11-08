@@ -5,12 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.rlm.imeikotlin.repository.LoginRepository
-import com.rlm.imeikotlin.repository.local.entity.AlumnoEntity
-import com.rlm.imeikotlin.repository.remote.model.request.LoginRequest
-import com.rlm.imeikotlin.repository.remote.model.response.RecuperarPasswordResponse
+import com.rlm.imeikotlin.data.LoginRepository
+import com.rlm.imeikotlin.data.local.entity.AlumnoEntity
+import com.rlm.imeikotlin.data.remote.model.request.LoginRequest
+import com.rlm.imeikotlin.data.remote.model.response.RecuperarPasswordResponse
 import com.rlm.imeikotlin.utils.AbsentLiveData
-import com.rlm.imeikotlin.utils.Resource
+import com.rlm.imeikotlin.data.Resource
 import javax.inject.Inject
 
 class LoginViewModel

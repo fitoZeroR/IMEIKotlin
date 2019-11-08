@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.rlm.imeikotlin.repository.OpcionesRepository
-import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
+import com.rlm.imeikotlin.data.OpcionesRepository
+import com.rlm.imeikotlin.data.local.entity.OpcionEstudioEntity
 import com.rlm.imeikotlin.utils.AbsentLiveData
-import com.rlm.imeikotlin.utils.Resource
+import com.rlm.imeikotlin.data.Resource
 import javax.inject.Inject
 
 class OpcionesViewModel

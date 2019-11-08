@@ -5,8 +5,8 @@ import android.text.TextUtils
 import android.view.Menu
 import com.jakewharton.rxbinding2.view.RxView
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.model.request.EnviarInformacionRequest
-import com.rlm.imeikotlin.repository.remote.model.response.EnviarInformacionResponse
+import com.rlm.imeikotlin.data.remote.model.request.EnviarInformacionRequest
+import com.rlm.imeikotlin.data.remote.model.response.EnviarInformacionResponse
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.utils.Tools.Companion.hideKeyboard
 import com.rlm.imeikotlin.utils.Tools.Companion.informaErrorConexionWifi

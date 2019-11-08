@@ -3,7 +3,7 @@ package com.rlm.imeikotlin.ui.activitys.opciones
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
+import com.rlm.imeikotlin.data.local.entity.OpcionEstudioEntity
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.ui.activitys.DescripcionActivity
 import com.rlm.imeikotlin.ui.activitys.ListaOpcionSeleccionadaActivity

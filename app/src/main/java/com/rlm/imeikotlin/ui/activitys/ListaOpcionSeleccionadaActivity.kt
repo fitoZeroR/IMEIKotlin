@@ -3,8 +3,8 @@ package com.rlm.imeikotlin.ui.activitys
 import android.content.Intent
 import android.os.Bundle
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.local.entity.OpcionEstudioEntity
-import com.rlm.imeikotlin.repository.remote.model.response.Grado
+import com.rlm.imeikotlin.data.local.entity.OpcionEstudioEntity
+import com.rlm.imeikotlin.data.remote.model.response.Grado
 import com.rlm.imeikotlin.ui.adapters.CustomAdapterOpciones
 import com.rlm.imeikotlin.utils.*
 import com.squareup.moshi.Moshi

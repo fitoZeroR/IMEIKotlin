@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.model.response.Plan
+import com.rlm.imeikotlin.data.remote.model.response.Plan
 import com.rlm.imeikotlin.ui.adapters.CustomAdapterAsignaturas
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PLAN
 import com.squareup.moshi.Moshi

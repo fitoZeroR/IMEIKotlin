@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.rlm.imeikotlin.R
+import com.rlm.imeikotlin.data.Resource
 import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionActivity
 import com.rlm.imeikotlin.ui.activitys.login.LoginActivity
 import com.rlm.imeikotlin.ui.activitys.main.MainActivity
@@ -117,12 +118,12 @@ abstract class BaseActivity : AppCompatActivity() {
     // Metodo de control del evento de las llamadas al Repository
     protected inline fun <T> administraObserverResources(resource: Resource<T>, funcionGenerica: () -> Unit) {
         when(resource.status) {
-            Status.LOADING -> showLoading()
-            Status.SUCCESS -> {
+            Resource.Status.LOADING -> showLoading()
+            Resource.Status.SUCCESS -> {
                 hideLoading()
                 funcionGenerica()
             }
-            Status.ERROR -> {
+            Resource.Status.ERROR -> {
                 hideLoading()
                 showError(resource.message)
             }

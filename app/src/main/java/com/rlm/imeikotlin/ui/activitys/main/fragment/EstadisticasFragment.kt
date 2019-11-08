@@ -11,8 +11,8 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.rlm.imeikotlin.R
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PAGO
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PLAN
-import com.rlm.imeikotlin.repository.remote.model.response.Pagos
-import com.rlm.imeikotlin.repository.remote.model.response.Plan
+import com.rlm.imeikotlin.data.remote.model.response.Pagos
+import com.rlm.imeikotlin.data.remote.model.response.Plan
 import com.rlm.imeikotlin.utils.withArgs
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types

@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.model.response.Grado
+import com.rlm.imeikotlin.data.remote.model.response.Grado
 import com.rlm.imeikotlin.utils.EListado
 import kotlinx.android.synthetic.main.row_opciones.view.*
 

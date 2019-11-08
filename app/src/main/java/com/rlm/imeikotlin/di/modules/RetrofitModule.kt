@@ -1,10 +1,10 @@
 package com.rlm.imeikotlin.di.modules
 
 import android.app.Application
-import com.rlm.imeikotlin.repository.remote.api.LiveDataCallAdapterFactory
+import com.rlm.imeikotlin.data.remote.api.LiveDataCallAdapterFactory
 import com.rlm.imeikotlin.utils.APIConstants.URL
 import com.rlm.imeikotlin.utils.DEBUG
-import com.rlm.imeikotlin.repository.remote.service.IRetrofitApi
+import com.rlm.imeikotlin.data.remote.service.IRetrofitApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.model.response.Pagos
+import com.rlm.imeikotlin.data.remote.model.response.Pagos
 import com.rlm.imeikotlin.ui.adapters.CustomAdapterPagos
 import com.rlm.imeikotlin.utils.BUNDLE_LISTA_PAGO
 import com.squareup.moshi.Moshi

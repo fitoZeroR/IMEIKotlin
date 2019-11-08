@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.picasso.PicassoCircleTransformation
+import com.rlm.imeikotlin.utils.PicassoCircleTransformation
 import com.rlm.imeikotlin.ui.activitys.BaseActivity
 import com.rlm.imeikotlin.ui.activitys.login.LoginActivity
 import com.rlm.imeikotlin.utils.*
@@ -34,8 +34,8 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import androidx.lifecycle.Observer
-import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
-import com.rlm.imeikotlin.repository.remote.model.response.*
+import com.rlm.imeikotlin.data.local.view.DetalleAlumnoView
+import com.rlm.imeikotlin.data.remote.model.response.*
 import com.rlm.imeikotlin.ui.activitys.main.fragment.AsignaturasFragment
 import com.rlm.imeikotlin.ui.activitys.main.fragment.EstadisticasFragment
 import com.rlm.imeikotlin.ui.activitys.main.fragment.PagosFragment

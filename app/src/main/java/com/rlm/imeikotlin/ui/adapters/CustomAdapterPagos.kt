@@ -8,7 +8,7 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.repository.remote.model.response.Pagos
+import com.rlm.imeikotlin.data.remote.model.response.Pagos
 import com.rlm.imeikotlin.utils.inflate
 import kotlinx.android.synthetic.main.row_asignaturas_pagos.view.*
 import org.jetbrains.anko.dip

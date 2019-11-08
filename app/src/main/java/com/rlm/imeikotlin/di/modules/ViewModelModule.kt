@@ -2,7 +2,7 @@ package com.rlm.imeikotlin.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.rlm.imeikotlin.viewmodel.ViewModelFactoryIMEI
+import com.rlm.imeikotlin.viewmodel.ViewModelFactory
 import com.rlm.imeikotlin.di.annotations.ViewModelKey
 import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionViewModel
 import com.rlm.imeikotlin.ui.activitys.login.LoginViewModel
@@ -42,5 +42,5 @@ abstract class ViewModelModule {
     abstract fun bindPlantelesViewModel(plantelesViewModel: PlantelesViewModel): ViewModel
 
     @Binds
-    abstract fun bindViewModelFactory(viewModelFactoryIMEI: ViewModelFactoryIMEI): ViewModelProvider.Factory
+    abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
 }

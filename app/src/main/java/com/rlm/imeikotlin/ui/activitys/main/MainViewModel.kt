@@ -5,12 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.rlm.imeikotlin.repository.MainRepository
-import com.rlm.imeikotlin.repository.local.view.DetalleAlumnoView
-import com.rlm.imeikotlin.repository.remote.model.response.DescargaBoletaResponse
-import com.rlm.imeikotlin.repository.remote.model.response.FotoResponse
+import com.rlm.imeikotlin.data.MainRepository
+import com.rlm.imeikotlin.data.local.view.DetalleAlumnoView
+import com.rlm.imeikotlin.data.remote.model.response.DescargaBoletaResponse
+import com.rlm.imeikotlin.data.remote.model.response.FotoResponse
 import com.rlm.imeikotlin.utils.AbsentLiveData
-import com.rlm.imeikotlin.utils.Resource
+import com.rlm.imeikotlin.data.Resource
 import javax.inject.Inject
 
 class MainViewModel
