@@ -1,7 +1,7 @@
 package com.rlm.imeikotlin.utils
 
-// Build Variant
-const val DEBUG = true
+// Tag
+const val TAG = "RLM"
 
 // Tipo Información Alumno Tabla
 const val TIPO_PLAN = "tipoPlan"

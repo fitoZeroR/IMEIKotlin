@@ -1,12 +1,9 @@
-package com.rlm.imeikotlin.data
+package com.rlm.imeikotlin.data.repository
 
-import androidx.lifecycle.LiveData
-import com.rlm.imeikotlin.data.remote.api.ApiResponse
 import com.rlm.imeikotlin.data.local.dao.PlantelDao
 import com.rlm.imeikotlin.data.local.entity.PlantelEntity
-import com.rlm.imeikotlin.data.remote.service.IRetrofitApi
-import com.rlm.imeikotlin.data.remote.model.response.InformacionPlantelesResponse
-import com.rlm.imeikotlin.utils.AppExecutors
+import com.rlm.imeikotlin.data.remote.api.ImeiRemoteDataSource
+import com.rlm.imeikotlin.data.resultLiveData
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,12 +11,11 @@ import javax.inject.Singleton
 class PlantelesRepository
 @Inject
 constructor(
-    private val appExecutors: AppExecutors,
     private val plantelDao: PlantelDao,
-    private val iRetrofitApi: IRetrofitApi
+    private val imeiRemoteDataSource: ImeiRemoteDataSource
 ) {
 
-    fun loadAllPlanteles(): LiveData<Resource<List<PlantelEntity>>> =
+    /*fun loadAllPlanteles(): LiveData<Resource<List<PlantelEntity>>> =
         object : DetailNetworkResource<List<PlantelEntity>, InformacionPlantelesResponse>(appExecutors) {
             override fun saveCallResult(item: InformacionPlantelesResponse) =
                 item.planteles.forEach {
@@ -33,7 +29,17 @@ constructor(
                 plantelDao.getAllPlanteles()
 
             override fun createCall(): LiveData<ApiResponse<InformacionPlantelesResponse>> =
-                iRetrofitApi.obtienePlanteles()
+                iRetrofitService.obtienePlanteles()
 
-        }.asLiveData()
+        }.asLiveData()*/
+
+    val loadAllPlanteles = resultLiveData(
+        databaseQuery = { plantelDao.getAllPlanteles() },
+        networkCall = { imeiRemoteDataSource.fetchDataGetCampus() },
+        saveCallResult = {
+            val listPlantelEntity: MutableList<PlantelEntity> = mutableListOf()
+            it.planteles.forEach { plantel ->
+                listPlantelEntity.add(PlantelEntity(plantel.nombre, plantel.latitud, plantel.longitud))
+            }
+            plantelDao.savePlantel(listPlantelEntity) })
 }

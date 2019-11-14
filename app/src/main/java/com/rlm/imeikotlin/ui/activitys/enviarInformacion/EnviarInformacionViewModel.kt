@@ -1,21 +1,14 @@
 package com.rlm.imeikotlin.ui.activitys.enviarInformacion
 
-import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import com.rlm.imeikotlin.data.EnviarInformacionRepository
-import com.rlm.imeikotlin.data.remote.model.response.EnviarInformacionResponse
+import androidx.lifecycle.*
+import com.rlm.imeikotlin.data.repository.EnviarInformacionRepository
 import com.rlm.imeikotlin.data.remote.model.request.EnviarInformacionRequest
-import com.rlm.imeikotlin.utils.AbsentLiveData
-import com.rlm.imeikotlin.data.Resource
 import javax.inject.Inject
 
 class EnviarInformacionViewModel
 @Inject
 constructor(private val enviarInformacionRepository: EnviarInformacionRepository) : ViewModel() {
-    @VisibleForTesting
+    /*@VisibleForTesting
     private val enviarInformacionRequestMutableLiveData: MutableLiveData<EnviarInformacionRequest> = MutableLiveData()
     var postEnviarInformacionResourceLiveData: LiveData<Resource<EnviarInformacionResponse>>
 
@@ -27,6 +20,16 @@ constructor(private val enviarInformacionRepository: EnviarInformacionRepository
     }
 
     fun saveEnviarInformacionOnFromServer(enviarInformacionRequest: EnviarInformacionRequest) {
+        enviarInformacionRequestMutableLiveData.value = enviarInformacionRequest
+    }*/
+
+    private val enviarInformacionRequestMutableLiveData: MutableLiveData<EnviarInformacionRequest> = MutableLiveData()
+    val postEnviarInformacionResourceLiveData = enviarInformacionRequestMutableLiveData.switchMap { enviarInformacionRepository.sendInformation(it) }
+
+    fun saveEnviarInformacionOnFromServer(enviarInformacionRequest: EnviarInformacionRequest) {
+        if (enviarInformacionRequestMutableLiveData.value == enviarInformacionRequest) {
+            return
+        }
         enviarInformacionRequestMutableLiveData.value = enviarInformacionRequest
     }
 }

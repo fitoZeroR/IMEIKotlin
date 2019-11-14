@@ -1,7 +1,9 @@
-package com.rlm.imeikotlin.data
+package com.rlm.imeikotlin.data.repository
 
 import androidx.lifecycle.LiveData
-import com.rlm.imeikotlin.data.remote.api.ApiResponse
+import com.rlm.imeikotlin.data.DetailNetworkResource
+import com.rlm.imeikotlin.data.NetworkResource
+import com.rlm.imeikotlin.data.Resource
 import com.rlm.imeikotlin.data.local.dao.AlumnoDao
 import com.rlm.imeikotlin.data.local.dao.DetalleAlumnoViewDao
 import com.rlm.imeikotlin.data.local.dao.InformacionDao
@@ -10,11 +12,10 @@ import com.rlm.imeikotlin.data.local.entity.InformacionEntity
 import com.rlm.imeikotlin.data.local.entity.embedded.Pago
 import com.rlm.imeikotlin.data.local.entity.embedded.Plan
 import com.rlm.imeikotlin.data.local.view.DetalleAlumnoView
-import com.rlm.imeikotlin.data.remote.service.IRetrofitApi
+import com.rlm.imeikotlin.data.remote.api.IRetrofitService
 import com.rlm.imeikotlin.data.remote.model.response.DescargaBoletaResponse
 import com.rlm.imeikotlin.data.remote.model.response.FotoResponse
 import com.rlm.imeikotlin.data.remote.model.response.PagosAsignaturasResponse
-import com.rlm.imeikotlin.utils.AppExecutors
 import com.rlm.imeikotlin.utils.TIPO_PAGO
 import com.rlm.imeikotlin.utils.TIPO_PLAN
 import org.jetbrains.anko.doAsyncResult
@@ -25,11 +26,10 @@ import javax.inject.Singleton
 class MainRepository
 @Inject
 constructor(
-    private val appExecutors: AppExecutors,
     private val informacionDao: InformacionDao,
     private val detalleAlumnoViewDao: DetalleAlumnoViewDao,
     private val alumnoDao: AlumnoDao,
-    private val iRetrofitApi: IRetrofitApi
+    private val iRetrofitService: IRetrofitService
 ) {
 
     lateinit var alumnoEntity: AlumnoEntity
@@ -68,7 +68,7 @@ constructor(
 
             override fun createCall(): LiveData<ApiResponse<PagosAsignaturasResponse>> {
                 alumnoEntity = obtieneAlumno()
-                return iRetrofitApi.obtieneAsignaturasPagos(alumnoEntity.tokenSesion!!)
+                return iRetrofitService.obtieneAsignaturasPagos(alumnoEntity.tokenSesion!!)
             }
 
         }.asLiveData()
@@ -76,13 +76,13 @@ constructor(
     fun downloadFileOnFromServer() =
         object : NetworkResource<DescargaBoletaResponse>() {
             override fun createCall() =
-                iRetrofitApi.obtieneBoleta(obtieneAlumno().tokenSesion!!)
+                iRetrofitService.obtieneBoleta(obtieneAlumno().tokenSesion!!)
         }.asLiveData()
 
     fun changeImageOnFromServer(base64: String) =
         object : NetworkResource<FotoResponse>() {
             override fun createCall(): LiveData<ApiResponse<FotoResponse>> =
-                iRetrofitApi.enviarFotografia(obtieneAlumno().tokenSesion!!, base64)
+                iRetrofitService.enviarFotografia(obtieneAlumno().tokenSesion!!, base64)
         }.asLiveData()
 
     fun cleanLogin(): Int = doAsyncResult {

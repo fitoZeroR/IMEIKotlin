@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.rlm.imeikotlin.data.MainRepository
+import com.rlm.imeikotlin.data.repository.MainRepository
 import com.rlm.imeikotlin.data.local.view.DetalleAlumnoView
 import com.rlm.imeikotlin.data.remote.model.response.DescargaBoletaResponse
 import com.rlm.imeikotlin.data.remote.model.response.FotoResponse

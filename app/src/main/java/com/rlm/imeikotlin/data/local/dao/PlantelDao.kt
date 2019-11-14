@@ -10,7 +10,7 @@ import com.rlm.imeikotlin.data.local.entity.PlantelEntity
 @Dao
 interface PlantelDao {
     @Insert(onConflict = REPLACE)
-    fun savePlantel(listaPlantelEntity: PlantelEntity)
+    suspend fun savePlantel(listaPlantelEntity: List<PlantelEntity>)
 
     @Query("SELECT * FROM " + PlantelEntity.TABLE_NAME_PLANTEL)
     fun getAllPlanteles(): LiveData<List<PlantelEntity>>

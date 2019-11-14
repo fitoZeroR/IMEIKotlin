@@ -1,20 +1,15 @@
 package com.rlm.imeikotlin.ui.activitys.planteles
 
-import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.rlm.imeikotlin.data.PlantelesRepository
-import com.rlm.imeikotlin.data.local.entity.PlantelEntity
-import com.rlm.imeikotlin.utils.AbsentLiveData
-import com.rlm.imeikotlin.data.Resource
+import androidx.lifecycle.switchMap
+import com.rlm.imeikotlin.data.repository.PlantelesRepository
 import javax.inject.Inject
 
 class PlantelesViewModel
 @Inject
 constructor(private val plantelesRepository: PlantelesRepository) : ViewModel() {
-    @VisibleForTesting
+    /*@VisibleForTesting
     private val allPlantelesMutableLiveData: MutableLiveData<Boolean> = MutableLiveData()
     var getAllOPlantelesResourceLiveData: LiveData<Resource<List<PlantelEntity>>>
 
@@ -29,6 +24,14 @@ constructor(private val plantelesRepository: PlantelesRepository) : ViewModel() 
         if (allPlantelesMutableLiveData.value == fetchAllPlanteles) {
             return
         }
+        allPlantelesMutableLiveData.value = fetchAllPlanteles
+    }*/
+
+    //private val allPlantelesMutableLiveData: LiveData<Boolean> = MutableLiveData()
+    private val allPlantelesMutableLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    val getAllOPlantelesResourceLiveData = allPlantelesMutableLiveData.switchMap { plantelesRepository.loadAllPlanteles }
+
+    fun loadAllPlanteles(fetchAllPlanteles: Boolean) = apply {
         allPlantelesMutableLiveData.value = fetchAllPlanteles
     }
 }

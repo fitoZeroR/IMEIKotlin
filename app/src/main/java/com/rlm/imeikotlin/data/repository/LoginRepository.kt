@@ -1,13 +1,14 @@
-package com.rlm.imeikotlin.data
+package com.rlm.imeikotlin.data.repository
 
 import androidx.lifecycle.LiveData
-import com.rlm.imeikotlin.data.remote.api.ApiResponse
-import com.rlm.imeikotlin.data.remote.service.IRetrofitApi
+import com.rlm.imeikotlin.data.DetailNetworkResource
+import com.rlm.imeikotlin.data.NetworkResource
+import com.rlm.imeikotlin.data.Resource
+import com.rlm.imeikotlin.data.remote.api.IRetrofitService
 import com.rlm.imeikotlin.data.local.dao.AlumnoDao
 import com.rlm.imeikotlin.data.local.entity.AlumnoEntity
 import com.rlm.imeikotlin.data.remote.model.response.LoginResponse
 import com.rlm.imeikotlin.data.remote.model.response.RecuperarPasswordResponse
-import com.rlm.imeikotlin.utils.AppExecutors
 import org.jetbrains.anko.doAsyncResult
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,14 +17,13 @@ import javax.inject.Singleton
 class LoginRepository
 @Inject
 constructor(
-    private val appExecutors: AppExecutors,
     private val alumnoDao: AlumnoDao,
-    private val iRetrofitApi: IRetrofitApi
+    private val iRetrofitService: IRetrofitService
 ) {
 
     fun saveUserOnFromServer(newPassword: String) =
         object : NetworkResource<RecuperarPasswordResponse>() {
-            override fun createCall() = iRetrofitApi.recuperaPassword(newPassword)
+            override fun createCall() = iRetrofitService.recuperaPassword(newPassword)
         }.asLiveData()
 
     fun getLoginFromServer(usuario: String, password: String): LiveData<Resource<AlumnoEntity>> =
@@ -48,7 +48,7 @@ constructor(
                 alumnoDao.getAlumnoLogin(usuario, password)
 
             override fun createCall(): LiveData<ApiResponse<LoginResponse>> =
-                iRetrofitApi.autenticarUsuario(usuario, password)
+                iRetrofitService.autenticarUsuario(usuario, password)
 
         }.asLiveData()
 

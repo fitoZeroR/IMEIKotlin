@@ -4,7 +4,6 @@ import androidx.annotation.MainThread
 import androidx.annotation.NonNull
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import com.rlm.imeikotlin.data.remote.api.ApiResponse
 import com.rlm.imeikotlin.utils.ERROR_SERVICE_RESPONSE
 
 abstract class NetworkResource<R> {

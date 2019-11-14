@@ -1,8 +1,9 @@
-package com.rlm.imeikotlin.data
+package com.rlm.imeikotlin.data.repository
 
 import androidx.lifecycle.LiveData
-import com.rlm.imeikotlin.data.remote.api.ApiResponse
-import com.rlm.imeikotlin.data.remote.service.IRetrofitApi
+import com.rlm.imeikotlin.data.ProcessedNetworkResource
+import com.rlm.imeikotlin.data.Resource
+import com.rlm.imeikotlin.data.remote.api.IRetrofitService
 import com.rlm.imeikotlin.data.local.entity.OpcionEstudioEntity
 import com.rlm.imeikotlin.data.remote.model.response.OpcionesResponse
 import com.rlm.imeikotlin.utils.*
@@ -13,12 +14,12 @@ import javax.inject.Singleton
 @Singleton
 class OpcionesRepository
 @Inject
-constructor(private val iRetrofitApi: IRetrofitApi) {
+constructor(private val iRetrofitService: IRetrofitService) {
 
     fun loadAllOptions(): LiveData<Resource<List<OpcionEstudioEntity>>> {
         return object : ProcessedNetworkResource<OpcionesResponse, List<OpcionEstudioEntity>>() {
             override fun createCall(): LiveData<ApiResponse<OpcionesResponse>> =
-                iRetrofitApi.obtieneOpciones()
+                iRetrofitService.obtieneOpciones()
 
             override fun processResponse(opcionesResponse: OpcionesResponse): List<OpcionEstudioEntity>? {
                 val opcionEstudioEntityList: MutableList<OpcionEstudioEntity> = mutableListOf()

@@ -1,21 +1,20 @@
-package com.rlm.imeikotlin.data.remote.service
+package com.rlm.imeikotlin.data.remote.api
 
-import androidx.lifecycle.LiveData
-import com.rlm.imeikotlin.data.remote.api.ApiResponse
 import com.rlm.imeikotlin.data.remote.model.response.*
 import com.rlm.imeikotlin.utils.APIConstants
 import com.rlm.imeikotlin.utils.APIConstants.URL_ASIGNATURAS_PAGOS
 import com.rlm.imeikotlin.utils.APIConstants.URL_DESCARGA_BOLETA
 import com.rlm.imeikotlin.utils.APIConstants.URL_ENVIAR_FOTOGRAFIA
 import com.rlm.imeikotlin.utils.APIConstants.URL_RECUPERAR_PASSWORD
+import retrofit2.Response
 import retrofit2.http.*
 
-interface IRetrofitApi {
+interface IRetrofitService {
     @GET(APIConstants.URL_OPCIONES)
-    fun obtieneOpciones(): LiveData<ApiResponse<OpcionesResponse>>
+    suspend fun obtieneOpciones(): Response<OpcionesResponse>
 
     @GET(APIConstants.URL_PLANTELES)
-    fun obtienePlanteles(): LiveData<ApiResponse<InformacionPlantelesResponse>>
+    suspend fun obtienePlanteles(): Response<InformacionPlantelesResponse>
 
     // se necesita que el servidor acepte un Body (una clase), para poder implementarlo de esta forma
     /*@Headers({"Accept: application/json"})
@@ -24,28 +23,28 @@ interface IRetrofitApi {
     fun enviarInformacion(@Body enviarInformacionRequest: EnviarInformacionRequest): LiveData<ApiResponse<EnviarInformacionResponse>>*/
     @POST(APIConstants.URL_ENVIAR_INFORMACION)
     @FormUrlEncoded
-    fun enviarInformacion(
+    suspend fun enviarInformacion(
         @Field("Nombre") nombre: String, @Field("Telefono") telefono: String, @Field("Correo") correo: String,
         @Field("Comentarios") comentarios: String, @Field("Interes") interes: String
-    ): LiveData<ApiResponse<EnviarInformacionResponse>>
+    ): Response<EnviarInformacionResponse>
 
     @POST(APIConstants.URL_LOGIN)
     @FormUrlEncoded
-    fun autenticarUsuario(@Field("Matricula") matricula: String, @Field("Contrasena") password: String): LiveData<ApiResponse<LoginResponse>>
+    suspend fun autenticarUsuario(@Field("Matricula") matricula: String, @Field("Contrasena") password: String): Response<LoginResponse>
 
     @POST(URL_ENVIAR_FOTOGRAFIA)
     @FormUrlEncoded
-    fun enviarFotografia(@Field("TokenSesion") tokenSesion: String, @Field("FotoResponse") foto: String): LiveData<ApiResponse<FotoResponse>>
+    suspend fun enviarFotografia(@Field("TokenSesion") tokenSesion: String, @Field("FotoResponse") foto: String): Response<FotoResponse>
 
     @POST(URL_ASIGNATURAS_PAGOS)
     @FormUrlEncoded
-    fun obtieneAsignaturasPagos(@Field("TokenSesion") tokenSesion: String): LiveData<ApiResponse<PagosAsignaturasResponse>>
+    suspend fun obtieneAsignaturasPagos(@Field("TokenSesion") tokenSesion: String): Response<PagosAsignaturasResponse>
 
     @POST(URL_DESCARGA_BOLETA)
     @FormUrlEncoded
-    fun obtieneBoleta(@Field("TokenSesion") tokenSesion: String): LiveData<ApiResponse<DescargaBoletaResponse>>
+    suspend fun obtieneBoleta(@Field("TokenSesion") tokenSesion: String): Response<DescargaBoletaResponse>
 
     @POST(URL_RECUPERAR_PASSWORD)
     @FormUrlEncoded
-    fun recuperaPassword(@Field("Matricula") matricula: String): LiveData<ApiResponse<RecuperarPasswordResponse>>
+    suspend fun recuperaPassword(@Field("Matricula") matricula: String): Response<RecuperarPasswordResponse>
 }

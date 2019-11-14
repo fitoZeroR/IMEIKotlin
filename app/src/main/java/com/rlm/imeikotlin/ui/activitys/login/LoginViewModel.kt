@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.rlm.imeikotlin.data.LoginRepository
+import com.rlm.imeikotlin.data.repository.LoginRepository
 import com.rlm.imeikotlin.data.local.entity.AlumnoEntity
 import com.rlm.imeikotlin.data.remote.model.request.LoginRequest
 import com.rlm.imeikotlin.data.remote.model.response.RecuperarPasswordResponse

@@ -7,6 +7,8 @@ import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.LogAdapter
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.rlm.imeikotlin.ApplicationIMEI
+import com.rlm.imeikotlin.data.remote.api.ImeiRemoteDataSource
+import com.rlm.imeikotlin.data.remote.api.IRetrofitService
 import dagger.Module
 import javax.inject.Singleton
 import dagger.Provides
@@ -38,4 +40,9 @@ class AppModule {
     fun providesSharedPreferences(application: Application): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(application)
     }
+
+    @Singleton
+    @Provides
+    fun provideGetCampusRemoteDataSource(iRetrofitService: IRetrofitService)
+            = ImeiRemoteDataSource(iRetrofitService)
 }
