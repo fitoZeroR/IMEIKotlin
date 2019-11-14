@@ -11,7 +11,10 @@ import com.rlm.imeikotlin.data.local.entity.AlumnoEntity
 @Dao
 interface AlumnoDao {
     @Insert(onConflict = REPLACE)
-    fun save(alumnoEntity: AlumnoEntity)
+    suspend fun save(alumnoEntity: AlumnoEntity)
+
+    @Query("DELETE FROM " + AlumnoEntity.TABLE_NAME_ALUMNO)
+    suspend fun clearAlumno()
 
     @Query("SELECT * FROM " + AlumnoEntity.TABLE_NAME_ALUMNO)
     fun getAlumno(): AlumnoEntity
@@ -23,11 +26,8 @@ interface AlumnoDao {
     fun getAlumnoLogin(usuario: String, password: String): LiveData<AlumnoEntity>
 
     @Query("SELECT COUNT(" + AlumnoEntity.COLUMNA_ID_ALUMNO + ") FROM " + AlumnoEntity.TABLE_NAME_ALUMNO)
-    fun getTotalAlumno(): Int
-
-    @Query("DELETE FROM " + AlumnoEntity.TABLE_NAME_ALUMNO)
-    fun clearAlumno()
+    suspend fun getTotalAlumno(): Int
 
     @Delete
-    fun deleteAlumno(alumnoEntity: AlumnoEntity): Int
+    suspend fun deleteAlumno(alumnoEntity: AlumnoEntity): Int
 }

@@ -1,48 +1,26 @@
 package com.rlm.imeikotlin.ui.activitys.login
 
-import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.rlm.imeikotlin.data.repository.LoginRepository
-import com.rlm.imeikotlin.data.local.entity.AlumnoEntity
 import com.rlm.imeikotlin.data.remote.model.request.LoginRequest
-import com.rlm.imeikotlin.data.remote.model.response.RecuperarPasswordResponse
-import com.rlm.imeikotlin.utils.AbsentLiveData
-import com.rlm.imeikotlin.data.Resource
 import javax.inject.Inject
 
 class LoginViewModel
 @Inject
 constructor(private val loginRepository: LoginRepository) : ViewModel() {
-    @VisibleForTesting
+    fun verificaLogin(): Int = loginRepository.validaLogin()
+
     private val cambiaPasswordMutableLiveData: MutableLiveData<String> = MutableLiveData()
-    var postCambiaPasswordResponseResourceLiveData: LiveData<Resource<RecuperarPasswordResponse>>
+    val postCambiaPasswordResponseResourceLiveData = cambiaPasswordMutableLiveData.switchMap { loginRepository.getPassword(it) }
 
-    @VisibleForTesting
-    private val loginRequestMutableLiveData: MutableLiveData<LoginRequest> = MutableLiveData()
-    var getLoginResourceLiveData: LiveData<Resource<AlumnoEntity>>
-
-    init {
-        postCambiaPasswordResponseResourceLiveData = Transformations.switchMap(cambiaPasswordMutableLiveData) {
-            if (it == null) AbsentLiveData.create()
-            else loginRepository.saveUserOnFromServer(it)
-        }
-
-        getLoginResourceLiveData = Transformations.switchMap(loginRequestMutableLiveData) {
-            if (it == null) AbsentLiveData.create()
-            else loginRepository.getLoginFromServer(it.usuario, it.password)
-        }
-    }
-
-    fun changePasswordOnFromServer(newPassword: String) {
+    fun changePasswordOnFromServer(newPassword: String) = apply {
         cambiaPasswordMutableLiveData.value = newPassword
     }
+
+    private val loginRequestMutableLiveData: MutableLiveData<LoginRequest> = MutableLiveData()
+    val getLoginResourceLiveData = loginRequestMutableLiveData.switchMap { loginRepository.getLogin(it.usuario, it.password) }
 
     fun getLoginFromServer(loginRequest: LoginRequest) {
         loginRequestMutableLiveData.value = loginRequest
     }
-
-    fun verificaLogin(): Int = loginRepository.validaLogin()
 }

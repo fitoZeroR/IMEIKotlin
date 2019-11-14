@@ -1,15 +1,14 @@
 package com.rlm.imeikotlin.data.repository
 
-import androidx.lifecycle.LiveData
-import com.rlm.imeikotlin.data.DetailNetworkResource
-import com.rlm.imeikotlin.data.NetworkResource
-import com.rlm.imeikotlin.data.Resource
-import com.rlm.imeikotlin.data.remote.api.IRetrofitService
 import com.rlm.imeikotlin.data.local.dao.AlumnoDao
 import com.rlm.imeikotlin.data.local.entity.AlumnoEntity
-import com.rlm.imeikotlin.data.remote.model.response.LoginResponse
-import com.rlm.imeikotlin.data.remote.model.response.RecuperarPasswordResponse
-import org.jetbrains.anko.doAsyncResult
+import com.rlm.imeikotlin.data.remote.api.ImeiRemoteDataSource
+import com.rlm.imeikotlin.data.repository.strategy.resultLiveData
+import com.rlm.imeikotlin.data.repository.strategy.resultLiveDataRest
+import com.rlm.imeikotlin.data.repository.strategy.returnLiveDataResponse
+import com.rlm.imeikotlin.utils.ContextProviders
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,10 +17,10 @@ class LoginRepository
 @Inject
 constructor(
     private val alumnoDao: AlumnoDao,
-    private val iRetrofitService: IRetrofitService
+    private val imeiRemoteDataSource: ImeiRemoteDataSource,
+    private val contextProviders: ContextProviders
 ) {
-
-    fun saveUserOnFromServer(newPassword: String) =
+    /*fun saveUserOnFromServer(newPassword: String) =
         object : NetworkResource<RecuperarPasswordResponse>() {
             override fun createCall() = iRetrofitService.recuperaPassword(newPassword)
         }.asLiveData()
@@ -56,5 +55,48 @@ constructor(
         val validaLogin = alumnoDao.getTotalAlumno()
         //onComplete { valida }
         validaLogin
-    }.get()
+    }.get()*/
+
+    fun validaLogin(): Int {
+        var totalAlumno = 0
+        GlobalScope.launch(contextProviders.IO) {
+            totalAlumno = alumnoDao.getTotalAlumno()
+        }
+        return totalAlumno
+    }
+
+    fun getPassword(newPassword: String) =
+        resultLiveDataRest(
+            networkCall = { imeiRemoteDataSource.fetchDataGetPassword(newPassword) },
+            returnData = { returnLiveDataResponse(it) })
+
+    fun getLogin(usuario: String, password: String) =
+        resultLiveData(
+            databaseQuery = { alumnoDao.getAlumnoLogin(usuario, password) },
+            networkCall = { imeiRemoteDataSource.fetchDataLogin(usuario, password) },
+            saveCallResult = {
+                alumnoDao.clearAlumno()
+                alumnoDao.save(with(it.data.alumno) {
+                    AlumnoEntity(
+                        it.data.tokenSesion,
+                        usuario,
+                        password,
+                        this?.idAlumno,
+                        this?.idLicenciatura,
+                        this?.idPlantel,
+                        this?.nombre,
+                        this?.paterno,
+                        this?.materno,
+                        this?.nacimiento,
+                        this?.licenciatura,
+                        this?.matricula,
+                        this?.curp,
+                        this?.foto,
+                        this?.cuatrimestre,
+                        this?.plantel,
+                        this?.telefono,
+                        it.message
+                    )
+                })
+            })
 }

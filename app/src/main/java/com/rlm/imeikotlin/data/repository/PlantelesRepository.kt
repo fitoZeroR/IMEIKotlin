@@ -3,7 +3,8 @@ package com.rlm.imeikotlin.data.repository
 import com.rlm.imeikotlin.data.local.dao.PlantelDao
 import com.rlm.imeikotlin.data.local.entity.PlantelEntity
 import com.rlm.imeikotlin.data.remote.api.ImeiRemoteDataSource
-import com.rlm.imeikotlin.data.resultLiveData
+import com.rlm.imeikotlin.data.remote.model.response.InformacionPlantelesResponse
+import com.rlm.imeikotlin.data.repository.strategy.resultLiveData
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -36,10 +37,13 @@ constructor(
     val loadAllPlanteles = resultLiveData(
         databaseQuery = { plantelDao.getAllPlanteles() },
         networkCall = { imeiRemoteDataSource.fetchDataGetCampus() },
-        saveCallResult = {
-            val listPlantelEntity: MutableList<PlantelEntity> = mutableListOf()
-            it.planteles.forEach { plantel ->
-                listPlantelEntity.add(PlantelEntity(plantel.nombre, plantel.latitud, plantel.longitud))
-            }
-            plantelDao.savePlantel(listPlantelEntity) })
+        saveCallResult = { plantelDao.savePlantel(loadDataCampus(it)) })
+
+    private fun loadDataCampus(informacionPlantelesResponse: InformacionPlantelesResponse): List<PlantelEntity> {
+        val listPlantelEntity: MutableList<PlantelEntity> = mutableListOf()
+        informacionPlantelesResponse.planteles.forEach { plantel ->
+            listPlantelEntity.add(PlantelEntity(plantel.nombre, plantel.latitud, plantel.longitud))
+        }
+        return listPlantelEntity;
+    }
 }

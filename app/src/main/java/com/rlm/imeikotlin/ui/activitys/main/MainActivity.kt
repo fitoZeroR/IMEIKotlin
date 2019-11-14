@@ -73,7 +73,7 @@ class MainActivity : BaseActivity(), HasAndroidInjector {
 
         subscribeToMainModel()
 
-        mainViewModel.loadAllInformation(true)
+        //mainViewModel.loadAllInformation(true)
     }
 
     override fun getLayoutResource() = R.layout.activity_main

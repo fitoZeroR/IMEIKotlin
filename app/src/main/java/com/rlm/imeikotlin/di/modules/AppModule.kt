@@ -9,6 +9,7 @@ import com.orhanobut.logger.PrettyFormatStrategy
 import com.rlm.imeikotlin.ApplicationIMEI
 import com.rlm.imeikotlin.data.remote.api.ImeiRemoteDataSource
 import com.rlm.imeikotlin.data.remote.api.IRetrofitService
+import com.rlm.imeikotlin.utils.ContextProviders
 import dagger.Module
 import javax.inject.Singleton
 import dagger.Provides
@@ -45,4 +46,9 @@ class AppModule {
     @Provides
     fun provideGetCampusRemoteDataSource(iRetrofitService: IRetrofitService)
             = ImeiRemoteDataSource(iRetrofitService)
+
+    @Singleton
+    @Provides
+    fun provideContextProviders(): ContextProviders
+            = ContextProviders.getInstance()
 }

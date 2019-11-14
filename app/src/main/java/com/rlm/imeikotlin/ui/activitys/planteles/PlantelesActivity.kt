@@ -42,7 +42,7 @@ class PlantelesActivity : BaseActivity(), OnMapReadyCallback {
 
         if (wifiManager.isWifiEnabled) {
             subscribeToPlantelesModel()
-            plantelesViewModel.loadAllPlanteles(true)
+            //plantelesViewModel.loadAllPlanteles(true)
         } else
             Tools.informaErrorConexionWifi(
                 this@PlantelesActivity,

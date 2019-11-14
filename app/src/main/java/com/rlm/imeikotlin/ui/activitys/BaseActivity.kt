@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.rlm.imeikotlin.R
-import com.rlm.imeikotlin.data.Resource
+import com.rlm.imeikotlin.data.remote.api.Resource
 import com.rlm.imeikotlin.ui.activitys.enviarInformacion.EnviarInformacionActivity
 import com.rlm.imeikotlin.ui.activitys.login.LoginActivity
 import com.rlm.imeikotlin.ui.activitys.main.MainActivity

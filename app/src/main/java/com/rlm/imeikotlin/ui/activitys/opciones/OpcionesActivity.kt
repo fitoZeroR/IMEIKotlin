@@ -31,7 +31,7 @@ class OpcionesActivity : BaseActivity() {
 
         subscribeToOpcionModel()
 
-        opcionesViewModel.loadAllOptions(true)
+        //opcionesViewModel.loadAllOptions(true)
     }
 
     override fun getLayoutResource() = R.layout.activity_opciones

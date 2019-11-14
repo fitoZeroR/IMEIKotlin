@@ -1,10 +1,11 @@
-package com.rlm.imeikotlin.data
+package com.rlm.imeikotlin.data.repository.strategy
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
-import com.rlm.imeikotlin.data.Resource.Status.ERROR
-import com.rlm.imeikotlin.data.Resource.Status.SUCCESS
+import com.rlm.imeikotlin.data.remote.api.Resource
+import com.rlm.imeikotlin.data.remote.api.Resource.Status.ERROR
+import com.rlm.imeikotlin.data.remote.api.Resource.Status.SUCCESS
 import kotlinx.coroutines.Dispatchers
 
 /**
@@ -20,7 +21,11 @@ fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
                           saveCallResult: suspend (A) -> Unit): LiveData<Resource<T>> =
         liveData(Dispatchers.IO) {
             emit(Resource.loading<T>())
-            val source = databaseQuery.invoke().map { Resource.success(it) }
+            val source = databaseQuery.invoke().map {
+                Resource.success(
+                    it
+                )
+            }
             emitSource(source)
 
             val responseStatus = networkCall.invoke()

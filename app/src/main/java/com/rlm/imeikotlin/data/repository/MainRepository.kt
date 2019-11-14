@@ -1,9 +1,5 @@
 package com.rlm.imeikotlin.data.repository
 
-import androidx.lifecycle.LiveData
-import com.rlm.imeikotlin.data.DetailNetworkResource
-import com.rlm.imeikotlin.data.NetworkResource
-import com.rlm.imeikotlin.data.Resource
 import com.rlm.imeikotlin.data.local.dao.AlumnoDao
 import com.rlm.imeikotlin.data.local.dao.DetalleAlumnoViewDao
 import com.rlm.imeikotlin.data.local.dao.InformacionDao
@@ -11,14 +7,16 @@ import com.rlm.imeikotlin.data.local.entity.AlumnoEntity
 import com.rlm.imeikotlin.data.local.entity.InformacionEntity
 import com.rlm.imeikotlin.data.local.entity.embedded.Pago
 import com.rlm.imeikotlin.data.local.entity.embedded.Plan
-import com.rlm.imeikotlin.data.local.view.DetalleAlumnoView
-import com.rlm.imeikotlin.data.remote.api.IRetrofitService
-import com.rlm.imeikotlin.data.remote.model.response.DescargaBoletaResponse
-import com.rlm.imeikotlin.data.remote.model.response.FotoResponse
+import com.rlm.imeikotlin.data.remote.api.ImeiRemoteDataSource
 import com.rlm.imeikotlin.data.remote.model.response.PagosAsignaturasResponse
+import com.rlm.imeikotlin.data.repository.strategy.resultLiveData
+import com.rlm.imeikotlin.data.repository.strategy.resultLiveDataRest
+import com.rlm.imeikotlin.data.repository.strategy.returnLiveDataResponse
+import com.rlm.imeikotlin.utils.ContextProviders
 import com.rlm.imeikotlin.utils.TIPO_PAGO
 import com.rlm.imeikotlin.utils.TIPO_PLAN
-import org.jetbrains.anko.doAsyncResult
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -29,10 +27,12 @@ constructor(
     private val informacionDao: InformacionDao,
     private val detalleAlumnoViewDao: DetalleAlumnoViewDao,
     private val alumnoDao: AlumnoDao,
-    private val iRetrofitService: IRetrofitService
+    private val imeiRemoteDataSource: ImeiRemoteDataSource,
+    private val contextProviders: ContextProviders
 ) {
-
     lateinit var alumnoEntity: AlumnoEntity
+
+    /*lateinit var alumnoEntity: AlumnoEntity
 
     fun loadAllInformation(): LiveData<Resource<List<DetalleAlumnoView>>> =
         object : DetailNetworkResource<List<DetalleAlumnoView>, PagosAsignaturasResponse>(appExecutors) {
@@ -93,5 +93,59 @@ constructor(
     private fun obtieneAlumno() = doAsyncResult {
         val resultado = alumnoDao.getAlumno()
         resultado
-    }.get()
+    }.get()*/
+
+    val loadAllInformation = resultLiveData(
+        databaseQuery = { detalleAlumnoViewDao.getDetalleAlumno() },
+        networkCall = {
+            alumnoEntity = alumnoDao.getAlumno()
+            imeiRemoteDataSource.fetchDataGetAsignaturasPagos(alumnoEntity.tokenSesion!!)
+        },
+        saveCallResult = { saveResultPagosAsignaturas(it) })
+
+    private fun saveResultPagosAsignaturas(pagosAsignaturasResponse: PagosAsignaturasResponse) {
+        pagosAsignaturasResponse.data.pagos.forEachIndexed { indexPago, pagos ->
+            pagosAsignaturasResponse.data.pagos[indexPago].estatusPagos.forEach {
+                informacionDao.saveInformacion(
+                    InformacionEntity(
+                        alumnoEntity.id, pagos.cuatrimestre,
+                        pagos.nombre, TIPO_PAGO, null, Pago(it.pago, it.nombre, it.estatus)
+                    )
+                )
+            }
+        }
+
+        pagosAsignaturasResponse.data.plan.forEachIndexed { indexPlan, plan ->
+            pagosAsignaturasResponse.data.plan[indexPlan].materia.forEach {
+                informacionDao.saveInformacion(
+                    InformacionEntity(
+                        alumnoEntity.id, plan.idCuatrimestre,
+                        plan.nombre, TIPO_PLAN, Plan(it.idMateria, it.materia, it.estatus), null
+                    )
+                )
+            }
+        }
+    }
+
+    val downloadFile = resultLiveDataRest(
+        networkCall = { imeiRemoteDataSource.fetchDataGetBoleta(alumnoDao.getAlumno().tokenSesion!!) },
+        returnData = { returnLiveDataResponse(it) })
+
+    fun changeImage(base64: String) =
+        resultLiveDataRest(
+            networkCall = {
+                imeiRemoteDataSource.submitDataPhoto(
+                    alumnoDao.getAlumno().tokenSesion!!,
+                    base64
+                )
+            },
+            returnData = { returnLiveDataResponse(it) })
+
+    fun cleanLogin(): Int {
+        var resultado = 0
+        GlobalScope.launch(contextProviders.IO) {
+            resultado = alumnoDao.deleteAlumno(alumnoDao.getAlumno())
+        }
+        return resultado
+    }
 }

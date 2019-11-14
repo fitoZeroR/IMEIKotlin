@@ -1,7 +1,6 @@
 package com.rlm.imeikotlin.data.remote.api
 
 import com.orhanobut.logger.Logger
-import com.rlm.imeikotlin.data.Resource
 import com.rlm.imeikotlin.utils.TAG
 import retrofit2.Response
 

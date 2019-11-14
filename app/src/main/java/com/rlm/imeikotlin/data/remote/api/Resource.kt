@@ -1,4 +1,4 @@
-package com.rlm.imeikotlin.data
+package com.rlm.imeikotlin.data.remote.api
 
 class Resource<T> private constructor(val status: Status, val data: T?, val message: String?) {
 
@@ -10,15 +10,27 @@ class Resource<T> private constructor(val status: Status, val data: T?, val mess
 
     companion object {
         fun <T> success(data: T): Resource<T> {
-            return Resource(Status.SUCCESS, data, null)
+            return Resource(
+                Status.SUCCESS,
+                data,
+                null
+            )
         }
 
         fun <T> error(message: String, data: T? = null): Resource<T> {
-            return Resource(Status.ERROR, data, message)
+            return Resource(
+                Status.ERROR,
+                data,
+                message
+            )
         }
 
         fun <T> loading(data: T? = null): Resource<T> {
-            return Resource(Status.LOADING, data, null)
+            return Resource(
+                Status.LOADING,
+                data,
+                null
+            )
         }
     }
 }

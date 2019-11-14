@@ -1,10 +1,9 @@
 package com.rlm.imeikotlin.data.repository
 
-import androidx.lifecycle.LiveData
 import com.rlm.imeikotlin.data.remote.api.ImeiRemoteDataSource
 import com.rlm.imeikotlin.data.remote.model.request.EnviarInformacionRequest
-import com.rlm.imeikotlin.data.remote.model.response.InformacionPlantelesResponse
-import com.rlm.imeikotlin.data.resultLiveDataPost
+import com.rlm.imeikotlin.data.repository.strategy.resultLiveDataRest
+import com.rlm.imeikotlin.data.repository.strategy.returnLiveDataResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,12 +20,8 @@ constructor(private val imeiRemoteDataSource: ImeiRemoteDataSource) {
         }.asLiveData()
     }*/
 
-    fun sendInformation(enviarInformacionRequest: EnviarInformacionRequest)
-            = resultLiveDataPost(
-        networkCall = { imeiRemoteDataSource.fetchDataGetCampus() },
-        returnData = { returnLiveDataResponse(enviarInformacionRequest) } )
-
-    private fun returnLiveDataResponse(informacionPlantelesResponse: InformacionPlantelesResponse): LiveData<InformacionPlantelesResponse> {
-
-    }
+    fun sendInformation(enviarInformacionRequest: EnviarInformacionRequest) =
+        resultLiveDataRest(
+            networkCall = { imeiRemoteDataSource.submitDataInformation(enviarInformacionRequest) },
+            returnData = { returnLiveDataResponse(it) })
 }
