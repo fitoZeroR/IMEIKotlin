@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class PlantelesViewModel
 @Inject
-constructor(private val plantelesRepository: PlantelesRepository) : ViewModel() {
+constructor(plantelesRepository: PlantelesRepository) : ViewModel() {
     val getAllOPlantelesResourceLiveData = plantelesRepository.loadAllPlanteles
 }

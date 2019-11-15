@@ -44,6 +44,6 @@ constructor(
         informacionPlantelesResponse.planteles.forEach { plantel ->
             listPlantelEntity.add(PlantelEntity(plantel.nombre, plantel.latitud, plantel.longitud))
         }
-        return listPlantelEntity;
+        return listPlantelEntity
     }
 }

@@ -1,7 +1,6 @@
 package com.rlm.imeikotlin.utils
 
 import android.graphics.*
-import com.rlm.imeikotlin.utils.CIRCLE
 import com.squareup.picasso.Transformation
 
 class PicassoCircleTransformation : Transformation {

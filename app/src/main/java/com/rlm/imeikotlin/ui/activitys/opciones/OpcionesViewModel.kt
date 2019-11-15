@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class OpcionesViewModel
 @Inject
-constructor(private val opcionesRepository: OpcionesRepository) : ViewModel() {
+constructor(opcionesRepository: OpcionesRepository) : ViewModel() {
     val getAllOptionsResourceLiveData = opcionesRepository.loadAllOptions
 }
